@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="WinSrv.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="WinSrvDlg.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="WinSrvDlg.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="WinSrv.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\WinSrv.ico">
+      <Filter>res</Filter>
+    </None>
+    <None Include="res\WinSrv.rc2">
+      <Filter>res</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="res">
+      <UniqueIdentifier>{f2713664-f422-42e3-a1eb-95c8f203c9a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{c4c08e6b-4d58-418c-9241-c8d9accbd0bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{4c970d51-11a0-4b2b-9298-f3a81a2e16e4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinSrv.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
