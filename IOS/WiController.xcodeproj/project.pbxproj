@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE8B77E214F2BFC6006FD3D8 /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8B77E114F2BFC6006FD3D8 /* Arsenal.a */; };
 		BE8B9AF214F2BB090034EEA0 /* NSString_Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8B9AF114F2BB090034EEA0 /* NSString_Convert.m */; };
 		BEE095A314F24120007B93C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE095A214F24120007B93C2 /* UIKit.framework */; };
 		BEE095A514F24120007B93C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE095A414F24120007B93C2 /* Foundation.framework */; };
@@ -22,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BE8B77E114F2BFC6006FD3D8 /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphonesimulator/Arsenal.a"; sourceTree = "<group>"; };
 		BE8B9AF014F2BB090034EEA0 /* NSString_Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_Convert.h; sourceTree = "<group>"; };
 		BE8B9AF114F2BB090034EEA0 /* NSString_Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Convert.m; sourceTree = "<group>"; };
 		BEE0959E14F24120007B93C2 /* WiController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiController.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +49,6 @@
 				BEE095A314F24120007B93C2 /* UIKit.framework in Frameworks */,
 				BEE095A514F24120007B93C2 /* Foundation.framework in Frameworks */,
 				BEE095A714F24120007B93C2 /* CoreGraphics.framework in Frameworks */,
-				BE8B77E214F2BFC6006FD3D8 /* Arsenal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +58,6 @@
 		BEE0959314F24120007B93C2 = {
 			isa = PBXGroup;
 			children = (
-				BE8B77E114F2BFC6006FD3D8 /* Arsenal.a */,
 				BEE095CF14F241B1007B93C2 /* dabaopku.plist */,
 				BEE095A814F24120007B93C2 /* WiController */,
 				BEE095A114F24120007B93C2 /* Frameworks */,
@@ -278,6 +274,8 @@
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Binary/Release-iphoneos\"",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -295,6 +293,8 @@
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Binary/Release-iphoneos\"",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
