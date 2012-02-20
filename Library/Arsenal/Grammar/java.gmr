@@ -1,0 +1,833 @@
+
+/*
+这个文法只是我测试下parser generator性能而编写的，还有很多问题
+*/
+
+%name		Separator		:	"[\(\)\{\}\[\];,\.]"
+					;
+
+%name 	Delimiter1		:	"[=><!~%:/&\+\-\*\|\?\^]"
+					;
+
+%name		HexDigit		:	"[0-9a-fA-F]"
+					;
+
+%name		Digit			:	"[0-9]"
+					;
+
+%name		OctalDigit		:	"[0-7]"
+					;
+
+%name		TetraDigit		:	"[0-3]"
+					;
+
+%name		NonZeroDigit	:	"[1-9]"
+					;
+
+%name		Letter		:	"[a-zA-Z_]"
+					;
+
+%name		AnyButSlash	:	"[^/]"
+					;
+
+%name		AnyButAstr		:	"[^\*]"
+					;
+
+%name		BLK			:	"[\b]"
+					;
+
+%name		TAB			:	"[\t]"
+					;
+
+%name		FF			:	"[\f]"
+					;
+
+%name		ESCCHR		:	"[\\]"
+					;
+
+%name		CR			:	"[\r]"
+					;
+%name		LF			:	"[\n]"
+					;
+
+
+%name		Escape		:	"[\\]([r]|[n]|[b]|[f]|[t]|[\\])"
+					;
+
+%name		Identifier 	:	"{Letter}({Letter}|{Digit})*"
+					;
+
+
+%name		Comment1        :	"[/][\*]({AnyButAstr}|[\*]{AnyButSlash})*[\*][/]"
+					;
+
+
+%name		Comment2        :	"[/][/].*"
+					;
+
+%name		Comment		:	"({Comment1}|{Comment2})"
+					;
+
+%name		WhiteSpace		:	"({CR}|{LF}|{FF}|{TAB}|{BLK}|[ ])"
+					;
+
+
+%name		Dimension		:	"[\[]({WhiteSpace}|{Comment})*[\]]"
+					;
+
+
+%name		IntSuffix		:	"([l]|[L])"
+					;
+
+%name		DecimalNum		:	"{NonZeroDigit}{Digit}*{IntSuffix}?"
+					;
+
+%name		OctalNum		:	"[0]{OctalDigit}*{IntSuffix}?"
+					;
+
+%name		HexNum		:	"[0]([x]|[X]){HexDigit}{HexDigit}*{IntSuffix}?"
+					;
+
+
+%name		IntegerLiteral	:	"({HexNum}|{OctalNum}|{DecimalNum})"
+					;
+
+
+
+%name		Sign			:	"([\+]|[\-])"
+					;
+
+%name		FlSuffix		:	"([f]|[F]|[d][D])"
+					;
+
+%name		SignedInt		:	"{Sign}?{Digit}+"
+					;
+
+%name		Expo			:	"([e]|[E])"
+					;
+
+%name		ExponentPart	:	"{Expo}{SignedInt}?"
+					;
+
+
+%name		Float1          :	"{Digit}+[\.]({Digit}+)?{ExponentPart}?{FlSuffix}?"
+					;
+
+
+%name		Float2		:	"[\.]{Digit}+{ExponentPart}?{FlSuffix}?"
+					;
+
+%name		Float3		:	"{Digit}+{ExponentPart}{FlSuffix}?"
+					;
+
+%name		Float4		:	"{Digit}+{FlSuffix}"
+					;
+
+%name		FloatingPoint	:	"({Float1}|{Float2}|{Float3}|{Float4})"
+					;
+
+
+%name		AnyChrChr		:	"(\\\x27)|[^\\\x27]"	//'
+					;
+
+%name		AnyStrChr		:	"(\\\x22)|[^\\\x22]"//"
+					;
+
+%name		Character		:	"[\x27]({Escape}|{AnyChrChr})[\x27]"
+					;
+
+%name		String		:	"[\x22]({Escape}|{AnyStrChr})*[\x22]"
+					;
+
+%name		Numeric  		:	"({FloatingPoint}|{IntegerLiteral})"
+					;
+
+
+%name		Literal		:	"({String}|{Numeric}|{Character})"
+					;
+
+
+%token	%skip			:	"{Separator}"
+					;
+%token	%skip			:	"{Delimiter1}"
+					;
+%token 	%skip			:	"{WhiteSpace}+";
+
+%token 	OP_DIM		:	"{Dimension}";
+%token	IDENTIFIER		:	"{Identifier}";
+%token	LITERAL		:	"{Literal}"	;
+%token	BOOLLIT		:	'"true"|"false"';
+
+%token	SYNCHRONIZED	:	"synchronized"	,	1;
+%token	ABSTRACT		:	"abstract",	1;
+%token	BOOLEAN 		:	'"boolean"',	1;
+%token	BREAK 		:	"break",	1;
+%token	BYTE 			:	"byte",	1;
+
+%token	CASE 			:	"case",	1;
+%token	CAST 			:	"cast",	1;
+%token	CATCH			:	"catch",	1;
+%token	CHAR 			:	"char",	1;
+%token	CLASS 		:	'"class"',	1;
+%token	CONST 		:	"const"	,	1;
+%token	CONTINUE 		:	"continue",	1;
+%token	DEFAULT 		:	"default",	1;
+%token	DO 			:	"do",	1;
+%token	DOUBLE		:	"double",	1;
+%token	ELSE 			:	"else",	1;
+%token	EXTENDS		:	"extends",	1;
+%token	FINAL 		:	"final",	1;
+%token	FINALLY 		:	"finally",	1;
+%token	FLOAT 		:	"float",	1;
+%token	FOR			:	"for",	1;
+%token	FUTURE		:	"future",	1;
+%token	GENERIC		:	"generic",	1;
+%token	GOTO			:	"goto",	1;
+%token	IF			:	"if",	1;
+%token	IMPLEMENTS		:	"implements",	1;
+%token	IMPORT		:	"import",	1;
+%token	INNER			:	"inner",	1;
+%token	INSTANCEOF		:	"instanceof",	1;
+%token	INT			:	"int",	1;
+%token	INTERFACE		:	"interface",	1;
+%token	LONG			:	"long",	1;
+%token	NATIVE		:	"native",	1;
+%token	NEW			:	"new",	1;
+%token	JNULL			:	"null",	1;
+%token	OPERATOR		:	"operator",	1;
+%token	OUTER			:	"outer",	1;
+%token	PACKAGE		:	"package",	1;
+%token	PRIVATE		:	"private",	1;
+%token	PROTECTED		:	"protected",	1;
+%token	PUBLIC		:	"public",	1;
+%token	REST 			:	"rest",	1;
+%token	RETURN		:	"return",	1;
+%token	SHORT			:	"short",	1;
+%token	STATIC		:	"static",	1;
+%token	SUPER			:	"super",	1;
+%token	SWITCH		:	"switch",	1;
+%token	THIS 			:	"this",	1;
+%token	THROW 		:	"throw",	1;
+%token	THROWS 		:	"throws",	1;
+%token	TRANSIENT 		:	"transient",	1;
+%token	TRY			:	"try",	1;
+
+%token	VOID			:	"void",	1;
+%token	VOLATILE		:	"volatile",	1;
+%token	WHILE			:	"while",	1;
+%token	OP_INC 		:	'"++"',	2;
+%token	OP_DEC		:	'"--"',	2;
+
+%token	OP_GE			:	'">"',	0;
+%token	OP_LE			:	'"<"',	0;
+%token	OP_EQ 		:	'"=="',	2;
+%token	OP_NE			:	'"!="',	2;
+%token	ASS_MUL		:	'"*="',	2;
+%token	ASS_DIV		:	'"/="',	2;
+%token	ASS_MOD		:	'"%="',	2;
+%token	ASS_ADD		:	'"+="',	2;
+%token	ASS_SUB		:	'"-="',	2;
+%token	ASS_AND		:	'"&="',	2;
+%token	ASS_XOR		:	'"^="',	2;
+%token	ASS_SHL		:	'"<<="',	2;
+%token	ASS_SHR		:	'">>="',	2;
+%token	ASS_SHRR		:	'">>>="',	2;
+%token	ASS_OR		:	'"|="',	2;
+%token	OP_SHL		:	'"<<"',	2;
+%token	OP_SHR		:	'">>"',	2;
+%token	OP_SHRR		:	'">>>"',	3;
+%token	OP_LAND		:	'"&&"',	2;
+%token	OP_LOR		:	'"||"',	2;
+%token	VAR			:	'"var"',	1;
+
+
+
+
+%token	";"		:	'";"'			,0		;	//;
+%token	"{"		:	'"{"'			,0		;	//{
+%token	"}"		:	'"}"'			,0		;	//}
+%token	","		:	'","'			,0		;	//,
+%token	":"		:	'":"'			,0		;	//:
+%token	"="		:	'"="'			,0		;	//=
+%token	"("		:	'"("'			,0		;	//(
+%token	")"		:	'")"'			,0		;	//)
+%token	"["		:	'"["'			,0		;	//[
+%token	"]"		:	'"]"'			,0		;	//]
+%token	"."		:	'"."'			,0		;	//.
+%token	"&"		:	'"&"'			,0		;	//&
+%token	"!"		:	'"!"'			,0		;	//!
+%token	"~"		:	'"~"'			,0		;	//~
+%token	"-"		:	'"-"'			,0		;	//-
+%token	"+"		:	'"+"'			,0		;	//+
+%token	"*"		:	'"*"'			,0		;	//*
+%token	"/"		:	'"/"'			,0		;	///
+%token	"%"		:	'"%"'			,0		;	//%
+%token	"<"		:	'"<"'			,0		;	//<
+%token	">"		:	'">"'			,0		;	//>
+%token	"^"		:	'"^"'			,0		;	//^
+%token	"|"		:	'"|"'			,0		;	//|
+%token	"?"		:	'"?"'			,0		;	//?
+
+
+
+%nonassoc	IF_STMT_PREC	;
+%nonassoc	IF_STMT_ELSE_STMT_PREC;
+
+%start	CompilationUnit	;
+
+CompilationUnit		:	CompilationUnit	LITERAL
+				|	LITERAL
+				;
+
+CompilationUnit
+	: ProgramFile
+        ;
+
+TypeSpecifier
+	: TypeName
+	| TypeName Dims
+	;
+
+TypeName
+	: PrimitiveType
+	| QualifiedName
+	;
+
+ClassNameList
+        : QualifiedName
+        | ClassNameList ',' QualifiedName
+	;
+
+PrimitiveType
+	: BOOLEAN
+	| CHAR
+	| BYTE
+	| SHORT
+	| INT
+	| LONG
+	| FLOAT
+	| DOUBLE
+	| VOID
+	;
+
+ProgramFile
+	: PackageStatement ImportStatements TypeDeclarations
+	| PackageStatement ImportStatements
+	| PackageStatement                  TypeDeclarations
+	|                  ImportStatements TypeDeclarations
+	| PackageStatement
+	|                  ImportStatements
+	|                                   TypeDeclarations
+	;
+
+PackageStatement
+	: PACKAGE QualifiedName ';'
+	;
+
+TypeDeclarations
+	: TypeDeclaration
+	| TypeDeclarations TypeDeclaration
+	;
+
+ImportStatements
+	: ImportStatement
+	| ImportStatements ImportStatement
+	;
+
+ImportStatement
+	: IMPORT QualifiedName ';'
+	| IMPORT QualifiedName '.' '*' ';'
+	;
+
+QualifiedName
+	: IDENTIFIER
+	| QualifiedName '.' IDENTIFIER
+	;
+
+TypeDeclaration
+	: ClassHeader '{' FieldDeclarations '}'
+	| ClassHeader '{' '}'
+	;
+
+ClassHeader
+	: Modifiers ClassWord IDENTIFIER Extends Interfaces
+	| Modifiers ClassWord IDENTIFIER Extends
+	| Modifiers ClassWord IDENTIFIER       Interfaces
+	|           ClassWord IDENTIFIER Extends Interfaces
+	| Modifiers ClassWord IDENTIFIER
+	|           ClassWord IDENTIFIER Extends
+	|           ClassWord IDENTIFIER       Interfaces
+	|           ClassWord IDENTIFIER
+	;
+
+Modifiers
+	: Modifier
+	| Modifiers Modifier
+	;
+
+Modifier
+	: ABSTRACT
+	| FINAL
+	| PUBLIC
+	| PROTECTED
+	| PRIVATE
+	| STATIC
+	| TRANSIENT
+	| VOLATILE
+	| NATIVE
+	| SYNCHRONIZED
+	;
+
+ClassWord
+	: CLASS
+	| INTERFACE
+	;
+
+Interfaces
+	: IMPLEMENTS ClassNameList
+	;
+
+FieldDeclarations
+	: FieldDeclaration
+        | FieldDeclarations FieldDeclaration
+	;
+
+FieldDeclaration
+	: FieldVariableDeclaration ';'
+	| MethodDeclaration
+	| ConstructorDeclaration
+	| StaticInitializer
+        | NonStaticInitializer
+        | TypeDeclaration
+	;
+
+FieldVariableDeclaration
+	: Modifiers TypeSpecifier VariableDeclarators
+	|           TypeSpecifier VariableDeclarators
+	;
+
+VariableDeclarators
+	: VariableDeclarator
+	| VariableDeclarators ',' VariableDeclarator
+	;
+
+VariableDeclarator
+	: DeclaratorName
+	| DeclaratorName '=' VariableInitializer
+	;
+
+VariableInitializer
+	: Expression
+	| '{' '}'
+        | '{' ArrayInitializers '}'
+        ;
+
+ArrayInitializers
+	: VariableInitializer
+	| ArrayInitializers ',' VariableInitializer
+	| ArrayInitializers ','
+	;
+
+MethodDeclaration
+	: Modifiers TypeSpecifier MethodDeclarator Throws MethodBody
+	| Modifiers TypeSpecifier MethodDeclarator        MethodBody
+	|           TypeSpecifier MethodDeclarator Throws MethodBody
+	|           TypeSpecifier MethodDeclarator        MethodBody
+	;
+
+MethodDeclarator
+	: DeclaratorName '(' ParameterList ')'
+	| DeclaratorName '(' ')'
+	| MethodDeclarator OP_DIM
+	;
+
+ParameterList
+	: Parameter
+	| ParameterList ',' Parameter
+	;
+
+Parameter
+	: TypeSpecifier DeclaratorName
+	;
+
+DeclaratorName
+	: IDENTIFIER
+        | DeclaratorName OP_DIM
+        ;
+
+Throws
+	: THROWS ClassNameList
+	;
+
+MethodBody
+	: Block
+	| ';'
+	;
+
+ConstructorDeclaration
+	: Modifiers ConstructorDeclarator Throws Block
+	| Modifiers ConstructorDeclarator        Block
+	|           ConstructorDeclarator Throws Block
+	|           ConstructorDeclarator        Block
+	;
+
+ConstructorDeclarator
+	: IDENTIFIER '(' ParameterList ')'
+	| IDENTIFIER '(' ')'
+	;
+
+StaticInitializer
+	: STATIC Block
+	;
+
+NonStaticInitializer
+        : Block
+        ;
+
+Extends
+	: EXTENDS TypeName
+	| Extends ',' TypeName
+	;
+
+Block
+	: '{' LocalVariableDeclarationsAndStatements '}'
+	| '{' '}'
+        ;
+
+LocalVariableDeclarationsAndStatements
+	: LocalVariableDeclarationOrStatement
+	| LocalVariableDeclarationsAndStatements LocalVariableDeclarationOrStatement
+	;
+
+LocalVariableDeclarationOrStatement
+	: LocalVariableDeclarationStatement
+	| Statement
+	;
+
+LocalVariableDeclarationStatement
+	: TypeSpecifier VariableDeclarators ';'
+	;
+
+Statement
+	: EmptyStatement
+	| LabeledStatement
+	| ExpressionStatement ';'
+        | SelectionStatement
+        | IterationStatement
+	| JumpStatement
+	| GuardingStatement
+	| Block
+	;
+
+EmptyStatement
+	: ';'
+        ;
+
+LabeledStatement
+	: IDENTIFIER ':' LocalVariableDeclarationOrStatement
+        | CASE ConstantExpression ':' LocalVariableDeclarationOrStatement
+	| DEFAULT ':' LocalVariableDeclarationOrStatement
+        ;
+
+ExpressionStatement
+	: Expression
+	;
+
+SelectionStatement
+		: IF '(' Expression ')' Statement	%prec IF_STMT_PREC
+		| IF '(' Expression ')' Statement ELSE Statement	%prec IF_STMT_ELSE_STMT_PREC
+		| SWITCH '(' Expression ')' Block
+        ;
+
+IterationStatement
+	: WHILE '(' Expression ')' Statement
+	| DO Statement WHILE '(' Expression ')' ';'
+	| FOR '(' ForInit ForExpr ForIncr ')' Statement
+	| FOR '(' ForInit ForExpr         ')' Statement
+	;
+
+ForInit
+	: ExpressionStatements ';'
+	| LocalVariableDeclarationStatement
+	| ';'
+	;
+
+ForExpr
+	: Expression ';'
+	| ';'
+	;
+
+ForIncr
+	: ExpressionStatements
+	;
+
+ExpressionStatements
+	: ExpressionStatement
+	| ExpressionStatements ',' ExpressionStatement
+	;
+
+JumpStatement
+	: BREAK IDENTIFIER ';'
+	| BREAK            ';'
+        | CONTINUE IDENTIFIER ';'
+	| CONTINUE            ';'
+	| RETURN Expression ';'
+	| RETURN            ';'
+	| THROW Expression ';'
+	;
+
+GuardingStatement
+	: SYNCHRONIZED '(' Expression ')' Statement
+	| TRY Block Finally
+	| TRY Block Catches
+	| TRY Block Catches Finally
+	;
+
+Catches
+	: Catch
+	| Catches Catch
+	;
+
+Catch
+	: CatchHeader Block
+	;
+
+CatchHeader
+	: CATCH '(' TypeSpecifier IDENTIFIER ')'
+	| CATCH '(' TypeSpecifier ')'
+	;
+
+Finally
+	: FINALLY Block
+	;
+
+PrimaryExpression
+	: QualifiedName
+	| NotJustName
+	;
+
+NotJustName
+	: SpecialName
+	| NewAllocationExpression
+	| ComplexPrimary
+	;
+
+ComplexPrimary
+	: '(' Expression ')'
+	| ComplexPrimaryNoParenthesis
+	;
+
+ComplexPrimaryNoParenthesis
+	: LITERAL
+	| BOOLLIT
+	| ArrayAccess
+	| FieldAccess
+	| MethodCall
+	;
+
+ArrayAccess
+	: QualifiedName '[' Expression ']'
+	| ComplexPrimary '[' Expression ']'
+	;
+
+FieldAccess
+	: NotJustName '.' IDENTIFIER
+	| RealPostfixExpression '.' IDENTIFIER
+	;
+
+MethodCall
+	: MethodAccess '(' ArgumentList ')'
+	| MethodAccess '(' ')'
+	;
+
+MethodAccess
+	: ComplexPrimaryNoParenthesis
+	| SpecialName
+	| QualifiedName
+	;
+
+SpecialName
+	: THIS
+	| SUPER
+	| JNULL
+	;
+
+ArgumentList
+	: Expression
+	| ArgumentList ',' Expression
+	;
+
+NewAllocationExpression
+    	: ArrayAllocationExpression
+    	| ClassAllocationExpression
+    	| ArrayAllocationExpression '{' '}'
+    	| ClassAllocationExpression '{' '}'
+    	| ArrayAllocationExpression '{' ArrayInitializers '}'
+    	| ClassAllocationExpression '{' FieldDeclarations '}'
+    	;
+
+ClassAllocationExpression
+	: NEW TypeName '(' ArgumentList ')'
+	| NEW TypeName '('              ')'
+        ;
+
+ArrayAllocationExpression
+	: NEW TypeName DimExprs Dims
+	| NEW TypeName DimExprs
+	;
+
+DimExprs
+	: DimExpr
+	| DimExprs DimExpr
+	;
+
+DimExpr
+	: '[' Expression ']'
+	;
+
+Dims
+	: OP_DIM
+	| Dims OP_DIM
+	;
+
+PostfixExpression
+	: PrimaryExpression
+	| RealPostfixExpression
+	;
+
+RealPostfixExpression
+	: PostfixExpression OP_INC
+	| PostfixExpression OP_DEC
+	;
+
+UnaryExpression
+	: OP_INC UnaryExpression
+	| OP_DEC UnaryExpression
+	| ArithmeticUnaryOperator CastExpression
+	| LogicalUnaryExpression
+	;
+
+LogicalUnaryExpression
+	: PostfixExpression
+	| LogicalUnaryOperator UnaryExpression
+	;
+
+LogicalUnaryOperator
+	: '~'
+	| '!'
+	;
+
+ArithmeticUnaryOperator
+	: '+'
+	| '-'
+	;
+
+CastExpression
+	: UnaryExpression
+	| '(' PrimitiveTypeExpression ')' CastExpression
+	| '(' ClassTypeExpression ')' CastExpression
+	| '(' Expression ')' LogicalUnaryExpression
+	;
+
+PrimitiveTypeExpression
+	: PrimitiveType
+        | PrimitiveType Dims
+        ;
+
+ClassTypeExpression
+	: QualifiedName Dims
+        ;
+
+MultiplicativeExpression
+	: CastExpression
+	| MultiplicativeExpression '*' CastExpression
+	| MultiplicativeExpression '/' CastExpression
+	| MultiplicativeExpression '%' CastExpression
+	;
+
+AdditiveExpression
+	: MultiplicativeExpression
+        | AdditiveExpression '+' MultiplicativeExpression
+	| AdditiveExpression '-' MultiplicativeExpression
+        ;
+
+ShiftExpression
+	: AdditiveExpression
+        | ShiftExpression OP_SHL AdditiveExpression
+        | ShiftExpression OP_SHR AdditiveExpression
+        | ShiftExpression OP_SHRR AdditiveExpression
+	;
+
+RelationalExpression
+	: ShiftExpression
+        | RelationalExpression '<' ShiftExpression
+	| RelationalExpression '>' ShiftExpression
+	| RelationalExpression OP_LE ShiftExpression
+	| RelationalExpression OP_GE ShiftExpression
+	| RelationalExpression INSTANCEOF TypeSpecifier
+	;
+
+EqualityExpression
+	: RelationalExpression
+        | EqualityExpression OP_EQ RelationalExpression
+        | EqualityExpression OP_NE RelationalExpression
+        ;
+
+AndExpression
+	: EqualityExpression
+        | AndExpression '&' EqualityExpression
+        ;
+
+ExclusiveOrExpression
+	: AndExpression
+	| ExclusiveOrExpression '^' AndExpression
+	;
+
+InclusiveOrExpression
+	: ExclusiveOrExpression
+	| InclusiveOrExpression '|' ExclusiveOrExpression
+	;
+
+ConditionalAndExpression
+	: InclusiveOrExpression
+	| ConditionalAndExpression OP_LAND InclusiveOrExpression
+	;
+
+ConditionalOrExpression
+	: ConditionalAndExpression
+	| ConditionalOrExpression OP_LOR ConditionalAndExpression
+	;
+
+ConditionalExpression
+	: ConditionalOrExpression
+	| ConditionalOrExpression '?' Expression ':' ConditionalExpression
+	;
+
+AssignmentExpression
+	: ConditionalExpression
+	| UnaryExpression AssignmentOperator AssignmentExpression
+	;
+
+AssignmentOperator
+	: '='
+	| ASS_MUL
+	| ASS_DIV
+	| ASS_MOD
+	| ASS_ADD
+	| ASS_SUB
+	| ASS_SHL
+	| ASS_SHR
+	| ASS_SHRR
+	| ASS_AND
+	| ASS_XOR
+	| ASS_OR
+	;
+
+Expression
+	: AssignmentExpression
+        ;
+
+ConstantExpression
+	: ConditionalExpression
+	;
+

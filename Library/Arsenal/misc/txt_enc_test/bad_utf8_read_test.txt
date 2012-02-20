@@ -1,0 +1,501 @@
+﻿�������������驱动基础教程收藏
+  
+本文讲述Windows磁盘驱动的主要结构功能与编写方法基础。本文描述的内容仅限于软件层面，并不与具体的硬件相关。 
+1.磁盘驱动基础
+
+    不少人把文件系统驱动和磁盘驱动混为一谈。实际上文件系统驱动应该与磁盘驱动是两类不同的驱动程序。文件系统仅仅考虑数据在存储设备上的保存格式（而不考虑具体是什么存储设备），而磁盘是存储设备的一种。
+
+    在存储设备驱动(storage driver)中，与实际的硬件设备打交道的驱动称为微端口（miniport）驱动，而更上层的驱动称为类驱动（class driver）。这里说的磁盘驱动（disk driver）是一个类驱动。类驱动具体功能通过下层的微端口驱动实现。而自己则抽象出一类设备（如磁盘），供文件系统驱动调用。这样，文件系统就不用自己去和硬件细节打交道了，在它看来所有的磁盘都是一个磁盘设备。这就是类驱动存在的意义。
+
+    如果认为微端口驱动都是硬件驱动的话，则类驱动是硬件驱动之上的软件驱动。
+
+    要学习磁盘驱动的编写，可以参考WINDDK\src\storage\class\disk,这是一个SCSI磁盘类驱动（SCSI disk class driver）的例子。但是这个例子的实现细节过于烦琐。为此我在网上找到一个文件虚拟磁盘（FileDisk）的例子，用这个来说明磁盘驱动的编写方法。你可以在网上下载它。
+
+    磁盘驱动找到物理媒质的时候，生成磁盘设备对象。但是要注意磁盘设备对象与卷（volume）设备对象（volume device driver）的区别。一个磁盘设备对象对应一个物理的磁盘。而卷，则是文件系统驱动找到磁盘设备之后，挂载形成的一种新设备。这种设备可以进行很多操作，比如生成文件，删除文件，修改文件等，这些是与文件系统相关的操作。而磁盘设备对象则没有这些操作。因为磁盘并不知道有文件系统，所以仅仅能进行读，写，获取一些磁盘信息等操作。比文件系统操作简单得多。
+
+    每当你生成一个磁盘驱动对象，系统中就出现一个新的磁盘。是否出现在windows的我的电脑之中，还需要涉及到一些其他信息的返回。但是你确实可以随时生成新的磁盘，无论具体的硬件是否存在。在内核代码中，你可以使用IoCreateDevice来生成一个磁盘设备。
+
+    XP版本的ifs下的例子disk使用IoCreateDisk来生成一个磁盘。似乎这个函数的使用更加简便。而FileDisk的例子，使用IoCreateDevice，可能这个例子开发比较早，或者是为了兼容2000ddk.
+
+    驱动的入口是DriverEntry,你可以首先编写这个函数。你可以在这里生成磁盘设备对象.设备对象都是有名字的。首先你必须确定它们的名字。FileDisk在DriverEntry中生成了一连串设备，这些设备的名字如下:
+    "\\Device\\FileDisk0"
+    "\\Device\\FileDisk1"
+    "\\Device\\FileDisk2"
+    "\\Device\\FileDisk3"
+    "\\Device\\FileDisk4"
+    ... 依次类推。
+
+    需要多少个磁盘设备对象和你的需要有关，这个数字事先已经保存在注册表中。对你的简单代码来说，只要：
+
+NTSTATUS
+DriverEntry (
+  IN PDRIVER_OBJECT   DriverObject,
+  IN PUNICODE_STRING RegistryPath
+  )
+{
+    PDEVICE_OBJECT device_object;
+    UNICODE_STRING device_name;
+    RtlInitUnicodeString(&device_name,L"\\Device\\FileDisk");
+    
+    status = IoCreateDevice(
+        DriverObject,
+        0,     //sizeof(DEVICE_EXTENSION),这里是设备扩展的大小空间
+        &device_name,
+        FILE_DEVICE_DISK,
+        0,
+        FALSE,
+        &device_object);
+    return status;
+}     
+
+    
+    建议打开ddk帮助看看IoCreateDevice的参数说明。FILE_DEVICE_DISK是ddk中定义的一种设备类型。现在磁盘设备对象已经生成了，只要加载这个驱动，系统将知道增加一个磁盘。不过还有以下的一些问题:
+
+    （1）当设备目录"\\Device"不存在的时候，你的创建会失败。所以应该先创建这个目录，使用ZwCreateDirectoryObject即可。
+
+    （2）你确实创建了一个磁盘设备对象。但是你没有为你的驱动指定分发例程。当windows对这个磁盘有所请求（比如获取磁盘的信息，读写这个磁盘等），你的分发例程会被调用。此时没有写分发例程，因此windows也无法得到这个磁盘的信息，因而它不会起作用。
+
+    （3）你必然要在磁盘设备对象上保留一些私人信息，因此不能把设备扩展大小设置为0。你应该定义设备扩展的数据结构。当然这要看你的需要了。
+
+    （4）你还需要设置一些设备标志。
+
+
+        *                       *                       *
+
+
+2 分发例程和设备扩展
+
+    应该给你的驱动指定分发例程。这样你的磁盘设备生成之后，windows会发给你请求，来读取你的磁盘的信息。而这些请求（irp）就会发到你的分发例程中。
+    分发例程是一组用来处理不同请求的函数。
+
+NTSTATUS
+DriverEntry (
+  IN PDRIVER_OBJECT   DriverObject,
+  IN PUNICODE_STRING RegistryPath
+  )
+{
+
+    ...     // 前面生成设备对象...
+
+    // 设置分发例程。请注意仅仅需要5个，比文件系统少多了。
+    DriverObject->MajorFunction[IRP_MJ_CREATE]       = FileDiskCreateClose;
+    DriverObject->MajorFunction[IRP_MJ_CLOSE]       = FileDiskCreateClose;
+    DriverObject->MajorFunction[IRP_MJ_READ]       = FileDiskReadWrite;
+    DriverObject->MajorFunction[IRP_MJ_WRITE]       = FileDiskReadWrite;
+    DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = FileDiskDeviceControl;
+
+    // 卸载例程。
+    DriverObject->DriverUnload = FileDiskUnload;
+
+    return status;
+}
+
+    下面的任务你要自己编写FileDiskCreateClose, FileDiskReadWrite, FileDiskDeviceControl这三个函数。
+
+    请注意所有的分发例程的结构都是如此：
+NTSTATUS
+DispatchFunction(
+    IN PDEVICE_OBJECT   DeviceObject,
+    IN PIRP         Irp
+  );
+
+    DeviceObject是接受请求的设备对象指针，应该是由你的驱动生成的，所以才会发到你的驱动的分发例程。Irp是请求包指针。里边含有请求相关的信息。最后返回执行的结果（成功或者错误代码）。
+
+    从FileDisk看来，分发例程比文件系统驱动要简单得多。DriverObject->DriverUnload是一个特殊的例程，在windows卸载你的驱动的时候被调用。你可以在其中删除设备，关闭打开的文件等等。
+
+    FileDisk定义了一个设备扩展。这个设备扩展被记录在设备对象中，你随时可以通过DeviceObject->DeviceExtension得到它。它的内容如下:
+
+typedef struct _DEVICE_EXTENSION {
+  BOOLEAN               media_in_device;
+  HANDLE               file_handle;
+  FILE_STANDARD_INFORMATION   file_information;
+  BOOLEAN               read_only;
+  PSECURITY_CLIENT_CONTEXT   security_client_context;
+  LIST_ENTRY             list_head;
+  KSPIN_LOCK             list_lock;
+  KEVENT               request_event;
+  PVOID               thread_pointer;
+  BOOLEAN               terminate_thread;
+} DEVICE_EXTENSION, *PDEVICE_EXTENSION;
+    
+    media_in_device是指这个设备是否已经指定了一个文件作为存储媒质。这是一个用文件来虚拟磁盘的驱动。那么一个磁盘应该对应一个实际存在的文件。读写这个磁盘的请求最终转变为对文件的读写。如果一个磁盘设备对象还没有指定文件，那么这个内容是FALSE.
+
+    file_handle是文件句柄。也就是这个虚拟磁盘所对应的文件。
+
+    file_information是这个文件的一些信息。
+
+    read_only是否只读。
+
+    security_client_context 访问文件的时候需要使用的一个线程客户安全性上下文。
+
+
+    list_head是一个链表头。一部分irp（windows发来的请求包）被放入这个链表中。我们为每个磁盘对象开启一个系统线程（处理线程），专门用来处理这些请求。
+
+    list_lock是为了保证链表读写同步的锁。
+
+    request_event是一个事件。当链表中没有请求的时候，处理请求的系统线程并不做任何事情，而只等待这个事件。当有请求到来，我们把请求放入链表，然后设置这个事件。处理线程就会开始处理这些请求。
+
+    thread_pointer是线程的指针，用来最后等待这个线程的结束。
+
+    terminate_thread是一个标志。如果设置为TRUE，处理线程执行的时候检测到这个，就会把自己终止掉。
+
+
+        *                       *                       *
+
+
+3.分发例程-打开与关闭，读与写
+
+    这里需要Create和Close是为了通信。让应用程序可以打开这些磁盘设备来设置一些信息。
+    打开关闭非常简单，都是对irp无条件返回成功：
+
+NTSTATUS
+FileDiskCreateClose (
+  IN PDEVICE_OBJECT   DeviceObject,
+  IN PIRP         Irp
+  )
+{
+  PAGED_CODE();
+  Irp->IoStatus.Status = STATUS_SUCCESS;
+  Irp->IoStatus.Information = FILE_OPENED;
+  IoCompleteRequest(Irp, IO_NO_INCREMENT);
+  return STATUS_SUCCESS;
+}
+
+    PAGED_CODE()是一个调试用的宏。如果一个函数被定义在可分页交换的段中，那么它执行时的中断级别必须满足一定的要求。PAGED_CODE()用来检测是否符合。如果不行，调试版本中这里会出现失败。这个宏仅仅在调试版本下有效。
+
+    例子disk的读写非常复杂。而FileDisk的读写是对文件的读写。所以相对简单一些。基本的过程如下：
+    1.得到设备扩展。
+    2.检查是否已经打开了文件。如果没有，直接返回失败。
+    3.对于长度为0的读写，直接返回成功。
+    4.把请求加入设备扩展中的请求队列中，设置事件让处理线程运行处理。
+    5.返回等待。
+
+    你固然可以在读写例程中直接读写文件。但是这不符合惯例。读写文件需要消耗的时间比较长，应该让系统尽快得到答复以便可以干其他的事情。此外这个函数很容易重入，我们希望把读写请求的完成序列化，为此我们并不在这里直接读写文件。而是把请求放入队列中。为每个磁盘设备对象生成一个系统线程，来依次处理这些请求。
+
+NTSTATUS
+FileDiskReadWrite (
+  IN PDEVICE_OBJECT   DeviceObject,
+  IN PIRP         Irp
+  )
+{
+    PDEVICE_EXTENSION   device_extension;
+    PIO_STACK_LOCATION io_stack;
+
+    // 得到设备扩展
+    device_extension = (PDEVICE_EXTENSION) DeviceObject->DeviceExtension;
+
+    ...
+              
+}
+
+    上面得到了设备扩展，那么我检查这个磁盘是否已经有物理媒质（也就是一个文件用来模拟磁盘空间）。
+
+    // 如果没有打开过文件，就返回失败
+    if (!device_extension->media_in_device)
+    {
+        Irp->IoStatus.Status = STATUS_NO_MEDIA_IN_DEVICE;
+        Irp->IoStatus.Information = 0;
+        IoCompleteRequest(Irp, IO_NO_INCREMENT);
+        return STATUS_NO_MEDIA_IN_DEVICE;
+    }         
+    
+    想得到要读多长的时候要得到Irp的当前栈空间：
+    
+    io_stack = IoGetCurrentIrpStackLocation(Irp);
+    // 读0长的时候立刻成功
+    if (io_stack->Parameters.Read.Length == 0)
+    {
+        Irp->IoStatus.Status = STATUS_SUCCESS;
+        Irp->IoStatus.Information = 0;
+        IoCompleteRequest(Irp, IO_NO_INCREMENT);
+        return STATUS_SUCCESS;
+    }
+        
+    然后就可以把Irp放到队列里去等待完成了:
+
+    // 标志pending
+    IoMarkIrpPending(Irp);
+
+    // 把请求写入链表
+    ExInterlockedInsertTailList(
+        &device_extension->list_head,
+        &Irp->Tail.Overlay.ListEntry,
+        &device_extension->list_lock
+    );
+
+    // 设置事件。让线程循环运行。
+    KeSetEvent(
+        &device_extension->request_event,
+        (KPRIORITY) 0,
+        FALSE
+        );
+    return STATUS_PENDING;
+
+    到此读写例程完成。至于真正的读写完成在处理线程中，请阅读后面关于处理线程的章节。
+
+
+        *                       *                       *
+
+
+5.分发例程-磁盘固有的设备控制
+    
+    设备控制（Device Control）是除了读，写之外最重要的操作之一。对磁盘来说，windows通过发送设备控制请求来询问此磁盘的一些信息。收到设备控制请求之后，应该首先得到控制功能号，然后根据不同的控制功能号进行不同的处理.这些功能号有些是windows固有的，有些是由你自己定义的。
+
+NTSTATUS
+FileDiskDeviceControl (
+  IN PDEVICE_OBJECT   DeviceObject,
+  IN PIRP         Irp
+  )
+{
+    PDEVICE_EXTENSION   device_extension;
+    PIO_STACK_LOCATION io_stack;
+    NTSTATUS         status;
+
+    // 得到设备扩展
+    device_extension = (PDEVICE_EXTENSION) DeviceObject->DeviceExtension;
+
+    // 得到当前设备栈
+    io_stack = IoGetCurrentIrpStackLocation(Irp);
+
+    // 判断如果是还没有加载物理媒质就返回失败。但是
+    // IOCTL_FILE_DISK_OPEN_FILE是自定义的功能号，专
+    // 用来加载物理媒质的，所以排除在外
+    if (!device_extension->media_in_device &&
+        io_stack->Parameters.DeviceIoControl.IoControlCode !=
+        IOCTL_FILE_DISK_OPEN_FILE)
+    {
+        Irp->IoStatus.Status = STATUS_NO_MEDIA_IN_DEVICE;
+        Irp->IoStatus.Information = 0;
+        IoCompleteRequest(Irp, IO_NO_INCREMENT);
+        return STATUS_NO_MEDIA_IN_DEVICE;
+    }
+
+    // 根据不同的功能号处理...
+    switch (io_stack->Parameters.DeviceIoControl.IoControlCode)
+    {     
+    ...
+    }
+    
+    ...
+}
+
+    有非常多的固有设备控制功能码要处理。这些请求都有参数，从输入空间得到参数后，把返回结果写到输出空间。无论什么请求，其输入和输出空间都是Irp->AssociatedIrp.SystemBuffer，但是每种请求的参数和返回都有自己的格式，需要一一阅读文档才行。
+
+    举例说明，下面的一些功能号检查磁盘的有效性。现在一律返回有效，这个请求简单，不带参数。
+
+    case IOCTL_DISK_CHECK_VERIFY:
+    case IOCTL_CDROM_CHECK_VERIFY:
+    case IOCTL_STORAGE_CHECK_VERIFY:
+    case IOCTL_STORAGE_CHECK_VERIFY2:
+    {
+        status = STATUS_SUCCESS;
+        Irp->IoStatus.Information = 0;
+        break;
+    }     
+    
+    下面这个请求获得磁盘的物理属性:
+
+    case IOCTL_DISK_GET_DRIVE_GEOMETRY:
+    case IOCTL_CDROM_GET_DRIVE_GEOMETRY:
+    {
+        PDISK_GEOMETRY disk_geometry;
+        ULONGLONG     length;
+
+        if (io_stack->Parameters.DeviceIoControl.OutputBufferLength <
+              sizeof(DISK_GEOMETRY))
+        {
+        status = STATUS_BUFFER_TOO_SMALL;
+        Irp->IoStatus.Information = 0;
+        break;
+        }
+
+        disk_geometry = (PDISK_GEOMETRY) Irp->AssociatedIrp.SystemBuffer;
+
+        length = device_extension->file_information.AllocationSize.QuadPart;
+
+        disk_geometry->Cylinders.QuadPart = length / MM_MAXIMUM_DISK_IO_SIZE;
+        disk_geometry->MediaType = FixedMedia;
+        disk_geometry->TracksPerCylinder = MM_MAXIMUM_DISK_IO_SIZE / PAGE_SIZE;
+        disk_geometry->SectorsPerTrack = PAGE_SIZE / SECTOR_SIZE;
+        disk_geometry->BytesPerSector = SECTOR_SIZE;
+
+        status = STATUS_SUCCESS;
+        Irp->IoStatus.Information = sizeof(DISK_GEOMETRY);
+
+        break;
+    }
+
+    请注意你要把结果写入到一个DISK_GEOMETRY结构中并把这个结构返回到Irp->AssociatedIrp.SystemBuffer中。这个结构的定义如下：
+    typedef struct _DISK_GEOMETRY {
+        LARGE_INTEGER Cylinders;     // 磁柱个数
+        MEDIA_TYPE MediaType;         // 媒质类型
+        ULONG TracksPerCylinder;     // 每个磁柱上的磁道数
+        ULONG SectorsPerTrack;         // 每个磁道上的扇区数
+        ULONG BytesPerSector;         // 每个扇区上的字节数
+    } DISK_GEOMETRY, *PDISK_GEOMETRY;
+    
+    以上这个结构说明来自ddk文档。你必须"如实"的返回这些数据。
+
+    此外比较重要的是获取分区信息，获取分区信息有两个功能号，IOCTL_DISK_GET_PARTITION_INFO和IOCTL_DISK_GET_PARTITION_INFO_EX，其处理过程是类似的，主要是返回结果的结构不同，下面只举出一个例子:
+
+    case IOCTL_DISK_GET_PARTITION_INFO_EX:
+    {
+        PPARTITION_INFORMATION_EX   partition_information_ex;
+        ULONGLONG             length;
+
+        if (io_stack->Parameters.DeviceIoControl.OutputBufferLength <
+        sizeof(PARTITION_INFORMATION_EX))
+        {
+              status = STATUS_BUFFER_TOO_SMALL;
+              Irp->IoStatus.Information = 0;
+              break;
+        }
+
+        partition_information_ex = (PPARTITION_INFORMATION_EX) Irp->AssociatedIrp.SystemBuffer;
+        length = device_extension->file_information.AllocationSize.QuadPart;
+
+        partition_information_ex->PartitionStyle = PARTITION_STYLE_MBR;
+        partition_information_ex->StartingOffset.QuadPart = SECTOR_SIZE;
+        partition_information_ex->PartitionLength.QuadPart = length - SECTOR_SIZE;
+        partition_information_ex->PartitionNumber = 0;
+        partition_information_ex->RewritePartition = FALSE;
+        partition_information_ex->Mbr.PartitionType = 0;
+        partition_information_ex->Mbr.BootIndicator = FALSE;
+        partition_information_ex->Mbr.RecognizedPartition = FALSE;
+        partition_information_ex->Mbr.HiddenSectors = 1;
+
+        status = STATUS_SUCCESS;
+        Irp->IoStatus.Information = sizeof(PARTITION_INFORMATION_EX);
+        break;
+    }
+
+    还有其他的一些功能号。你可以查看FileDisk的代码来了解他们。
+
+    做为文件虚拟磁盘，这些数据都是虚拟的，所以根据需要返回就行了。无需动用下层设备。而Disk的例子则不同。这些请求都要发到下层设备来获得结果。
+
+
+        *                       *                       *
+
+
+6.每个设备的处理线程
+
+    前面说到为每一个磁盘设备对象生成了一个系统线程，用来处理Irp。系统线程的生成用以下的调用:
+    
+    // 生成一个系统线程
+    status = PsCreateSystemThread(
+        &thread_handle,
+        (ACCESS_MASK) 0L,
+        NULL,
+        NULL,
+        NULL,
+        FileDiskThread,
+        device_object
+        );     
+
+    device_object是我所生成的磁盘设备对象。作为线程上下文传入。便于我们在线程中得到设备对象指针，然后得到设备扩展。
+
+    稍后我们要把线程对象的指针保留下来存到设备扩展中。这使用ObReferenceObjectByHandle来实现。
+
+    status = ObReferenceObjectByHandle(
+        thread_handle,
+        THREAD_ALL_ACCESS,
+        NULL,
+        KernelMode,
+        &device_extension->thread_pointer,
+        NULL
+        );
+
+    此后我们关注这个线程的运作。线程的启动函数是FileDiskThread.这个FileDisk实现了以下的功能:
+
+    1.获得设备扩展。
+    2.设置线程优先级。
+    3.进入死循环。首先等待事件的发生（device_extension->request_event），避免空循环消耗资源。
+    4.检查终止标志（device_extension->terminate_thread）。如果外部要求终止，就使用PsTerminateSystemThread(STATUS_SUCCESS)终止它。
+    5.检查请求链表（device_extension->list_head），若有请求，则完成他们。
+
+    读写请求的处理非常简单，如下：
+
+    switch (io_stack->MajorFunction)
+    {
+    case IRP_MJ_READ:
+        // 对于读，我直接读文件即可
+        ZwReadFile(
+              device_extension->file_handle,
+              NULL,
+              NULL,
+              NULL,
+              &irp->IoStatus,
+              MmGetSystemAddressForMdlSafe(irp->MdlAddress, NormalPagePriority),
+              io_stack->Parameters.Read.Length,
+              &io_stack->Parameters.Read.ByteOffset,
+              NULL
+              );
+        break;
+
+    case IRP_MJ_WRITE:
+        // 写也是与之类似的。
+        if ((io_stack->Parameters.Write.ByteOffset.QuadPart +
+              io_stack->Parameters.Write.Length) >
+              device_extension->file_information.AllocationSize.QuadPart)
+        {
+              irp->IoStatus.Status = STATUS_INVALID_PARAMETER;
+              irp->IoStatus.Information = 0;
+        }
+        ZwWriteFile(
+              device_extension->file_handle,
+              NULL,
+              NULL,
+              NULL,
+              &irp->IoStatus,
+              MmGetSystemAddressForMdlSafe(irp->MdlAddress, NormalPagePriority),
+              io_stack->Parameters.Write.Length,
+              &io_stack->Parameters.Write.ByteOffset,
+              NULL
+              );
+        break;
+    };     
+
+    最后都用下面的代码完成这些请求：
+    IoCompleteRequest(
+          irp,
+          (CCHAR) (NT_SUCCESS(irp->IoStatus.Status) ?
+          IO_DISK_INCREMENT : IO_NO_INCREMENT)
+          );
+
+
+    这个线程最后在Unload中终止。Unload例程中调用了FileDiskDeleteDevice，这个函数的主要用途是删除生成的磁盘对象，并终止其处理线程。下面的代码终止处理线程并等待成功终止:
+
+    // 得到设备扩展
+    device_extension = (PDEVICE_EXTENSION) DeviceObject->DeviceExtension;
+    // 设置线程终止标志
+    device_extension->terminate_thread = TRUE;
+    // 设置启动事件
+    KeSetEvent(
+        &device_extension->request_event,
+        (KPRIORITY) 0,
+        FALSE
+        );
+    // 等待线程的结束
+    KeWaitForSingleObject(
+        device_extension->thread_pointer,
+        Executive,
+        KernelMode,
+        FALSE,
+        NULL
+        );
+    ObDereferenceObject(device_extension->thread_pointer);
+
+    使用IoDeleteDevice()最终将磁盘设备对象删除。
+
+    上面曾经提起的，每个虚拟磁盘设备对象打开一个真实的文件作为物理媒质。打开和关闭文件对象也是在处理线程中进行的。FileDisk的作者自定义了两个设备控制功能号，IOCTL_FILE_DISK_CLOSE_FILE和IOCTL_FILE_DISK_OPEN_FILE，很容易让人误解这是在硬盘上生成文件。但是开头我们已经说过生成文件是文件系统驱动所处理的任务，磁盘驱动是不会接受生成文件这样的请求的。这是两个自定义的功能号。
+    当收到打开文件的请求时，本驱动根据传入的路径使用ZwCreateFile()打开文件。关闭则反之。然后保留文件句柄在设备扩展中（device_extension->file_handle），然后以后处理读写请求就读写这个文件了。以此来实现用文件来虚拟磁盘空间。这部分操作和磁盘驱动无关，这里也不详细叙述了。
+
+        *                       *                       *
+    
+7.总结
+
+    ifs下的例子disk是一个磁盘类驱动。而FileDisk虽然是一个磁盘驱动，但是并不是一个类驱动。类驱动应该能得到PDO（发现总线上的物理设备），然后生成功能设备（FDO）去绑定它，并处理给这些设备的请求。存储类设备有一个复杂的框架，其基础代码在E:\WINDDK\2600\src\storage\class\下面。类设备有专用的分发函数，并把大部分请求转发给下层设备。
+
+    而FileDisk从上层到下层已经全部包办，因此其构造要简单得多。但是这也使我们更清楚的了解磁盘驱动的本质，在合适的时候生成合适的磁盘设备对象，并处理系统发来的请求。
+
+    FileDisk被作为虚拟磁盘的框架广泛应用。可以作为网络磁盘（不同于用文件系统驱动实现的网络卷），简单的存储设备驱动等的开发基础�������������������

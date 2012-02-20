@@ -1,0 +1,69 @@
+This is a Fortran 77 subset parser that I knocked together in about a
+week.  It does a decent job of tokenizing and parsing Fortran,
+although it is quite incomplete.  It is provided as is without any
+claim that it is suitable for any purpose nor with any promise of
+support.  Copying is permitted so long as it is not for direct
+commercial advantage.  See the copyright notice in each source file.
+
+The general strategy is as follows:
+
+	1.  Read each line, determine if it's a comment or
+	continutation.
+	2.  If not a comment, add into the current statement buffer,
+	removing quoted literals and hollerith strings and replacing
+	them by special tokens (a space followed by a digit.)
+	3.  Once we have an entire statement, scan it to see if it
+	looks like an assignment statement.  If not it must be a
+	keyword	statement.
+	4.  Call the yacc parser.  From this point, tokenizing is
+	pretty simple -- see if any of the keyword or special
+	character tokens that are allowed in the current context
+	match, if not look for a number or a name. Statement numbers
+	are treated as integer constants.
+
+The one case where I know that I parse wrong is something like:
+
+	real function a(34)
+
+which dimensions the array functiona but parses incorrectly as a function
+declaration with a bogus dummy argument.  This is hard to fix and is unlikely
+to cause trouble in practice.
+
+The language it parses includes some invalid constructs that would
+need to be kicked out semantically, e.g.:
+
+	dimension foo
+
+because I treat dimension and explicit type statements the same.
+
+If you want to extend this to parse more of Fortran, you'll obviously
+need to add more yacc syntax (note that there is syntax in the
+current parser that the lexer doesn't generate the tokens for,) more
+lexer tokens, and more lexer states.  Lexer states you'll need
+certainly include:
+
+	-- Looking for the TO in an assign statement.
+	-- Tokenizing format statements (unless you want to do
+	it at runtime, a common approach)
+	-- Looking for the zillion possible keywords in I/O
+	statements.
+
+There are doubtless more, you'll know them when you see them.
+
+I have run this under Microsoft C 5.1 on a PC and under GCC 1.35.  It
+should work on the regular unix PCC with minimal modifications,
+mostly getting rid of a few ANSI function prototypes that I use and
+perhaps adjusting the varargs constructs in emit().  It has parsed
+many of the old IBM SSP routines, so I'm fairly confident that it
+parses what it parses pretty well.
+
+If you do anything interesting with this, I'd appreciate hearing
+about it.
+
+John Levine
+P.O. Box 349
+Cambridge MA 02238
++1 617 492 3869
+Internet: Levine@yale.edu or johnl@esegue.segue.boston.ma.us
+MCI Mail: 103-7498, WUI telex 6501037498 MCI UW
+Genie: J.LEVINE3

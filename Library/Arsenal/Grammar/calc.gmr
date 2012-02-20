@@ -1,0 +1,149 @@
+
+%name	delim 		:	"[ \r\n\t]"			;
+%name	comment		:	"/\*([^\*]|\*+[^\*/])*\*+/"	;
+%name	comment_line	:	"//[^\n]*\n"			;
+%name	digit		:	"[0-9]"				;
+%name	number		:	"{digit}+"			;
+
+
+%token	%skip 		:	"{delim}+|{comment}+|{comment_line}+",1;
+
+%token	NUM			: 	"{number}"	;
+%token     "+"		:	'"+"';
+%token	"-"			:	'"-"';
+%token 	"*"		:	'"*"';
+%token 	"/"		:	'"/"';
+%token	"("		:	'"("';
+%token	")"		:	'")"';
+%token	"%"		:	'"%"';
+
+
+/**********************LR***************************/
+
+%left		"+"	"-"		;
+%left		"*"	"/"	"%"	;
+%right 	UMINUS		;
+
+E	:	E	"+" 	E	%action	"handle_calc"
+	{:
+		AR_ASSERT(nodes != NULL && count > 0);
+		return NULL;
+	:}
+	|	E	"-"	E		%action		"handle_calc"
+	|	E	"*"	E		%action		"handle_calc"
+	|	E	"/"	E		%action		"handle_calc"
+	|	E	"%"	E		%action		"handle_calc"
+	|	"("	E	")"		%action		"handle_calc"
+	|	"-"	E 	%prec UMINUS	%action		"handle_calc"
+	|	NUM				%action		"handle_calc"
+	;
+
+
+
+/***************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************LR无优先级文法*************************
+E	:	E	"+"	Term
+	|	E	"-"	Term
+	|	Term
+	;
+
+Term	:	Term	"*"	Factor
+	|	Term	"/"	Factor
+	|	Term	"%"	Factor
+	|	Factor
+	;
+
+
+
+Factor	:	"("	E ")"
+		|	NUM
+		|	"-"	Factor
+		;
+
+/*****************************************************/
+
+
+
+
+
+
+/***********************LL无左递归文法*************************
+
+%left 	ABCDEF;
+
+
+expr			:	term	expr_suffix
+			;
+
+expr_suffix	:	"+" term	expr_suffix  
+			|	"-" term	expr_suffix 
+			| 	.
+			;
+
+term			:	factor	term_suffix
+			;
+
+term_suffix	:	"*" factor term_suffix 
+			| 	"/" factor term_suffix 
+			|	"%" factor term_suffix	
+			|	.
+			;
+
+
+
+factor		:	NUM
+			|	"(" expr ")"
+			|	"-"	factor	
+			;
+
+/*****************************************************/
+
+
+
+
+
+
+/***********************错误的LL文法*************************
+E	:	Term	"+"	E
+	|	Term	"-"	E
+	|	Term
+	;
+
+Term	:	Factor	"*"	Term
+	|	Factor	"/"	Term
+	|	Factor	"%"	Term
+	|	Factor
+	;
+
+
+
+Factor	:	"("	E ")"
+		|	NUM
+		|	"-"	Factor
+		;
+
+/*****************************************************/
+
+
+

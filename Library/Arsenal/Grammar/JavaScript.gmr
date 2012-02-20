@@ -1,0 +1,1353 @@
+%name	delim 			:	"[ \r\n\t]"			
+				;
+%name	comment		:	"/\*([^\*]|\*+[^\*/])*\*+/"	
+				;
+%name	comment_line	:	"//[^\n]*\n"			
+				;
+%name	digit			:	"[0-9]"				
+				;
+%name	number			:	"{digit}+"				
+				;
+%name	letter			:	"[A-Z_a-z]"
+				;
+
+
+
+%name hex_digit		:	"[0-9a-fA-F]"
+				;
+
+%name hex_literal 	:	"0(x|X){hex_digit}+"
+				;
+
+
+%name dec_literal	:	"(0|[1-9][0-9]*)"
+				;
+
+
+
+
+%name skip_lexem	: 	"{delim}|{comment}|{comment_line}"
+				;
+
+/*  '"'  == \x22,  '\'' == \x27 */
+
+%name	escape_seq		:	"(\\(\x22|\x27))"	
+				;
+
+%name	string_dq		: 	"(\x22({escape_seq}|[^\x22])*\x22)"		//只提取"..."或"\""此类串，其它词法规则要到语义例程中处理	
+				;
+
+%name	string_sq		:	"\x27({escape_seq}|[^\x27])*\x27"		//提取'...'或'\''此类串，其它词法规则要到语义例程中处理	
+				;
+
+%name string_literal	:	"{string_sq}|{string_dq}"
+				;
+
+%token %skip 		:	"{delim}+|{comment}+|{comment_line}+"		,1		%value	"TOK_DELIM_ID"		;
+
+
+
+			
+
+
+/*
+由于引擎本身的算法原因，必须把相同前缀最长的匹配的优先级提到最高，例如匹配
+"=" 和"=="，需要把==的优先级设置到大于"="才可以正常匹配
+*/
+
+
+//%token	HEX_CONSTANT	:	"{hex_literal}(?!{keyword_lhd})"			,2	%value "TOK_HEX_CONSTANT"		;
+//%token	DEC_CONSTANT	:	"{dec_literal}(?!{keyword_lhd})"			,1	%value "TOK_DEC_CONSTANT"		;
+
+%token	NUMBER		:	"({hex_literal}|{dec_literal})(?!{keyword_lhd})"	,2	%value "TOK_NUMBER"	;
+
+
+%token	STRING_LITERAL	:	"{string_literal}"					%value "TOK_STRING_LITERAL"	;	
+%token	IDENTIFIER		:	"{letter}({letter}|{digit})*"			%value "TOK_IDENTIFIER"		;
+
+
+%name		keyword_lhd	:	"[A-Z_a-z0-9]"														;
+
+
+
+
+%token	"switch"	:	'"switch"(?!{keyword_lhd})'	,1					%value 	"TOK_SWITCH"		;//SWITCH
+%token	"for"		:	'"for"(?!{keyword_lhd})'		,1				%value		"TOK_FOR"			;//FOR
+
+%token	"return"	:	'"return"(?!{keyword_lhd})'	,1					%value	"TOK_RETURN"		;//RETURN
+%token	"do"		:	'"do"(?!{keyword_lhd})'		,1					%value	"TOK_DO"			;//DO
+%token	"while"	:	'"while"(?!{keyword_lhd})'		,1					%value	"TOK_WHILE"		;//WHILE
+%token	"if"		:	'"if"(?!{keyword_lhd})'		,1					%value	"TOK_IF"			;//IF
+%token	"else"		:	'"else"(?!{keyword_lhd})'		,1					%value	"TOK_ELSE"			;//ELSE
+
+
+
+%token	"true"		:	'"true"(?!{keyword_lhd})'		,1					%value	"TOK_TRUE"			;
+%token	"false"	:	'"false"(?!{keyword_lhd})'		,1					%value	"TOK_FALSE"		;
+%token	"this"		:	'"this"(?!{keyword_lhd})'		,1					%value	"TOK_THIS"			;
+
+%token	"null"		:	'"null"(?!{keyword_lhd})'		,1					%value	"TOK_NULL"			;
+%token	"const"	:	'"const"(?!{keyword_lhd})'		,1					%value	"TOK_CONST"		;
+%token	"in"		:	'"in"(?!{keyword_lhd})'		,1					%value	"TOK_IN"			;
+%token	"new"		:	'"new"(?!{keyword_lhd})'		,1					%value	"TOK_NEW"			;
+%token	"delete"	:	'"delete"(?!{keyword_lhd})'		,1				%value	"TOK_DELETE"		;
+%token	"typeof"	:	'"typeof"(?!{keyword_lhd})'		,1				%value	"TOK_TYPEOF"		;
+%token	"function"	:	'"function"(?!{keyword_lhd})'		,1				%value	"TOK_FUNCTION"		;
+%token	"var"		:	'"var"(?!{keyword_lhd})'			,1				%value	"TOK_VAR"			;
+%token	"with"	:	'"with"(?!{keyword_lhd})'			,1				%value	"TOK_WITH"			;
+%token	"instanceof"	:	'"instanceof"(?!{keyword_lhd})'		,1			%value	"TOK_INSTANCEOF"	;
+%token	"debugger"	:	'"debugger"(?!{keyword_lhd})'		,1			%value	"TOK_DEBUGGER"	;
+%token	"try"		:	'"try"(?!{keyword_lhd})'		,1					%value	"TOK_TRY"			;
+%token	"catch"	:	'"catch"(?!{keyword_lhd})'		,1					%value	"TOK_CATCH"		;
+%token	"finally"	:	'"finally"(?!{keyword_lhd})'	,1					%value	"TOK_FINALLY"		;
+%token	"throw"	:	'"throw"(?!{keyword_lhd})'		,1					%value	"TOK_THROW"		;
+
+
+%token	"continue"	:	'"continue"(?!{keyword_lhd})'	,1					%value	"TOK_CONTINUE"		;//CONTINUE
+%token	"default"	:	'"default"(?!{keyword_lhd})'	,1					%value	"TOK_DEFAULT"		;//DEFAULT
+%token	"case"		:	'"case"(?!{keyword_lhd})'		,1					%value	"TOK_CASE"			;//CASE
+%token	"break"	:	'"break"(?!{keyword_lhd})'		,1					%value	"TOK_BREAK"		;//BREAK
+
+
+
+
+
+%token	"void"	:	'"void"(?!{keyword_lhd})'		,1					%value	"TOK_VOID"			;//VOID
+
+
+
+
+%token	">>="		:	'">>="'		,2								%value	"TOK_RIGHT_ASSIGN"	;//RIGHT_ASSIGN
+%token	"<<="		:	'"<<="'		,2								%value	"TOK_LEFT_ASSIGN"	;//LEFT_ASSIGN
+
+
+%token	">>>="	:	'">>>="'		,3								%value	"TOK_UNSIGNED_RIGHT_ASSIGN"	;
+
+%token	">>>"		:	'">>>"'		,2								%value	"TOK_UNSIGNED_RIGHT"			;
+
+%token	"==="		:	'"==="'		,2								%value	"TOK_STRICT_EQ_OP"			;
+%token	"!=="		:	'"!=="'		,2								%value	"TOK_STRICT_NE_OP"			;
+
+
+
+
+
+
+%token	"+="		:	'"+="'		,1								%value	"TOK_ADD_ASSIGN"	;//ADD_ASSIGN
+%token	"-="		:	'"-="'		,1								%value	"TOK_SUB_ASSIGN"	;//SUB_ASSIGN
+%token	"*="		:	'"*="'		,1								%value	"TOK_MUL_ASSIGN"	;//MUL_ASSIGN
+%token	"/="		:	'"/="'		,1								%value	"TOK_DIV_ASSIGN"	;//DIV_ASSIGN
+%token	"%="		:	'"%="'		,1								%value	"TOK_MOD_ASSIGN"	;//MOD_ASSIGN
+%token	"&="		:	'"&="'		,1								%value	"TOK_AND_ASSIGN"	;//AND_ASSIGN
+
+%token	"^="		:	'"^="'		,1								%value	"TOK_XOR_ASSIGN"	;//XOR_ASSIGN
+%token	"|="		:	'"|="'		,1								%value	"TOK_OR_ASSIGN"		;//OR_ASSIGN
+%token	">>"		:	'">>"'		,1								%value	"TOK_RIGHT_OP"		;//RIGHT_OP
+%token	"<<"		:	'"<<"'		,1								%value	"TOK_LEFT_OP"		;//LEFT_OP
+%token	"++"		:	'"++"'		,1								%value	"TOK_INC_OP"		;//INC_OP
+%token	"--"		:	'"--"'		,1								%value	"TOK_DEC_OP"		;//DEC_OP
+
+
+
+%token	"&&"		:	'"&&"'		,1								%value	"TOK_AND_OP"		;//AND_OP
+%token	"||"		:	'"||"'		,1								%value	"TOK_OR_OP"		;//OR_OP
+
+%token	"<="		:	'"<="'		,1								%value 	"TOK_LE_OP"		;//LE_OP
+%token	">="		:	'">="'		,1								%value 	"TOK_GE_OP"		;//GE_OP
+%token	"=="		:	'"=="'		,1								%value 	"TOK_EQ_OP"		;//EQ_OP
+%token	"!="		:	'"!="'		,1								%value	"TOK_NE_OP"		;//NE_OP
+%token	"<"		:	'"<"'		,0								%value	"TOK_LESS_OP"		;//<
+%token	">"		:	'">"'		,0								%value	"TOK_GREATER_OP"	;//>
+
+
+
+%token	";"		:	'";"'		,0								%value "TOK_SEMICOLON"			;//;
+%token	"{"		:	'"{"'		,0								%value "TOK_L_BRACES"			;//{
+%token	"}"		:	'"}"'		,0								%value "TOK_R_BRACES"			;//}
+%token	","		:	'","'		,0								%value "TOK_COMMA"				;//,
+%token	":"		:	'":"'		,0								%value "TOK_COLON"				;//:
+%token	"="		:	'"="'		,0								%value "TOK_ASSIGN"				;//=
+%token	"("		:	'"("'		,0								%value "TOK_L_PAREN"				;//(
+%token	")"		:	'")"'		,0								%value "TOK_R_PAREN"				;//)
+%token	"["		:	'"["'		,0								%value "TOK_L_SQUARE"			;//[
+%token	"]"		:	'"]"'		,0								%value "TOK_R_SQUARE"			;//]
+%token	"."		:	'"."'		,0								%value "TOK_DOT"				;//.
+%token	"&"		:	'"&"'		,0								%value "TOK_AND"				;//&
+%token	"!"		:	'"!"'		,0								%value "TOK_NOT"				;//!
+%token	"~"		:	'"~"'		,0								%value "TOK_TILDE"				;//~
+%token	"+"		:	'"+"'		,0								%value "TOK_ADD"				;//+
+%token	"-"		:	'"-"'		,0								%value "TOK_SUB"				;//-
+%token	"*"		:	'"*"'		,0								%value "TOK_MUL"				;//*
+%token	"/"		:	'"/"'		,0								%value "TOK_DIV"				;///
+%token	"%"		:	'"%"'		,0								%value "TOK_MOD"				;//%
+
+%token	"^"		:	'"^"'		,0								%value "TOK_XOR"				;//^
+%token	"|"		:	'"|"'		,0								%value "TOK_OR"					;//|
+%token	"?"		:	'"?"'		,0								%value "TOK_QUEST"				;//?
+
+
+
+
+%nonassoc IF_WITHOUT_ELSE	;
+%nonassoc "else"		;
+
+
+%start	Program		;
+
+Literal	:	"null"
+  		|	"true"
+  		|	"false"
+		| 	NUMBER
+  		| 	STRING_LITERAL
+		;
+
+Property	:    IDENTIFIER 	":"	AssignmentExpr 	
+		|	STRING_LITERAL	":"	AssignmentExpr
+		|	NUMBER 		":"	AssignmentExpr
+		|	IDENTIFIER IDENTIFIER "(" ")" "{" 	FunctionBody 	"}"
+		|	IDENTIFIER IDENTIFIER "(" FormalParameterList ")" 	"{" FunctionBody "}"
+		;
+
+
+PropertyList	:	Property
+  			|	PropertyList "," Property
+			;
+
+PrimaryExpr	:	PrimaryExprNoBrace
+  			|	"{" 	"}"
+  			|	"{" PropertyList "}"
+  			|	"{" PropertyList "," "}"
+			;
+
+
+PrimaryExprNoBrace	:   "this"
+  				|	Literal
+  				|	ArrayLiteral
+				|	IDENTIFIER
+  				|	"("	Expr	")"
+				;
+
+ArrayLiteral		:    	"[" ElisionOpt "]"
+  			|	"[" ElementList "]" 
+  			|	"[" ElementList "," ElisionOpt "]"
+			;
+
+ElementList		:	ElisionOpt AssignmentExpr
+  			|	ElementList "," ElisionOpt AssignmentExpr
+			;
+
+ElisionOpt		:	.
+  			|	Elision
+			;
+
+Elision		:	","                                 
+  			| 	Elision ","                         
+			;
+
+
+MemberExpr		:	PrimaryExpr
+  			|	FunctionExpr                        
+  			|	MemberExpr "[" Expr "]"             
+  			|	MemberExpr "." IDENTIFIER         
+  			|	"new" MemberExpr Arguments     
+			;
+
+MemberExprNoBF	:	PrimaryExprNoBrace
+  			|	MemberExprNoBF "[" Expr "]"  
+  			|	MemberExprNoBF "." IDENTIFIER     
+  			|	"new" MemberExpr Arguments     
+			;
+
+NewExpr		:    MemberExpr
+  			|	"new"	NewExpr 
+			;
+
+NewExprNoBF	:	MemberExprNoBF
+	 		|	"new" NewExpr         
+			;
+
+CallExpr		:	MemberExpr Arguments      
+  			|	CallExpr Arguments        
+  			|	CallExpr "[" Expr "]"     
+  			|	CallExpr "." IDENTIFIER        
+			;
+
+CallExprNoBF	:	MemberExprNoBF Arguments     
+			|	CallExprNoBF Arguments       
+  			|	CallExprNoBF "[" Expr "]"    
+			|	CallExprNoBF "." IDENTIFIER  
+			;
+
+Arguments		:	"(" ")"                   
+  			|	"(" ArgumentList ")"      
+			;
+
+ArgumentList		:	AssignmentExpr            
+  			|	ArgumentList "," AssignmentExpr 
+			;
+
+LeftHandSideExpr	:	NewExpr
+  			|	CallExpr
+			;
+
+LeftHandSideExprNoBF	:	NewExprNoBF
+  				|	CallExprNoBF
+				;
+
+PostfixExpr		:	LeftHandSideExpr
+  				|	LeftHandSideExpr "++"
+  				|	LeftHandSideExpr "--"
+				;
+
+PostfixExprNoBF		:	LeftHandSideExprNoBF
+  				|	LeftHandSideExprNoBF "++"
+  				|	LeftHandSideExprNoBF "--"
+				;
+
+UnaryExprCommon		:	"delete" UnaryExpr            
+  				|	"void" UnaryExpr          
+  				|	"typeof" UnaryExpr             
+  				|	"++" UnaryExpr           
+  				|	"--" UnaryExpr       
+  				|	"+" UnaryExpr              
+  				|	"-" UnaryExpr              
+  				|	"~" UnaryExpr              
+  				|	"!" UnaryExpr
+//  | AUTOMINUSMINUS UnaryExpr   
+//  | AUTOPLUSPLUS UnaryExpr     
+				;
+
+UnaryExpr			:	PostfixExpr
+  				|	UnaryExprCommon
+				;
+
+UnaryExprNoBF		:	PostfixExprNoBF
+  				|	UnaryExprCommon
+				;
+
+MultiplicativeExpr	:    UnaryExpr
+  				|	MultiplicativeExpr "*" UnaryExpr 
+  				|	MultiplicativeExpr "/" UnaryExpr 
+  				|	MultiplicativeExpr "%" UnaryExpr 
+				;
+
+MultiplicativeExprNoBF:    UnaryExprNoBF
+  				|	MultiplicativeExprNoBF "*" UnaryExpr
+                     	|	MultiplicativeExprNoBF "/" UnaryExpr
+  				|	MultiplicativeExprNoBF "%" UnaryExpr
+				;
+
+AdditiveExpr		:    MultiplicativeExpr
+  				|	AdditiveExpr "+" MultiplicativeExpr
+  				| 	AdditiveExpr "-" MultiplicativeExpr
+				;
+
+AdditiveExprNoBF	:	MultiplicativeExprNoBF
+  				|	AdditiveExprNoBF "+" MultiplicativeExpr
+  				| 	AdditiveExprNoBF "-" MultiplicativeExpr
+				;
+
+ShiftExpr			:	AdditiveExpr
+  				|	ShiftExpr "<<"	AdditiveExpr    
+  				|	ShiftExpr ">>"	AdditiveExpr    
+  				|	ShiftExpr ">>>"	AdditiveExpr   
+				;
+
+ShiftExprNoBF		:    AdditiveExprNoBF
+  				|	ShiftExprNoBF "<<" AdditiveExpr
+  				|	ShiftExprNoBF ">>" AdditiveExpr
+  				|	ShiftExprNoBF ">>>" AdditiveExpr
+				;
+
+RelationalExpr		:    ShiftExpr
+  				|	RelationalExpr "<" ShiftExpr      
+  				|	RelationalExpr ">" ShiftExpr      
+  				|	RelationalExpr "<=" ShiftExpr       
+  				|	RelationalExpr ">=" ShiftExpr       
+	 			|	RelationalExpr "instanceof" ShiftExpr 
+				|	RelationalExpr "in"	ShiftExpr    
+				;
+
+RelationalExprNoIn	:    ShiftExpr
+  				|	RelationalExprNoIn "<" ShiftExpr    
+  				|	RelationalExprNoIn ">" ShiftExpr    
+  				|	RelationalExprNoIn "<=" ShiftExpr     
+  				|	RelationalExprNoIn ">=" ShiftExpr     
+  				|	RelationalExprNoIn "instanceof" ShiftExpr
+				;
+
+RelationalExprNoBF	:    ShiftExprNoBF
+  				|	RelationalExprNoBF "<" ShiftExpr   
+  				|	RelationalExprNoBF ">" ShiftExpr   
+  				|	RelationalExprNoBF "<=" ShiftExpr    
+  				|	RelationalExprNoBF ">=" ShiftExpr    
+  				|	RelationalExprNoBF "instanceof" ShiftExpr
+	 			|	RelationalExprNoBF "in" ShiftExpr 
+				;
+
+EqualityExpr		:	RelationalExpr
+  				|	EqualityExpr "==" RelationalExpr  
+  				|	EqualityExpr "!=" RelationalExpr    
+  				|	EqualityExpr "===" RelationalExpr 
+  				|	EqualityExpr "!==" RelationalExpr
+				;
+
+EqualityExprNoIn	:	RelationalExprNoIn
+  				|	EqualityExprNoIn "==" RelationalExprNoIn
+  				|	EqualityExprNoIn "!=" RelationalExprNoIn
+				|	EqualityExprNoIn "===" RelationalExprNoIn
+       			|	EqualityExprNoIn "!==" RelationalExprNoIn
+				;
+
+EqualityExprNoBF	:    RelationalExprNoBF
+  				|	EqualityExprNoBF "==" RelationalExpr
+  				| 	EqualityExprNoBF "!=" RelationalExpr  
+  				|	EqualityExprNoBF "===" RelationalExpr
+  				|	EqualityExprNoBF "!==" RelationalExpr
+				;
+
+BitwiseANDExpr		:	EqualityExpr
+  				| 	BitwiseANDExpr "&" EqualityExpr     
+				;
+
+BitwiseANDExprNoIn:
+    EqualityExprNoIn
+  | BitwiseANDExprNoIn "&" EqualityExprNoIn
+;
+
+BitwiseANDExprNoBF:
+    EqualityExprNoBF
+  | BitwiseANDExprNoBF "&" EqualityExpr 
+;
+
+BitwiseXORExpr:
+    BitwiseANDExpr
+  | BitwiseXORExpr "^" BitwiseANDExpr   
+;
+
+BitwiseXORExprNoIn:
+    BitwiseANDExprNoIn
+  | BitwiseXORExprNoIn "^" BitwiseANDExprNoIn
+                                        
+;
+
+BitwiseXORExprNoBF:
+    BitwiseANDExprNoBF
+  | BitwiseXORExprNoBF "^" BitwiseANDExpr
+                                        
+;
+
+BitwiseORExpr:
+    BitwiseXORExpr
+  | BitwiseORExpr "|" BitwiseXORExpr    
+;
+
+BitwiseORExprNoIn:
+    BitwiseXORExprNoIn
+  | BitwiseORExprNoIn "|" BitwiseXORExprNoIn
+                                        
+;
+
+BitwiseORExprNoBF:
+    BitwiseXORExprNoBF
+  | BitwiseORExprNoBF "|" BitwiseXORExpr
+                                        
+;
+
+LogicalANDExpr:
+    BitwiseORExpr
+  | LogicalANDExpr "&&" BitwiseORExpr    
+;
+
+LogicalANDExprNoIn:
+    BitwiseORExprNoIn
+  | LogicalANDExprNoIn "&&" BitwiseORExprNoIn
+                                        
+;
+
+LogicalANDExprNoBF:
+    BitwiseORExprNoBF
+  | LogicalANDExprNoBF "&&" BitwiseORExpr
+                                        
+;
+
+LogicalORExpr:
+    LogicalANDExpr
+  | LogicalORExpr "||" LogicalANDExpr     
+;
+
+LogicalORExprNoIn:
+    LogicalANDExprNoIn
+  | LogicalORExprNoIn "||" LogicalANDExprNoIn
+                                        
+;
+
+LogicalORExprNoBF:
+    LogicalANDExprNoBF
+  | LogicalORExprNoBF "||" LogicalANDExpr 
+;
+
+ConditionalExpr:
+    LogicalORExpr
+  | LogicalORExpr "?" AssignmentExpr ":" AssignmentExpr
+                                        
+;
+
+ConditionalExprNoIn:
+    LogicalORExprNoIn
+  | LogicalORExprNoIn "?" AssignmentExprNoIn ":" AssignmentExprNoIn
+                                        
+;
+
+ConditionalExprNoBF:
+    LogicalORExprNoBF
+  | LogicalORExprNoBF "?" AssignmentExpr ":" AssignmentExpr
+                                        
+;
+
+AssignmentExpr:
+    ConditionalExpr
+  | LeftHandSideExpr AssignmentOperator AssignmentExpr
+                                        
+;
+
+AssignmentExprNoIn	:	ConditionalExprNoIn
+  				|	LeftHandSideExpr AssignmentOperator AssignmentExprNoIn
+				;
+
+
+AssignmentExprNoBF:
+    ConditionalExprNoBF
+  | LeftHandSideExprNoBF AssignmentOperator AssignmentExpr
+	;
+
+AssignmentOperator	:    "="                                
+  				|	"+="                          
+  				|	"-="
+  				|	"*="
+  				|	"/="
+  				|	"<<="
+  				|	">>="
+  				| ">>>="
+  				| "&="
+  				| "^="
+  				| "|="
+  				| "%="
+;
+
+Expr:
+    AssignmentExpr
+  | Expr "," AssignmentExpr            
+;
+
+ExprNoIn:
+    AssignmentExprNoIn
+  | ExprNoIn "," AssignmentExprNoIn    
+;
+
+ExprNoBF:
+    AssignmentExprNoBF
+  | ExprNoBF "," AssignmentExpr        
+;
+
+Statement:
+    Block
+  | VariableStatement
+  | ConstStatement
+  | FunctionDeclaration
+  | EmptyStatement
+  | ExprStatement
+  | IfStatement
+  | IterationStatement
+  | ContinueStatement
+  | BreakStatement
+  | ReturnStatement
+  | WithStatement
+  | SwitchStatement
+  | LabelledStatement
+  | ThrowStatement
+  | TryStatement
+  | DebuggerStatement
+;
+
+Block:
+    "{" "}"               
+  | "{" SourceElements "}"
+;
+
+VariableStatement:
+    "var" VariableDeclarationList ";"    
+  | "var" VariableDeclarationList error  
+;
+
+VariableDeclarationList:
+    IDENTIFIER                               
+  | IDENTIFIER Initializer                   
+  | VariableDeclarationList "," IDENTIFIER
+                                        
+  | VariableDeclarationList "," IDENTIFIER Initializer
+                                        
+;
+
+VariableDeclarationListNoIn:
+    IDENTIFIER                               
+  | IDENTIFIER InitializerNoIn               
+  | VariableDeclarationListNoIn "," IDENTIFIER
+                                        
+  | VariableDeclarationListNoIn "," IDENTIFIER InitializerNoIn
+                                        
+;
+
+ConstStatement	:    "const" ConstDeclarationList ";" 
+  			|	"const" ConstDeclarationList error
+			;
+
+
+ConstDeclarationList	:	ConstDeclaration                    
+  				|	ConstDeclarationList "," ConstDeclaration
+				;
+
+ConstDeclaration:
+    IDENTIFIER                               
+  | IDENTIFIER Initializer                   
+;
+
+Initializer:
+    "=" AssignmentExpr                  
+;
+
+InitializerNoIn:
+    "=" AssignmentExprNoIn              
+;
+
+EmptyStatement:
+    ";"                                 
+;
+
+ExprStatement:
+    ExprNoBF ";"                        
+  | ExprNoBF error                      
+;
+
+IfStatement	:	"if" "(" Expr ")" Statement %prec IF_WITHOUT_ELSE
+  			|	"if" "(" Expr ")" Statement "else" Statement
+			;
+
+IterationStatement:
+    "do" Statement "while" "(" Expr ")" ";"    
+  | "do" Statement "while" "(" Expr ")" error   // Always performs automatic semicolon insertion.
+  | "while" "(" Expr ")" Statement        
+  | "for" "(" ExprNoInOpt ";" ExprOpt ";" ExprOpt ")" Statement
+                                        
+  | "for" "(" "var" VariableDeclarationListNoIn ";" ExprOpt ";" ExprOpt ")" Statement
+                                        
+  | "for" "(" LeftHandSideExpr "in" Expr ")" Statement
+                                        
+  | "for" "(" "var" IDENTIFIER "in" Expr ")" Statement
+                                        
+  | "for" "(" "var" IDENTIFIER InitializerNoIn "in" Expr ")" Statement
+                                        
+;
+
+ExprOpt	:	.
+  		|	Expr
+		;
+
+ExprNoInOpt	:	.
+  			|	ExprNoIn
+			;
+
+ContinueStatement:
+    "continue" ";"                        
+  | "continue" error                      
+  | "continue" IDENTIFIER ";"                  
+  | "continue" IDENTIFIER error                
+;
+
+BreakStatement:
+    "break" ";"                           
+  | "break" error                         
+  | "break" IDENTIFIER ";"                     
+  | "break" IDENTIFIER error                   
+;
+
+ReturnStatement:
+    "return" ";"                          
+  | "return" error                        
+  | "return" Expr ";"                     
+  | "return" Expr error                   
+;
+
+WithStatement:
+    "with" "(" Expr ")" Statement         
+;
+
+SwitchStatement:
+    "switch" "(" Expr ")" CaseBlock       
+;
+
+CaseBlock:
+    "{" CaseClausesOpt "}"              
+  | "{" CaseClausesOpt DefaultClause CaseClausesOpt "}"
+                                        
+;
+
+CaseClausesOpt	:	.                         
+  			|	CaseClauses
+			;
+
+
+CaseClauses:
+    CaseClause                          
+  | CaseClauses CaseClause              
+;
+
+CaseClause:
+    "case" Expr ":"                       
+  | "case" Expr ":" SourceElements        
+;
+
+DefaultClause:
+    "default" ":"                         
+  | "default" ":" SourceElements          
+;
+
+LabelledStatement:
+    IDENTIFIER ":" Statement                 
+;
+
+ThrowStatement:
+    "throw" Expr ";"                      
+  | "throw" Expr error                    
+;
+
+TryStatement:
+    "try" Block "finally" Block             
+  | "try" Block "catch" "(" IDENTIFIER ")" Block 
+  | "try" Block "catch" "(" IDENTIFIER ")" Block "finally" Block
+                                        
+;
+
+DebuggerStatement:
+    "debugger" ";"                        
+  | "debugger" error                      
+;
+
+FunctionDeclaration:
+    "function" IDENTIFIER "(" ")" "{" FunctionBody "}" 
+  | "function" IDENTIFIER "(" FormalParameterList ")" "{" FunctionBody "}"
+      
+;
+
+FunctionExpr:
+    "function" "(" ")" "{" FunctionBody "}" 
+    | "function" "(" FormalParameterList ")" "{" FunctionBody "}"
+      
+  | "function" IDENTIFIER "(" ")" "{" FunctionBody "}" 
+  | "function" IDENTIFIER "(" FormalParameterList ")" "{" FunctionBody "}"
+      
+;
+
+FormalParameterList:
+    IDENTIFIER                               
+  | FormalParameterList "," IDENTIFIER       
+;
+
+FunctionBody	:	.
+  			|	SourceElements_NoNode               
+			;
+
+Program		:	.
+    			|	SourceElements                    
+			;
+
+SourceElements:
+    Statement                           
+  | SourceElements Statement            
+;
+ 
+
+
+// Start NoNodes
+
+Literal_NoNode	:    "null"
+		  	|	"true"
+  			|	"false"
+			|	NUMBER
+  			|	STRING_LITERAL 
+			;
+
+Property_NoNode	:    IDENTIFIER ":" AssignmentExpr_NoNode 
+  			|	STRING_LITERAL ":" AssignmentExpr_NoNode 
+  			|	NUMBER ":" AssignmentExpr_NoNode 
+  			|	IDENTIFIER IDENTIFIER "(" ")" "{" FunctionBody_NoNode "}" 
+  			|	IDENTIFIER IDENTIFIER "(" FormalParameterList_NoNode ")" "{" FunctionBody_NoNode "}" 
+;
+
+PropertyList_NoNode:
+    Property_NoNode
+  | PropertyList_NoNode "," Property_NoNode
+;
+
+PrimaryExpr_NoNode:
+    PrimaryExprNoBrace_NoNode
+  | "{" "}" 
+  | "{" PropertyList_NoNode "}" 
+  | "{" PropertyList_NoNode "," "}" 
+;
+
+PrimaryExprNoBrace_NoNode:
+    "this"
+  | Literal_NoNode
+  | ArrayLiteral_NoNode
+  | IDENTIFIER 
+  | "(" Expr_NoNode ")"
+;
+
+ArrayLiteral_NoNode:
+    "[" ElisionOpt_NoNode "]"
+  | "[" ElementList_NoNode "]"
+  | "[" ElementList_NoNode "," ElisionOpt_NoNode "]"
+;
+
+ElementList_NoNode:
+    ElisionOpt_NoNode AssignmentExpr_NoNode
+  | ElementList_NoNode "," ElisionOpt_NoNode AssignmentExpr_NoNode
+;
+
+ElisionOpt_NoNode	:	.
+  				|	Elision_NoNode
+				;
+
+Elision_NoNode:
+    ","
+  | Elision_NoNode ","
+;
+
+MemberExpr_NoNode:
+    PrimaryExpr_NoNode
+  | FunctionExpr_NoNode
+  | MemberExpr_NoNode "[" Expr_NoNode "]"
+  | MemberExpr_NoNode "." IDENTIFIER
+  | "new" MemberExpr_NoNode Arguments_NoNode
+;
+
+MemberExprNoBF_NoNode:
+    PrimaryExprNoBrace_NoNode
+  | MemberExprNoBF_NoNode "[" Expr_NoNode "]"
+  | MemberExprNoBF_NoNode "." IDENTIFIER
+  | "new" MemberExpr_NoNode Arguments_NoNode
+;
+
+NewExpr_NoNode:
+    MemberExpr_NoNode
+  | "new" NewExpr_NoNode
+;
+
+NewExprNoBF_NoNode:
+    MemberExprNoBF_NoNode
+  | "new" NewExpr_NoNode
+;
+
+CallExpr_NoNode:
+    MemberExpr_NoNode Arguments_NoNode
+  | CallExpr_NoNode Arguments_NoNode
+  | CallExpr_NoNode "[" Expr_NoNode "]"
+  | CallExpr_NoNode "." IDENTIFIER
+;
+
+CallExprNoBF_NoNode:
+    MemberExprNoBF_NoNode Arguments_NoNode
+  | CallExprNoBF_NoNode Arguments_NoNode
+  | CallExprNoBF_NoNode "[" Expr_NoNode "]"
+  | CallExprNoBF_NoNode "." IDENTIFIER
+;
+
+Arguments_NoNode:
+    "(" ")"
+  | "(" ArgumentList_NoNode ")"
+;
+
+ArgumentList_NoNode:
+    AssignmentExpr_NoNode
+  | ArgumentList_NoNode "," AssignmentExpr_NoNode
+;
+
+LeftHandSideExpr_NoNode:
+    NewExpr_NoNode
+  | CallExpr_NoNode
+;
+
+LeftHandSideExprNoBF_NoNode:
+    NewExprNoBF_NoNode
+  | CallExprNoBF_NoNode
+;
+
+PostfixExpr_NoNode:
+    LeftHandSideExpr_NoNode
+  | LeftHandSideExpr_NoNode "++"
+  | LeftHandSideExpr_NoNode "--"
+;
+
+PostfixExprNoBF_NoNode:
+    LeftHandSideExprNoBF_NoNode
+  | LeftHandSideExprNoBF_NoNode "++"
+  | LeftHandSideExprNoBF_NoNode "--"
+;
+
+UnaryExprCommon_NoNode:
+    "delete" UnaryExpr_NoNode
+  | "void" UnaryExpr_NoNode
+  | "typeof" UnaryExpr_NoNode
+  | "++" UnaryExpr_NoNode
+  | "--" UnaryExpr_NoNode
+  | "+" UnaryExpr_NoNode
+  | "-" UnaryExpr_NoNode
+  | "~" UnaryExpr_NoNode
+  | "!" UnaryExpr_NoNode
+;
+
+UnaryExpr_NoNode:
+    PostfixExpr_NoNode
+  | UnaryExprCommon_NoNode
+;
+
+UnaryExprNoBF_NoNode:
+    PostfixExprNoBF_NoNode
+  | UnaryExprCommon_NoNode
+;
+
+MultiplicativeExpr_NoNode:
+    UnaryExpr_NoNode
+  | MultiplicativeExpr_NoNode "*" UnaryExpr_NoNode
+  | MultiplicativeExpr_NoNode "/" UnaryExpr_NoNode
+  | MultiplicativeExpr_NoNode "%" UnaryExpr_NoNode
+;
+
+MultiplicativeExprNoBF_NoNode:
+    UnaryExprNoBF_NoNode
+  | MultiplicativeExprNoBF_NoNode "*" UnaryExpr_NoNode
+  | MultiplicativeExprNoBF_NoNode "/" UnaryExpr_NoNode
+  | MultiplicativeExprNoBF_NoNode "%" UnaryExpr_NoNode
+;
+
+AdditiveExpr_NoNode:
+    MultiplicativeExpr_NoNode
+  | AdditiveExpr_NoNode "+" MultiplicativeExpr_NoNode
+  | AdditiveExpr_NoNode "-" MultiplicativeExpr_NoNode
+;
+
+AdditiveExprNoBF_NoNode:
+    MultiplicativeExprNoBF_NoNode
+  | AdditiveExprNoBF_NoNode "+" MultiplicativeExpr_NoNode
+  | AdditiveExprNoBF_NoNode "-" MultiplicativeExpr_NoNode
+;
+
+ShiftExpr_NoNode:
+    AdditiveExpr_NoNode
+  | ShiftExpr_NoNode "<<" AdditiveExpr_NoNode
+  | ShiftExpr_NoNode ">>" AdditiveExpr_NoNode
+  | ShiftExpr_NoNode ">>>" AdditiveExpr_NoNode
+;
+
+ShiftExprNoBF_NoNode:
+    AdditiveExprNoBF_NoNode
+  | ShiftExprNoBF_NoNode "<<"	AdditiveExpr_NoNode
+  | ShiftExprNoBF_NoNode ">>" AdditiveExpr_NoNode
+  | ShiftExprNoBF_NoNode ">>>" AdditiveExpr_NoNode
+;
+
+RelationalExpr_NoNode:
+    ShiftExpr_NoNode
+  | RelationalExpr_NoNode "<" ShiftExpr_NoNode
+  | RelationalExpr_NoNode ">" ShiftExpr_NoNode
+  | RelationalExpr_NoNode "<=" ShiftExpr_NoNode
+  | RelationalExpr_NoNode ">=" ShiftExpr_NoNode
+  | RelationalExpr_NoNode "instanceof" ShiftExpr_NoNode
+  | RelationalExpr_NoNode "in" ShiftExpr_NoNode
+;
+
+RelationalExprNoIn_NoNode:
+    ShiftExpr_NoNode
+  | RelationalExprNoIn_NoNode "<" ShiftExpr_NoNode
+  | RelationalExprNoIn_NoNode ">" ShiftExpr_NoNode
+  | RelationalExprNoIn_NoNode "<=" ShiftExpr_NoNode
+  | RelationalExprNoIn_NoNode ">=" ShiftExpr_NoNode
+  | RelationalExprNoIn_NoNode "instanceof" ShiftExpr_NoNode
+;
+
+RelationalExprNoBF_NoNode:
+    ShiftExprNoBF_NoNode
+  | RelationalExprNoBF_NoNode "<" ShiftExpr_NoNode
+  | RelationalExprNoBF_NoNode ">" ShiftExpr_NoNode
+  | RelationalExprNoBF_NoNode "<=" ShiftExpr_NoNode
+  | RelationalExprNoBF_NoNode ">=" ShiftExpr_NoNode
+  | RelationalExprNoBF_NoNode "instanceof" ShiftExpr_NoNode
+  | RelationalExprNoBF_NoNode "in" ShiftExpr_NoNode
+;
+
+EqualityExpr_NoNode:
+    RelationalExpr_NoNode
+  | EqualityExpr_NoNode "==" RelationalExpr_NoNode
+  | EqualityExpr_NoNode "!=" RelationalExpr_NoNode
+  | EqualityExpr_NoNode "===" RelationalExpr_NoNode
+  | EqualityExpr_NoNode "!==" RelationalExpr_NoNode
+;
+
+EqualityExprNoIn_NoNode:
+    RelationalExprNoIn_NoNode
+  | EqualityExprNoIn_NoNode "==" RelationalExprNoIn_NoNode
+  | EqualityExprNoIn_NoNode "!=" RelationalExprNoIn_NoNode
+  | EqualityExprNoIn_NoNode "===" RelationalExprNoIn_NoNode
+  | EqualityExprNoIn_NoNode "!==" RelationalExprNoIn_NoNode
+;
+
+EqualityExprNoBF_NoNode:
+    RelationalExprNoBF_NoNode
+  | EqualityExprNoBF_NoNode "==" RelationalExpr_NoNode
+  | EqualityExprNoBF_NoNode "!=" RelationalExpr_NoNode
+  | EqualityExprNoBF_NoNode "===" RelationalExpr_NoNode
+  | EqualityExprNoBF_NoNode "!==" RelationalExpr_NoNode
+;
+
+BitwiseANDExpr_NoNode:
+    EqualityExpr_NoNode
+  | BitwiseANDExpr_NoNode "&" EqualityExpr_NoNode
+;
+
+BitwiseANDExprNoIn_NoNode:
+    EqualityExprNoIn_NoNode
+  | BitwiseANDExprNoIn_NoNode "&" EqualityExprNoIn_NoNode
+;
+
+BitwiseANDExprNoBF_NoNode:
+    EqualityExprNoBF_NoNode
+  | BitwiseANDExprNoBF_NoNode "&" EqualityExpr_NoNode
+;
+
+BitwiseXORExpr_NoNode:
+    BitwiseANDExpr_NoNode
+  | BitwiseXORExpr_NoNode "^" BitwiseANDExpr_NoNode
+;
+
+BitwiseXORExprNoIn_NoNode:
+    BitwiseANDExprNoIn_NoNode
+  | BitwiseXORExprNoIn_NoNode "^" BitwiseANDExprNoIn_NoNode
+;
+
+BitwiseXORExprNoBF_NoNode:
+    BitwiseANDExprNoBF_NoNode
+  | BitwiseXORExprNoBF_NoNode "^" BitwiseANDExpr_NoNode
+;
+
+BitwiseORExpr_NoNode:
+    BitwiseXORExpr_NoNode
+  | BitwiseORExpr_NoNode "|" BitwiseXORExpr_NoNode
+;
+
+BitwiseORExprNoIn_NoNode:
+    BitwiseXORExprNoIn_NoNode
+  | BitwiseORExprNoIn_NoNode "|" BitwiseXORExprNoIn_NoNode
+;
+
+BitwiseORExprNoBF_NoNode:
+    BitwiseXORExprNoBF_NoNode
+  | BitwiseORExprNoBF_NoNode "|" BitwiseXORExpr_NoNode
+;
+
+LogicalANDExpr_NoNode:
+    BitwiseORExpr_NoNode
+  | LogicalANDExpr_NoNode "&&" BitwiseORExpr_NoNode
+;
+
+LogicalANDExprNoIn_NoNode:
+    BitwiseORExprNoIn_NoNode
+  | LogicalANDExprNoIn_NoNode "&&" BitwiseORExprNoIn_NoNode
+;
+
+LogicalANDExprNoBF_NoNode:
+    BitwiseORExprNoBF_NoNode
+  | LogicalANDExprNoBF_NoNode "&&" BitwiseORExpr_NoNode
+;
+
+LogicalORExpr_NoNode:
+    LogicalANDExpr_NoNode
+  | LogicalORExpr_NoNode "||" LogicalANDExpr_NoNode
+;
+
+LogicalORExprNoIn_NoNode:
+    LogicalANDExprNoIn_NoNode
+  | LogicalORExprNoIn_NoNode "||" LogicalANDExprNoIn_NoNode
+;
+
+LogicalORExprNoBF_NoNode:
+    LogicalANDExprNoBF_NoNode
+  | LogicalORExprNoBF_NoNode "||" LogicalANDExpr_NoNode
+;
+
+ConditionalExpr_NoNode:
+    LogicalORExpr_NoNode
+  | LogicalORExpr_NoNode "?" AssignmentExpr_NoNode ":" AssignmentExpr_NoNode
+;
+
+ConditionalExprNoIn_NoNode:
+    LogicalORExprNoIn_NoNode
+  | LogicalORExprNoIn_NoNode "?" AssignmentExprNoIn_NoNode ":" AssignmentExprNoIn_NoNode
+;
+
+ConditionalExprNoBF_NoNode:
+    LogicalORExprNoBF_NoNode
+  | LogicalORExprNoBF_NoNode "?" AssignmentExpr_NoNode ":" AssignmentExpr_NoNode
+;
+
+AssignmentExpr_NoNode:
+    ConditionalExpr_NoNode
+  | LeftHandSideExpr_NoNode AssignmentOperator_NoNode AssignmentExpr_NoNode
+;
+
+AssignmentExprNoIn_NoNode:
+    ConditionalExprNoIn_NoNode
+  | LeftHandSideExpr_NoNode AssignmentOperator_NoNode AssignmentExprNoIn_NoNode
+;
+
+AssignmentExprNoBF_NoNode:
+    ConditionalExprNoBF_NoNode
+  | LeftHandSideExprNoBF_NoNode AssignmentOperator_NoNode AssignmentExpr_NoNode
+;
+
+AssignmentOperator_NoNode	:	"="                                
+  					|	"+="                          
+  					|	"-="
+  					|	"*="
+  					|	"/="
+  					|	"<<="
+  					|	">>="
+  					|	">>>="
+  					|	"&="
+  					|	"^="
+  					|	"|="
+  					|	"%="
+					;
+
+Expr_NoNode:
+    AssignmentExpr_NoNode
+  | Expr_NoNode "," AssignmentExpr_NoNode
+;
+
+ExprNoIn_NoNode:
+    AssignmentExprNoIn_NoNode
+  | ExprNoIn_NoNode "," AssignmentExprNoIn_NoNode
+;
+
+ExprNoBF_NoNode:
+    AssignmentExprNoBF_NoNode
+  | ExprNoBF_NoNode "," AssignmentExpr_NoNode
+;
+
+Statement_NoNode:
+    Block_NoNode
+  | VariableStatement_NoNode
+  | ConstStatement_NoNode
+  | FunctionDeclaration_NoNode
+  | EmptyStatement_NoNode
+  | ExprStatement_NoNode
+  | IfStatement_NoNode
+  | IterationStatement_NoNode
+  | ContinueStatement_NoNode
+  | BreakStatement_NoNode
+  | ReturnStatement_NoNode
+  | WithStatement_NoNode
+  | SwitchStatement_NoNode
+  | LabelledStatement_NoNode
+  | ThrowStatement_NoNode
+  | TryStatement_NoNode
+  | DebuggerStatement_NoNode
+;
+
+Block_NoNode:
+    "{" "}" 
+  | "{" SourceElements_NoNode "}" 
+;
+
+VariableStatement_NoNode:
+    "var" VariableDeclarationList_NoNode ";"
+  | "var" VariableDeclarationList_NoNode error 
+;
+
+VariableDeclarationList_NoNode:
+    IDENTIFIER 
+  | IDENTIFIER Initializer_NoNode 
+  | VariableDeclarationList_NoNode "," IDENTIFIER
+  | VariableDeclarationList_NoNode "," IDENTIFIER Initializer_NoNode
+;
+
+VariableDeclarationListNoIn_NoNode:
+    IDENTIFIER 
+  | IDENTIFIER InitializerNoIn_NoNode 
+  | VariableDeclarationListNoIn_NoNode "," IDENTIFIER
+  | VariableDeclarationListNoIn_NoNode "," IDENTIFIER InitializerNoIn_NoNode
+;
+
+ConstStatement_NoNode:
+    "const" ConstDeclarationList_NoNode ";"
+  | "const" ConstDeclarationList_NoNode error 
+;
+
+ConstDeclarationList_NoNode:
+    ConstDeclaration_NoNode
+  | ConstDeclarationList_NoNode "," ConstDeclaration_NoNode
+;
+
+ConstDeclaration_NoNode:
+    IDENTIFIER 
+  | IDENTIFIER Initializer_NoNode 
+;
+
+Initializer_NoNode:
+    "=" AssignmentExpr_NoNode
+;
+
+InitializerNoIn_NoNode:
+    "=" AssignmentExprNoIn_NoNode
+;
+
+EmptyStatement_NoNode:
+    ";"
+;
+
+ExprStatement_NoNode:
+    ExprNoBF_NoNode ";"
+  | ExprNoBF_NoNode error 
+;
+
+IfStatement_NoNode:
+    "if" "(" Expr_NoNode ")" Statement_NoNode %prec IF_WITHOUT_ELSE
+  | "if" "(" Expr_NoNode ")" Statement_NoNode "else" Statement_NoNode
+;
+
+IterationStatement_NoNode:
+    "do" Statement_NoNode "while" "(" Expr_NoNode ")" ";"
+  | "do" Statement_NoNode "while" "(" Expr_NoNode ")" error // Always performs automatic semicolon insertion
+  | "while" "(" Expr_NoNode ")" Statement_NoNode
+  | "for" "(" ExprNoInOpt_NoNode ";" ExprOpt_NoNode ";" ExprOpt_NoNode ")" Statement_NoNode
+  | "for" "(" "var" VariableDeclarationListNoIn_NoNode ";" ExprOpt_NoNode ";" ExprOpt_NoNode ")" Statement_NoNode
+  | "for" "(" LeftHandSideExpr_NoNode "in" Expr_NoNode ")" Statement_NoNode
+  | "for" "(" "var" IDENTIFIER "in" Expr_NoNode ")" Statement_NoNode
+  | "for" "(" "var" IDENTIFIER InitializerNoIn_NoNode "in" Expr_NoNode ")" Statement_NoNode
+;
+
+ExprOpt_NoNode	:	.
+  			|	Expr_NoNode
+			;
+
+ExprNoInOpt_NoNode	:	.
+  				|	ExprNoIn_NoNode
+				;
+
+ContinueStatement_NoNode:
+    "continue" ";"
+  | "continue" error 
+  | "continue" IDENTIFIER ";"
+  | "continue" IDENTIFIER error 
+;
+
+BreakStatement_NoNode:
+    "break" ";"
+  | "break" error 
+  | "break" IDENTIFIER ";"
+  | "break" IDENTIFIER error 
+;
+
+ReturnStatement_NoNode:
+    "return" ";"
+  | "return" error 
+  | "return" Expr_NoNode ";"
+  | "return" Expr_NoNode error 
+;
+
+WithStatement_NoNode:
+    "with" "(" Expr_NoNode ")" Statement_NoNode
+;
+
+SwitchStatement_NoNode:
+    "switch" "(" Expr_NoNode ")" CaseBlock_NoNode
+;
+
+CaseBlock_NoNode:
+    "{" CaseClausesOpt_NoNode "}" 
+  | "{" CaseClausesOpt_NoNode DefaultClause_NoNode CaseClausesOpt_NoNode "}" 
+;
+
+CaseClausesOpt_NoNode	:	.
+	 				|	CaseClauses_NoNode
+					;
+
+
+CaseClauses_NoNode:
+    CaseClause_NoNode
+  | CaseClauses_NoNode CaseClause_NoNode
+;
+
+CaseClause_NoNode:
+    "case" Expr_NoNode ":"
+  | "case" Expr_NoNode ":" SourceElements_NoNode
+;
+
+DefaultClause_NoNode:
+    "default" ":"
+  | "default" ":" SourceElements_NoNode
+;
+
+LabelledStatement_NoNode:
+    IDENTIFIER ":" Statement_NoNode 
+;
+
+ThrowStatement_NoNode:
+    "throw" Expr_NoNode ";"
+  | "throw" Expr_NoNode error 
+;
+
+TryStatement_NoNode:
+    "try" Block_NoNode "finally" Block_NoNode
+  | "try" Block_NoNode "catch" "(" IDENTIFIER ")" Block_NoNode
+  | "try" Block_NoNode "catch" "(" IDENTIFIER ")" Block_NoNode "finally" Block_NoNode
+;
+
+DebuggerStatement_NoNode:
+    "debugger" ";"
+  | "debugger" error 
+;
+
+
+
+FunctionDeclaration_NoNode:
+    "function" IDENTIFIER "(" ")" "{" FunctionBody_NoNode "}"
+  | "function" IDENTIFIER "(" FormalParameterList_NoNode ")" "{" FunctionBody_NoNode "}"
+;
+
+FunctionExpr_NoNode	:    "function" "(" ")" "{" FunctionBody_NoNode "}"
+  			|	"function" "(" FormalParameterList_NoNode ")" "{" FunctionBody_NoNode "}"
+			|	"function" IDENTIFIER "(" ")" "{" FunctionBody_NoNode "}"
+			|	"function" IDENTIFIER "(" FormalParameterList_NoNode ")" "{" FunctionBody_NoNode "}"
+			;
+
+FormalParameterList_NoNode:
+    IDENTIFIER 
+  | FormalParameterList_NoNode "," IDENTIFIER
+;
+
+FunctionBody_NoNode	:	.
+  				|	SourceElements_NoNode
+				;
+
+
+
+SourceElements_NoNode	:    	Statement_NoNode
+				|	SourceElements_NoNode Statement_NoNode
+				;
+
+
+
+
+
+

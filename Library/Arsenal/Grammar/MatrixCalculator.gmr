@@ -1,0 +1,226 @@
+﻿
+
+%name    delim             :     "[\x{000A}\x{000B}\x{000C}\x{000D}\x{0085}\x{2028}\x{2029}\x{0020}\f\n\r\t\v\x{0009}\x{0020}\x{00A0}\x{1680}\x{180E}\x{2000}-\x{200A}\x{202F}\x{205F}\x{3000}]"
+                		;
+
+%name    comment        	:    "/\*([^\*]|\*+[^\*/])*\*+/"    
+                	  	;
+
+%name    comment_line       :    "(//[^\x{000A}\x{000B}\x{000C}\x{000D}\x{0085}\x{2028}\x{2029}]*(\x{000A}|\x{000B}|\x{000C}|\x{000D}|\x{0085}|\x{2028}|\x{2029}|$))"
+                		 ;
+
+%name skip_lexem        	:     "{delim}|{comment_line}|{comment}"
+                		;
+
+
+%name    digit            	:    "[0-9]"                
+                		;
+
+%name    number            	:    "{digit}+"                
+                		;
+
+
+/*
+\x{4E00}-\x{9FA5}     (中文)
+\x{3130}-\x{318F}     (韩文)
+\x{AC00}-\x{D7A3}    (韩文)
+\x{0800}-\x{4E00}    (日文)
+*/
+
+//ASCII + 中日韩
+
+%name    letter            	:    "[A-Z_a-z\x{0800}-\x{4E00}\x{4E00}-\x{9FA5}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}]"
+                		;
+
+
+
+%name hex_digit        	:    "[0-9a-fA-F]"
+                		;
+
+
+%name hex_literal         	:    "0(x|X){hex_digit}+"
+                		;
+
+%name oct_literal        	:    "0[0-7]+"
+                		;
+
+%name dec_literal        	:    "(0|[1-9][0-9]*)"
+                		;
+
+
+
+
+%name    exponet           	:    "(e|E)(\+|\-)?[0-9]+"
+                    		;
+
+%name float_literal       	:    "(((([0-9]\.[0-9]*)){exponet}?)|([0-9]+{exponet}))"
+                    		;
+
+
+
+
+/*  '"'  == \x22,  '\'' == \x27 */
+
+%name    escape_seq        :    "(\\(\x22|\x27))"    
+                ;
+
+%name    string_dq        :     "(\x22({escape_seq}|[^\x22])*\x22)"        //只能提取"..."或"\""此类串，其它词法规则要到语义例程中处理    
+                ;
+
+%name    string_sq        :    "\x27({escape_seq}|[^\x27])*\x27"        //提取'...'或'\''此类串，其它词法规则要到语义例程中处理    
+                ;
+
+
+
+%name    keyword_lhd       	:    "[A-Z_a-z0-9]"
+                		;
+
+
+%name        float_constant    :    "{float_literal}(?!{keyword_lhd})"
+                    ;
+%name        hex_constant        :    "{hex_literal}(?!{keyword_lhd})"
+                    ;
+%name        oct_constant        :    "{oct_literal}(?!{keyword_lhd})"
+                    ;
+%name        dec_constant        :    "{dec_literal}(?!{keyword_lhd})"
+                    ;
+
+
+%token     %skip            :    "{skip_lexem}"                ,1                %value    "TOK_DELIM_ID"             ;            //空白，需要过滤
+
+
+
+
+
+%token        NAME        :    "{letter}({letter}|{digit})*"                    %value    "TOK_NAME"            %action default_leaf_handler        
+		            ;
+
+
+%token        FLOAT_NUMBER    	:    "{float_constant}"                        		,2    %value    "TOK_FLOAT_NUMBER"        %action default_leaf_handler      ;
+%token        INT_NUMBER    	:    "{hex_constant}|{oct_constant}|{dec_constant}"    ,2    %value    "TOK_INT_NUMBER"        %action default_leaf_handler        ;
+
+
+
+
+
+
+/*
+%token    "for"        :    '"for"(?!{keyword_lhd})'        ,1            %value    "TOK_FOR"            %action default_leaf_handler            ;
+%token    "do"        :    '"do"(?!{keyword_lhd})'        ,1            %value    "TOK_DO"            %action default_leaf_handler            ;
+%token    "while"    :    '"while"(?!{keyword_lhd})'        ,1            %value    "TOK_WHILE"            %action default_leaf_handler            ;
+%token    "if"        :    '"if"(?!{keyword_lhd})'        ,1            %value    "TOK_IF"            %action default_leaf_handler            ;
+%token    "else"        :    '"else"(?!{keyword_lhd})'        ,1            %value    "TOK_ELSE"            %action default_leaf_handler            ;
+
+%token    "continue"    :    '"continue"(?!{keyword_lhd})'    ,1            %value    "TOK_CONTINUE"        %action default_leaf_handler            ;
+%token    "break"    :    '"break"(?!{keyword_lhd})'        ,1            %value    "TOK_BREAK"            %action default_leaf_handler            ;
+%token    "return"    :    '"return"(?!{keyword_lhd})'        ,1            %value    "TOK_RETURN"            %action default_leaf_handler            ;
+
+%token    "null"        :    '"null"(?!{keyword_lhd})'        ,1            %value    "TOK_NULL"            %action default_leaf_handler            ;
+%token    "true"        :    '"true"(?!{keyword_lhd})'        ,1            %value    "TOK_TRUE"            %action default_leaf_handler            ;
+%token    "false"    :    '"false"(?!{keyword_lhd})'        ,1            %value    "TOK_FALSE"            %action default_leaf_handler            ;
+%token    "var"        :    '"var"(?!{keyword_lhd})'        ,1            %value    "TOK_VAR"            %action default_leaf_handler            ;
+
+%token    "in"        :    '"in"(?!{keyword_lhd})'        ,1            %value    "TOK_IN"            %action default_leaf_handler            ;
+
+
+%token    "import"    :    '"import"(?!{keyword_lhd})'        ,1            %value    "TOK_IMPORT"            %action default_leaf_handler            ;
+
+%token    "D"        :    '"D"(?!{keyword_lhd})'        ,1            %value    "TOK_DICT"            %action default_leaf_handler            ;
+
+%token    "L"        :    '"L"(?!{keyword_lhd})'        ,1            %value    "TOK_LIST"            %action default_leaf_handler            ;
+
+
+
+%token    "..."        :    '"..."'    ,2                        %value    "TOK_ELLIPSIS"        %action default_leaf_handler            ;    
+
+
+%token    "++"        :    '"++"'        ,1                        %value    "TOK_INC"            %action default_leaf_handler            ;
+%token    "--"        :    '"--"'        ,1                        %value    "TOK_DEC"            %action default_leaf_handler            ;
+
+
+%token    "&&"        :    '"&&"'        ,1                        %value    "TOK_ANDAND"            %action default_leaf_handler            ;
+%token    "||"        :    '"||"'        ,1                        %value    "TOK_OROR"            %action default_leaf_handler            ;
+
+*/
+
+
+%token    "<="        :    '"<="'        ,1                        %value    "TOK_LE"            %action default_leaf_handler            ;
+%token    ">="        :    '">="'        ,1                        %value    "TOK_GE"            %action default_leaf_handler            ;
+%token    "=="        :    '"=="'        ,1                        %value    "TOK_EQ"            %action default_leaf_handler            ;
+%token    "!="        :    '"!="'        ,1                        %value    "TOK_NE"            %action default_leaf_handler            ;
+%token    "<"        :    '"<"'            ,0                    %value    "TOK_LESS"            %action default_leaf_handler            ;
+%token    ">"        :    '">"'            ,0                    %value    "TOK_GREATER"            %action default_leaf_handler                ;
+
+
+
+
+%token    "{"        :    '"{"'            ,0                    %value    "TOK_L_BRACES"        %action default_leaf_handler            ;
+%token    "}"        :    '"}"'            ,0                    %value    "TOK_R_BRACES"        %action default_leaf_handler            ;
+%token    "("        :    '"("'            ,0                    %value    "TOK_L_PAREN"            %action default_leaf_handler            ;
+%token    ")"        :    '")"'            ,0                    %value    "TOK_R_PAREN"            %action default_leaf_handler            ;
+%token    "["        :    '"["'            ,0                    %value    "TOK_L_SQUARE"        %action default_leaf_handler            ;
+%token    "]"        :    '"]"'            ,0                    %value    "TOK_R_SQUARE"        %action default_leaf_handler            ;
+
+%token    ";"        :    '";"'            ,0                    %value    "TOK_SEMICOLON"        %action default_leaf_handler            ;
+%token    ","        :    '","'            ,0                    %value    "TOK_COMMA"            %action default_leaf_handler            ;
+%token    "="        :    '"="'            ,0                    %value    "TOK_ASSIGN"            %action default_leaf_handler            ;
+
+
+
+%token    "+"        :    '"+"'            ,0                    %value    "TOK_ADD"            %action default_leaf_handler            ;
+%token    "-"        :    '"-"'            ,0                    %value    "TOK_SUB"            %action default_leaf_handler            ;
+%token    "*"        :    '"*"'            ,0                    %value    "TOK_MUL"            %action default_leaf_handler            ;
+%token    "/"        :    '"/"'            ,0                    %value    "TOK_DIV"            %action default_leaf_handler            ;
+%token    "%"        :    '"%"'            ,0                    %value    "TOK_MOD"            %action default_leaf_handler            ;
+
+/*
+%token    "!"        :    '"!"'            ,0                    %value    "TOK_NOT"            %action default_leaf_handler            ;
+%token    ":"        :    '":"'            ,0                    %value    "TOK_COLON"            %action default_leaf_handler            ;
+%token    "?"        :    '"?"'            ,0                    %value    "TOK_QUEST"            %action default_leaf_handler            ;
+%token    "."        :    '"."'            ,0                    %value    "TOK_DOT"            %action default_leaf_handler            ;
+
+*/
+
+
+
+
+
+
+
+
+/**************************************************优先级*****************************************************/
+/*
+%right        "?"    ":"                            			;
+%left        "||"                                			;
+%left        "&&"                                			;
+*/
+
+%left        "=="    "!="    "<"    "<="    ">"    ">="       	;
+%left        "+"    "-"                            			;
+%left        "*"    "/"    "%"                        			;
+
+
+
+
+
+
+
+
+%start 	program	;
+
+
+program 	:	.
+		;
+
+
+
+
+
+
+
+
+
+
+
+
+

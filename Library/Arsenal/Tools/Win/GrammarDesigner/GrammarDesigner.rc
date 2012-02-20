@@ -1,0 +1,754 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Simplified, PRC) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\GrammarDesigner.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#if !defined(_AFXDLL)\r\n"
+    "#include ""afxprint.rc""               // printing/print preview resources\r\n"
+    "#include ""afxribbon.rc""              // MFC ribbon and control bar resources\r\n"
+    "#endif\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_TAGVIEW MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Font",                       ID_TAGVIEW_FONT
+        MENUITEM "&ReBuild",                    ID_TAGVIEW_REBUILD
+    END
+END
+
+IDR_INPUT_POPUP MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "Parse",                       ID_POPUP_PARSE
+        MENUITEM SEPARATOR
+        MENUITEM "Cut",                         ID_EDIT_CUT
+        MENUITEM "Copy",                        ID_EDIT_COPY
+        MENUITEM "Clear",                       ID_EDIT_CLEAR
+        MENUITEM "Paste",                       ID_EDIT_PASTE
+        MENUITEM "&Undo",                       ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Select All",                  ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Font",                        ID_INPUT_FONT
+        MENUITEM SEPARATOR
+        MENUITEM "Open",                        ID_INPUT_EDIT_OPEN
+        MENUITEM "Save",                        ID_INPUT_EDIT_SAVE
+    END
+END
+
+IDR_SYNTAXTREE_MENU MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Expand",                     ID_SYNTAX_MENU_EXPAND
+        MENUITEM "Collapse",                    ID_POPUP_COLLAPSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Font",                       ID_POPUP_FONT32864
+        MENUITEM "&Clear",                      ID_POPUP_CLEAR32865
+    END
+END
+
+IDR_MENU_STRCONV MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "Cut",                         ID_EDIT_CUT
+        MENUITEM "Copy",                        ID_EDIT_COPY
+        MENUITEM "Clear",                       ID_EDIT_CLEAR
+        MENUITEM "Paste",                       ID_EDIT_PASTE
+        MENUITEM "Font",                        ID_INPUT_FONT
+        MENUITEM "&Undo",                       ID_EDIT_UNDO
+    END
+END
+
+IDR_FIND_OUTPUT_POPUP MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Clear",                      ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Font",                       ID_FIND_OUTPUTWND_FONT
+    END
+END
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Select ALL\tCtrl+A",          ID_EDIT_SELECT_ALL
+        MENUITEM "&Find\tCtrl+F",               ID_EDIT_FIND
+        MENUITEM "&Replace",                    ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        MENUITEM "&Font\tAlt+F",                ID_EDIT_FONTDLG
+        POPUP "Endcoding"
+        BEGIN
+            MENUITEM "ASCII",                       ID_ENDCODING_ASCII, CHECKED
+            MENUITEM "UNICODE Big Endian",          ID_ENDCODING_UNICODEBE, CHECKED
+            MENUITEM "UNICODE",                     ID_ENDCODING_UNICODELE, CHECKED
+            MENUITEM "UTF8",                        ID_ENDCODING_UTF8, CHECKED
+        END
+    END
+    POPUP "&View"
+    BEGIN
+        POPUP "&Toolbars and Docking Windows"
+        BEGIN
+            MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
+        END
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        POPUP "&Application Look"
+        BEGIN
+            MENUITEM "Windows &2000",               ID_VIEW_APPLOOK_WIN_2000
+            MENUITEM "Office &XP",                  ID_VIEW_APPLOOK_OFF_XP
+            MENUITEM "&Windows XP",                 ID_VIEW_APPLOOK_WIN_XP
+            MENUITEM "Office 200&3",                ID_VIEW_APPLOOK_OFF_2003
+            MENUITEM "Visual Studio.NET 200&5",     ID_VIEW_APPLOOK_VS_2005
+            POPUP "Office 200&7"
+            BEGIN
+                MENUITEM "&Blue Style",                 ID_VIEW_APPLOOK_OFF_2007_BLUE
+                MENUITEM "B&lack Style",                ID_VIEW_APPLOOK_OFF_2007_BLACK
+                MENUITEM "&Silver Style",               ID_VIEW_APPLOOK_OFF_2007_SILVER
+                MENUITEM "&Aqua Style",                 ID_VIEW_APPLOOK_OFF_2007_AQUA
+            END
+        END
+        POPUP "&Show"
+        BEGIN
+            MENUITEM "&Output",                     ID_SHOW_OUTPUT
+            MENUITEM "&SyntaxTree",                 ID_SHOW_SYNTAXTREE
+            MENUITEM "&ActionView",                 ID_SHOW_ACTIONVIEW
+            MENUITEM "&TagView",                    ID_SHOW_TAGVIEW
+            MENUITEM "&Input",                      ID_SHOW_INPUT
+            MENUITEM "Find Results",                ID_SHOW_FINDRESULTS
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen",                ID_VIEW_FULLSCREEN
+    END
+    POPUP "&Lexer"
+    BEGIN
+        POPUP "&Flags"
+        BEGIN
+            MENUITEM "&SingleLine",                 ID_FLAGS_SINGLELINE, CHECKED
+            MENUITEM "&IgnoreCase",                 ID_FLAGS_IGNORECASE, CHECKED
+        END
+    END
+    POPUP "&Parser"
+    BEGIN
+        POPUP "Mode"
+        BEGIN
+            MENUITEM "&SLR(1)",                     ID_PARSER_MODE_SLR, CHECKED
+            MENUITEM "L&ALR(1)",                    ID_PARSER_MODE_LALR, CHECKED
+        END
+        MENUITEM "&Build",                      ID_PARSER_BUILD
+        MENUITEM "&Parse Input",                ID_PARSER_PARSE
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "ReBuild &Tags",               ID_TOOLS_REBUILDTAGS
+        POPUP "Set ReBuild Time"
+        BEGIN
+            MENUITEM "100ms",                       ID_SETREBUILDTIME_100MS, CHECKED
+            MENUITEM "500ms",                       ID_SETREBUILDTIME_500MS, CHECKED
+            MENUITEM "1000ms",                      ID_SETREBUILDTIME_1000MS, CHECKED
+            MENUITEM "3000ms",                      ID_SETREBUILDTIME_3000MS, CHECKED
+            MENUITEM "5000ms",                      ID_SETREBUILDTIME_5000MS, CHECKED
+            MENUITEM "Disable",                     ID_SETREBUILDTIME_DISABLE, CHECKED
+        END
+        POPUP "Show"
+        BEGIN
+            MENUITEM "&ActionTable",                ID_PARSER_SHOWACTIONTABLE
+            MENUITEM "&Conflict",                   ID_PARSER_SHOWCONFLICT
+            MENUITEM "&FirstFollow",                ID_PARSER_SHOWFIRSTFOLLOW
+            MENUITEM "Left Recursion",              ID_SHOW_LEFTRECURSION
+        END
+        POPUP "Generate"
+        BEGIN
+            MENUITEM "Template",                    ID_GENERATE_TEMPLATE
+        END
+        POPUP "Strings"
+        BEGIN
+            MENUITEM "String &Converter",           ID_STRINGS_STRINGCONVERTER
+        END
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About GrammarDesigner...",   ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_EDIT MENU
+BEGIN
+    POPUP "Edit"
+    BEGIN
+        MENUITEM "&Goto Decl",                  ID_EDIT_GOTO_DECL
+        MENUITEM "Find All References",         ID_EDIT_FINDALLREFERENCES
+        MENUITEM "&Build",                      ID_PARSER_BUILD
+        POPUP "Show"
+        BEGIN
+            MENUITEM "&ActionTable",                ID_PARSER_SHOWACTIONTABLE
+            MENUITEM "&Conflict",                   ID_PARSER_SHOWCONFLICT
+            MENUITEM "&FirstFollow",                ID_PARSER_SHOWFIRSTFOLLOW
+            MENUITEM "Left Recursion",              ID_SHOW_LEFTRECURSION
+            MENUITEM "Left Factor",                 ID_SHOW_LEFTFACTOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Select ALL\tCtrl+A",          ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Open",                       ID_EDIT_OPEN
+        MENUITEM "&Save",                       ID_EDIT_SAVE32863
+        MENUITEM "&Font",                       ID_EDIT_FONTDLG
+    END
+END
+
+IDR_OUTPUT_POPUP MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Clear",                      ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Font",                       ID_OUTPUTWND_FONT
+    END
+END
+
+IDR_THEME_MENU MENU
+BEGIN
+    MENUITEM "Office 2007 (&Blue Style)",   ID_VIEW_APPLOOK_OFF_2007_BLUE
+    MENUITEM "Office 2007 (B&lack Style)",  ID_VIEW_APPLOOK_OFF_2007_BLACK
+    MENUITEM "Office 2007 (&Silver Style)", ID_VIEW_APPLOOK_OFF_2007_SILVER
+    MENUITEM "Office 2007 (&Aqua Style)",   ID_VIEW_APPLOOK_OFF_2007_AQUA
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_GOTO DIALOGEX 0, 0, 205, 76
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Goto"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_LINE,11,28,183,14,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "OK",IDOK,44,55,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,112,55,50,14
+    LTEXT           "Static",IDC_STATIC_LINE,11,7,183,14
+END
+
+IDD_DIALOG_STR_CODE_CONV DIALOGEX 0, 0, 370, 255
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "String Converter"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,306,234,50,14
+    PUSHBUTTON      "To Code",IDC_BUTTON_TO_CODE,76,118,54,18
+    PUSHBUTTON      "To String",IDC_BUTTON_TO_STRING,232,118,54,18
+    LTEXT           "String:",IDC_STATIC,12,6,42,12
+    LTEXT           "Code:",IDC_STATIC,12,120,42,12
+    CONTROL         "",IDC_EDIT_STRING,"RichEdit20W",WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | 0xc4,7,19,354,92
+    CONTROL         "",IDC_EDIT_CODE,"RichEdit20W",WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | 0x84,7,138,354,92
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG_GOTO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+
+    IDD_DIALOG_STR_CODE_CONV, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 363
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 248
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (Simplified, PRC) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 214, 117
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About GrammarDesigner"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "Version:",IDC_APP_ARSENAL_VERSION,45,26,147,8,SS_NOPREFIX
+    CONTROL         "Copyright:",IDC_APP_COPYRIGHT,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,45,55,147,8
+    DEFPUSHBUTTON   "OK",IDOK,152,96,50,14,WS_GROUP
+    LTEXT           "Name:",IDC_APP_NAME,45,11,147,8,SS_NOPREFIX
+    LTEXT           "Homepage:",IDC_APP_HOMEPAGE,45,70,147,8
+    LTEXT           "Version:",IDC_APP_GMR_DESIGNER_VERSION,45,41,147,8,SS_NOPREFIX
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 207
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 110
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\icon_octopus.ico"
+IDR_GrammarDesignerTYPE ICON                    "res\\GrammarDesignerDoc.ico"
+IDI_OUTPUT_WND          ICON                    "res\\output_wnd.ico"
+IDI_OUTPUT_WND_HC       ICON                    "res\\output_wnd_hc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 16
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_EDIT_SELECT_ALL
+    BUTTON      ID_BUTTON32785
+END
+
+IDR_MAINFRAME_256 TOOLBAR 16, 16
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FONTDLG,        VIRTKEY, ALT, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GOTO,                VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_RETURN,      ID_VIEW_FULLSCREEN,     VIRTKEY, ALT, NOINVERT
+END
+
+IDR_MAIN_VIEW ACCELERATORS
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GOTO,                VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FONTDLG,        VIRTKEY, ALT, NOINVERT
+END
+
+IDR_INPUT_VIEW ACCELERATORS
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GOTO,                VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_INPUT_FONT,          VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,1,3,578
+ PRODUCTVERSION 0,1,3,578
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "None"
+            VALUE "FileDescription", "Grammar Designer"
+            VALUE "FileVersion", "0.1.3.578"
+            VALUE "InternalName", "GrammarDesigner.exe"
+            VALUE "LegalCopyright", "Solidus.  All rights reserved."
+            VALUE "OriginalFilename", "GrammarDesigner.exe"
+            VALUE "ProductName", "Grammar Designer"
+            VALUE "ProductVersion", "0.1.3.578"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+    IDS_SYNTAXPANE_WND      "Syntax Tree"
+END
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "GrammarDesigner\n\nGrammarDesigner\nGrammarDesigner Files (*.gmr)\n.gmr\nGrammarDesigner.Document\nGrammarDesigner.Document"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "GrammarDesigner"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+    ID_INDICATOR_LINE       "Ln"
+    ID_INDICATOR_COL        "Col"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle Status Bar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    IDS_ACTVIEW_WND         "Action"
+    IDS_TAGVIEW_WND         "Tag"
+    IDS_INPUTVIEW_WND       "Input"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STATUS_PANE1        "Pane 1"
+    IDS_STATUS_PANE2        "Pane 2"
+    IDS_TOOLBAR_STANDARD    "Standard"
+    IDS_TOOLBAR_CUSTOMIZE   "Customize..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_OUTPUT_WND          "Output"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_BUILD_TAB           "Build"
+    IDS_DEBUG_TAB           "Debug"
+    IDS_FIND_TAB            "Find"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EDIT_MENU           "Edit"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FIND_OUTPUT_WND     "Find Symbol Results"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\GrammarDesigner.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#if !defined(_AFXDLL)
+#include "afxprint.rc"               // printing/print preview resources
+#include "afxribbon.rc"              // MFC ribbon and control bar resources
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

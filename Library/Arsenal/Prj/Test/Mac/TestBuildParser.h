@@ -1,0 +1,1 @@
+/* *  TestBuildParser.h *  Test * *  Created by liu peng on 10/1/11. *  Copyright 2011 none. All rights reserved. * */#include "Arsenal.h"void AR_GenerateParsertest();

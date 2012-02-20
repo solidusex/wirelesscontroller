@@ -1,0 +1,526 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DDD582C0DA1D0D100B32029 /* GrammarDesignerDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* GrammarDesignerDocument.xib */; };
+		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
+		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
+		8D15AC310486D014006FF6A4 /* GrammarDesignerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* GrammarDesignerDocument.m */; settings = {ATTRIBUTES = (); }; };
+		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		BE1D121E1430781500789216 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D121D1430781500789216 /* InputTextView.m */; };
+		BE1D12201430782700789216 /* InputSyntaxTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D121F1430782700789216 /* InputSyntaxTreeView.m */; };
+		BE2A160A14346486006BEC87 /* ARPrintParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2A160914346486006BEC87 /* ARPrintParser.m */; };
+		BE3578D31430C3CC001D5D04 /* GrammarTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3578D21430C3CC001D5D04 /* GrammarTextView.m */; };
+		BE3578D71430C40A001D5D04 /* TagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3578D61430C40A001D5D04 /* TagsView.m */; };
+		BE3578EB1430C657001D5D04 /* OutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3578EA1430C657001D5D04 /* OutputView.m */; };
+		BE3578F91430C6AD001D5D04 /* SplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3578F81430C6AD001D5D04 /* SplitViewDelegate.m */; };
+		BE357A421430CFCE001D5D04 /* ActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE357A411430CFCE001D5D04 /* ActionView.m */; };
+		BE47DD1314269558006FE4E8 /* ARAsyncQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DD0914269558006FE4E8 /* ARAsyncQueue.m */; };
+		BE47DD1414269558006FE4E8 /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DD0B14269558006FE4E8 /* ARException.m */; };
+		BE47DD1514269558006FE4E8 /* ARNet.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DD0D14269558006FE4E8 /* ARNet.m */; };
+		BE47DD1614269558006FE4E8 /* ARSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DD0E14269558006FE4E8 /* ARSynthesizer.m */; };
+		BE47DD1714269558006FE4E8 /* ARThread.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DD1014269558006FE4E8 /* ARThread.m */; };
+		BE47DD1814269558006FE4E8 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DD1214269558006FE4E8 /* Common.m */; };
+		BE47DD1B1426956D006FE4E8 /* ArsenalOC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DD1A1426956D006FE4E8 /* ArsenalOC.m */; };
+		BE47DE081426B2E8006FE4E8 /* ARUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DE071426B2E8006FE4E8 /* ARUtility.m */; };
+		BE47DE391426B84A006FE4E8 /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE47DE381426B84A006FE4E8 /* ApplicationDelegate.m */; };
+		BE8DB506142D7A160031D571 /* GrammarCheckerTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8DB505142D7A160031D571 /* GrammarCheckerTask.m */; };
+		BE9680F014330656003C8716 /* ConsoleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9680EF14330656003C8716 /* ConsoleMessage.m */; };
+		BEAE57FD1426F8F3004C25AA /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAE57FC1426F8F3004C25AA /* Preferences.m */; };
+		BEAE58021426F9BC004C25AA /* ARTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAE58011426F9BC004C25AA /* ARTest.m */; };
+		BEAE587E1426FCDA004C25AA /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEAE587D1426FCDA004C25AA /* Preferences.xib */; };
+		BEC0D01F1422C35000D35745 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC0D01E1422C35000D35745 /* libiconv.dylib */; };
+		BEC0D0211422C35900D35745 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC0D0201422C35900D35745 /* libpthread.dylib */; };
+		BEC33310142F65DD00553ED3 /* InputChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC3330F142F65DD00553ED3 /* InputChecker.m */; };
+		BEC333D4142F6F3A00553ED3 /* InputChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC333D3142F6F3A00553ED3 /* InputChecker.xib */; };
+		BEC334A2142F7F4500553ED3 /* StringConverter.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC334A1142F7F4500553ED3 /* StringConverter.xib */; };
+		BEC334A5142F7F6B00553ED3 /* StringConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC334A4142F7F6B00553ED3 /* StringConverter.m */; };
+		BEC6031C1431AB090061848F /* FindResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC6031B1431AB090061848F /* FindResultsView.m */; };
+		BEDCDCB81429A48B00D041D4 /* ARDuplexTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCDCB71429A48B00D041D4 /* ARDuplexTask.m */; };
+		BEDCE03A142ADA7E00D041D4 /* GmrIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = BEDCE039142ADA7E00D041D4 /* GmrIcon.icns */; };
+		BEF7477714E84F82009F17CB /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF7477614E84F82009F17CB /* Arsenal.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58290DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/GrammarDesignerDocument.xib; sourceTree = "<group>"; };
+		1DDD582B0DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2564AD2C0F5327BB00F57823 /* GrammarDesigner_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrammarDesigner_Prefix.pch; sourceTree = "<group>"; };
+		2A37F4ACFDCFA73011CA2CEA /* GrammarDesignerDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrammarDesignerDocument.m; sourceTree = "<group>"; };
+		2A37F4AEFDCFA73011CA2CEA /* GrammarDesignerDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrammarDesignerDocument.h; sourceTree = "<group>"; };
+		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8D15AC360486D014006FF6A4 /* GrammarDesigner-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GrammarDesigner-Info.plist"; sourceTree = "<group>"; };
+		8D15AC370486D014006FF6A4 /* GrammarDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrammarDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE1D121D1430781500789216 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
+		BE1D121F1430782700789216 /* InputSyntaxTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputSyntaxTreeView.m; sourceTree = "<group>"; };
+		BE2A160814346486006BEC87 /* ARPrintParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPrintParser.h; path = Helper/ARPrintParser.h; sourceTree = "<group>"; };
+		BE2A160914346486006BEC87 /* ARPrintParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPrintParser.m; path = Helper/ARPrintParser.m; sourceTree = "<group>"; };
+		BE3578D11430C3CC001D5D04 /* GrammarTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrammarTextView.h; sourceTree = "<group>"; };
+		BE3578D21430C3CC001D5D04 /* GrammarTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrammarTextView.m; sourceTree = "<group>"; };
+		BE3578D51430C40A001D5D04 /* TagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsView.h; sourceTree = "<group>"; };
+		BE3578D61430C40A001D5D04 /* TagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsView.m; sourceTree = "<group>"; };
+		BE3578E91430C657001D5D04 /* OutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputView.h; sourceTree = "<group>"; };
+		BE3578EA1430C657001D5D04 /* OutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputView.m; sourceTree = "<group>"; };
+		BE3578F71430C6AD001D5D04 /* SplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewDelegate.h; sourceTree = "<group>"; };
+		BE3578F81430C6AD001D5D04 /* SplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewDelegate.m; sourceTree = "<group>"; };
+		BE357A401430CFCE001D5D04 /* ActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionView.h; sourceTree = "<group>"; };
+		BE357A411430CFCE001D5D04 /* ActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionView.m; sourceTree = "<group>"; };
+		BE47DD0914269558006FE4E8 /* ARAsyncQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARAsyncQueue.m; path = Helper/ARAsyncQueue.m; sourceTree = "<group>"; };
+		BE47DD0A14269558006FE4E8 /* ARException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARException.h; path = Helper/ARException.h; sourceTree = "<group>"; };
+		BE47DD0B14269558006FE4E8 /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARException.m; path = Helper/ARException.m; sourceTree = "<group>"; };
+		BE47DD0C14269558006FE4E8 /* ARNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARNet.h; path = Helper/ARNet.h; sourceTree = "<group>"; };
+		BE47DD0D14269558006FE4E8 /* ARNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARNet.m; path = Helper/ARNet.m; sourceTree = "<group>"; };
+		BE47DD0E14269558006FE4E8 /* ARSynthesizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARSynthesizer.m; path = Helper/ARSynthesizer.m; sourceTree = "<group>"; };
+		BE47DD0F14269558006FE4E8 /* ARThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARThread.h; path = Helper/ARThread.h; sourceTree = "<group>"; };
+		BE47DD1014269558006FE4E8 /* ARThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARThread.m; path = Helper/ARThread.m; sourceTree = "<group>"; };
+		BE47DD1114269558006FE4E8 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Helper/Common.h; sourceTree = "<group>"; };
+		BE47DD1214269558006FE4E8 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Common.m; path = Helper/Common.m; sourceTree = "<group>"; };
+		BE47DD191426956D006FE4E8 /* ArsenalOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArsenalOC.h; path = Helper/ArsenalOC.h; sourceTree = "<group>"; };
+		BE47DD1A1426956D006FE4E8 /* ArsenalOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArsenalOC.m; path = Helper/ArsenalOC.m; sourceTree = "<group>"; };
+		BE47DD20142695A1006FE4E8 /* stdheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdheader.h; sourceTree = "<group>"; };
+		BE47DD21142695E1006FE4E8 /* ARHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARHelper.h; path = Helper/ARHelper.h; sourceTree = "<group>"; };
+		BE47DE061426B2E8006FE4E8 /* ARUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARUtility.h; path = Helper/ARUtility.h; sourceTree = "<group>"; };
+		BE47DE071426B2E8006FE4E8 /* ARUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARUtility.m; path = Helper/ARUtility.m; sourceTree = "<group>"; };
+		BE47DE371426B84A006FE4E8 /* ApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
+		BE47DE381426B84A006FE4E8 /* ApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
+		BE8DB504142D7A160031D571 /* GrammarCheckerTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrammarCheckerTask.h; sourceTree = "<group>"; };
+		BE8DB505142D7A160031D571 /* GrammarCheckerTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrammarCheckerTask.m; sourceTree = "<group>"; };
+		BE9680EE14330656003C8716 /* ConsoleMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleMessage.h; sourceTree = "<group>"; };
+		BE9680EF14330656003C8716 /* ConsoleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleMessage.m; sourceTree = "<group>"; };
+		BEAE57FB1426F8F3004C25AA /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
+		BEAE57FC1426F8F3004C25AA /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		BEAE58011426F9BC004C25AA /* ARTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARTest.m; path = Helper/ARTest.m; sourceTree = "<group>"; };
+		BEAE587D1426FCDA004C25AA /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		BEC0D01E1422C35000D35745 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		BEC0D0201422C35900D35745 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
+		BEC3330E142F65DD00553ED3 /* InputChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputChecker.h; sourceTree = "<group>"; };
+		BEC3330F142F65DD00553ED3 /* InputChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputChecker.m; sourceTree = "<group>"; };
+		BEC333D3142F6F3A00553ED3 /* InputChecker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputChecker.xib; sourceTree = "<group>"; };
+		BEC334A1142F7F4500553ED3 /* StringConverter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StringConverter.xib; sourceTree = "<group>"; };
+		BEC334A3142F7F6B00553ED3 /* StringConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringConverter.h; sourceTree = "<group>"; };
+		BEC334A4142F7F6B00553ED3 /* StringConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringConverter.m; sourceTree = "<group>"; };
+		BEC6031A1431AB090061848F /* FindResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindResultsView.h; sourceTree = "<group>"; };
+		BEC6031B1431AB090061848F /* FindResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindResultsView.m; sourceTree = "<group>"; };
+		BEDCDCB71429A48B00D041D4 /* ARDuplexTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARDuplexTask.m; path = Helper/ARDuplexTask.m; sourceTree = "<group>"; };
+		BEDCE039142ADA7E00D041D4 /* GmrIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GmrIcon.icns; sourceTree = "<group>"; };
+		BEF7477614E84F82009F17CB /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug/Arsenal.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D15AC330486D014006FF6A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEF7477714E84F82009F17CB /* Arsenal.a in Frameworks */,
+				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+				BEC0D01F1422C35000D35745 /* libiconv.dylib in Frameworks */,
+				BEC0D0211422C35900D35745 /* libpthread.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
+				13E42FBA07B3F13500E4EEF1 /* CoreData.framework */,
+				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB0FE9D524F11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D15AC370486D014006FF6A4 /* GrammarDesigner.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A37F4AAFDCFA73011CA2CEA /* GrammarDesigner */ = {
+			isa = PBXGroup;
+			children = (
+				BEF7477614E84F82009F17CB /* Arsenal.a */,
+				BE47DD0814269546006FE4E8 /* Helper */,
+				2A37F4ABFDCFA73011CA2CEA /* Classes */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				19C28FB0FE9D524F11CA2CBB /* Products */,
+				BEC0D01E1422C35000D35745 /* libiconv.dylib */,
+				BEC0D0201422C35900D35745 /* libpthread.dylib */,
+			);
+			name = GrammarDesigner;
+			sourceTree = "<group>";
+		};
+		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4AEFDCFA73011CA2CEA /* GrammarDesignerDocument.h */,
+				2A37F4ACFDCFA73011CA2CEA /* GrammarDesignerDocument.m */,
+				BE47DE371426B84A006FE4E8 /* ApplicationDelegate.h */,
+				BE47DE381426B84A006FE4E8 /* ApplicationDelegate.m */,
+				BEAE57FB1426F8F3004C25AA /* Preferences.h */,
+				BEAE57FC1426F8F3004C25AA /* Preferences.m */,
+				BE8DB504142D7A160031D571 /* GrammarCheckerTask.h */,
+				BE8DB505142D7A160031D571 /* GrammarCheckerTask.m */,
+				BEC3330E142F65DD00553ED3 /* InputChecker.h */,
+				BEC3330F142F65DD00553ED3 /* InputChecker.m */,
+				BEC334A3142F7F6B00553ED3 /* StringConverter.h */,
+				BEC334A4142F7F6B00553ED3 /* StringConverter.m */,
+				BE1D121D1430781500789216 /* InputTextView.m */,
+				BE1D121F1430782700789216 /* InputSyntaxTreeView.m */,
+				BE3578D11430C3CC001D5D04 /* GrammarTextView.h */,
+				BE3578D21430C3CC001D5D04 /* GrammarTextView.m */,
+				BE3578D51430C40A001D5D04 /* TagsView.h */,
+				BE3578D61430C40A001D5D04 /* TagsView.m */,
+				BE3578E91430C657001D5D04 /* OutputView.h */,
+				BE3578EA1430C657001D5D04 /* OutputView.m */,
+				BE3578F71430C6AD001D5D04 /* SplitViewDelegate.h */,
+				BE3578F81430C6AD001D5D04 /* SplitViewDelegate.m */,
+				BE357A401430CFCE001D5D04 /* ActionView.h */,
+				BE357A411430CFCE001D5D04 /* ActionView.m */,
+				BEC6031A1431AB090061848F /* FindResultsView.h */,
+				BEC6031B1431AB090061848F /* FindResultsView.m */,
+				BE9680EE14330656003C8716 /* ConsoleMessage.h */,
+				BE9680EF14330656003C8716 /* ConsoleMessage.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BE47DD20142695A1006FE4E8 /* stdheader.h */,
+				2564AD2C0F5327BB00F57823 /* GrammarDesigner_Prefix.pch */,
+				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BEC334A1142F7F4500553ED3 /* StringConverter.xib */,
+				BEDCE039142ADA7E00D041D4 /* GmrIcon.icns */,
+				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
+				8D15AC360486D014006FF6A4 /* GrammarDesigner-Info.plist */,
+				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				1DDD58280DA1D0D100B32029 /* GrammarDesignerDocument.xib */,
+				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
+				BEAE587D1426FCDA004C25AA /* Preferences.xib */,
+				BEC333D3142F6F3A00553ED3 /* InputChecker.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
+				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE47DD0814269546006FE4E8 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BE47DD0914269558006FE4E8 /* ARAsyncQueue.m */,
+				BE47DD0A14269558006FE4E8 /* ARException.h */,
+				BE47DD0B14269558006FE4E8 /* ARException.m */,
+				BE47DD0C14269558006FE4E8 /* ARNet.h */,
+				BE47DD0D14269558006FE4E8 /* ARNet.m */,
+				BE47DD0E14269558006FE4E8 /* ARSynthesizer.m */,
+				BE47DD0F14269558006FE4E8 /* ARThread.h */,
+				BE47DD1014269558006FE4E8 /* ARThread.m */,
+				BE47DD1114269558006FE4E8 /* Common.h */,
+				BE47DD1214269558006FE4E8 /* Common.m */,
+				BE47DD191426956D006FE4E8 /* ArsenalOC.h */,
+				BE47DD1A1426956D006FE4E8 /* ArsenalOC.m */,
+				BE47DD21142695E1006FE4E8 /* ARHelper.h */,
+				BE47DE061426B2E8006FE4E8 /* ARUtility.h */,
+				BE47DE071426B2E8006FE4E8 /* ARUtility.m */,
+				BEAE58011426F9BC004C25AA /* ARTest.m */,
+				BEDCDCB71429A48B00D041D4 /* ARDuplexTask.m */,
+				BE2A160814346486006BEC87 /* ARPrintParser.h */,
+				BE2A160914346486006BEC87 /* ARPrintParser.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D15AC270486D014006FF6A4 /* GrammarDesigner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "GrammarDesigner" */;
+			buildPhases = (
+				8D15AC2B0486D014006FF6A4 /* Resources */,
+				8D15AC300486D014006FF6A4 /* Sources */,
+				8D15AC330486D014006FF6A4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GrammarDesigner;
+			productInstallPath = "$(HOME)/Applications";
+			productName = GrammarDesigner;
+			productReference = 8D15AC370486D014006FF6A4 /* GrammarDesigner.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "GrammarDesigner" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* GrammarDesigner */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D15AC270486D014006FF6A4 /* GrammarDesigner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D15AC2B0486D014006FF6A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
+				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
+				1DDD582C0DA1D0D100B32029 /* GrammarDesignerDocument.xib in Resources */,
+				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
+				BEAE587E1426FCDA004C25AA /* Preferences.xib in Resources */,
+				BEDCE03A142ADA7E00D041D4 /* GmrIcon.icns in Resources */,
+				BEC333D4142F6F3A00553ED3 /* InputChecker.xib in Resources */,
+				BEC334A2142F7F4500553ED3 /* StringConverter.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D15AC300486D014006FF6A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC310486D014006FF6A4 /* GrammarDesignerDocument.m in Sources */,
+				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				BE47DD1314269558006FE4E8 /* ARAsyncQueue.m in Sources */,
+				BE47DD1414269558006FE4E8 /* ARException.m in Sources */,
+				BE47DD1514269558006FE4E8 /* ARNet.m in Sources */,
+				BE47DD1614269558006FE4E8 /* ARSynthesizer.m in Sources */,
+				BE47DD1714269558006FE4E8 /* ARThread.m in Sources */,
+				BE47DD1814269558006FE4E8 /* Common.m in Sources */,
+				BE47DD1B1426956D006FE4E8 /* ArsenalOC.m in Sources */,
+				BE47DE081426B2E8006FE4E8 /* ARUtility.m in Sources */,
+				BE47DE391426B84A006FE4E8 /* ApplicationDelegate.m in Sources */,
+				BEAE57FD1426F8F3004C25AA /* Preferences.m in Sources */,
+				BEAE58021426F9BC004C25AA /* ARTest.m in Sources */,
+				BEDCDCB81429A48B00D041D4 /* ARDuplexTask.m in Sources */,
+				BE8DB506142D7A160031D571 /* GrammarCheckerTask.m in Sources */,
+				BEC33310142F65DD00553ED3 /* InputChecker.m in Sources */,
+				BEC334A5142F7F6B00553ED3 /* StringConverter.m in Sources */,
+				BE1D121E1430781500789216 /* InputTextView.m in Sources */,
+				BE1D12201430782700789216 /* InputSyntaxTreeView.m in Sources */,
+				BE3578D31430C3CC001D5D04 /* GrammarTextView.m in Sources */,
+				BE3578D71430C40A001D5D04 /* TagsView.m in Sources */,
+				BE3578EB1430C657001D5D04 /* OutputView.m in Sources */,
+				BE3578F91430C6AD001D5D04 /* SplitViewDelegate.m in Sources */,
+				BE357A421430CFCE001D5D04 /* ActionView.m in Sources */,
+				BEC6031C1431AB090061848F /* FindResultsView.m in Sources */,
+				BE9680F014330656003C8716 /* ConsoleMessage.m in Sources */,
+				BE2A160A14346486006BEC87 /* ARPrintParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1660FE840EACC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58280DA1D0D100B32029 /* GrammarDesignerDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58290DA1D0D100B32029 /* English */,
+			);
+			name = GrammarDesignerDocument.xib;
+			sourceTree = "<group>";
+		};
+		1DDD582A0DA1D0D100B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD582B0DA1D0D100B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4BAFDCFA73011CA2CEA /* English */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C05733C808A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GrammarDesigner_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "GrammarDesigner-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Binary/LibDebug\"",
+					"\"$(SRCROOT)/../../../Binary/LibRelease\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug\"",
+				);
+				PRODUCT_NAME = GrammarDesigner;
+			};
+			name = Debug;
+		};
+		C05733C908A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GrammarDesigner_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
+				INFOPLIST_FILE = "GrammarDesigner-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Binary/LibDebug\"",
+					"\"$(SRCROOT)/../../../Binary/LibRelease\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug\"",
+				);
+				PRODUCT_NAME = GrammarDesigner;
+			};
+			name = Release;
+		};
+		C05733CC08A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/LibDebug";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/LibDebug";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+			};
+			name = Debug;
+		};
+		C05733CD08A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/LibRelease";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/LibRelease";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				LLVM_LTO = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "GrammarDesigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733C808A9546B00998B17 /* Debug */,
+				C05733C908A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "GrammarDesigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733CC08A9546B00998B17 /* Debug */,
+				C05733CD08A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+}

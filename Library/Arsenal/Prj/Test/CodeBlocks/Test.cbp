@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Test" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="LibDebug">
+				<Option output="../../../binary/lib/debug/Test" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../../../temp/lib/debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="pthread" />
+					<Add library="../../../binary/lib/debug/libArsenal.a" />
+				</Linker>
+			</Target>
+			<Target title="LibRelease">
+				<Option output="../../../binary/lib/release/Test" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../../../temp/lib/release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="pthread" />
+					<Add library="../../../binary/lib/release/libArsenal.a" />
+				</Linker>
+			</Target>
+			<Target title="DLLDebug">
+				<Option output="../../../binary/dll/debug/Test" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../../../temp/dll/debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="pthread" />
+					<Add library="../../../binary/dll/debug/Arsenal.so" />
+				</Linker>
+			</Target>
+			<Target title="DLLRelease">
+				<Option output="../../../binary/dll/release/Test" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../../../temp/dll/release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add library="pthread" />
+					<Add library="../../../binary/dll/release/Arsenal.so" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="com_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="test.h" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

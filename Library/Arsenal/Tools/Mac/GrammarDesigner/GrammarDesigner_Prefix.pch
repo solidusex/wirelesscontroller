@@ -1,0 +1,1 @@
+//// Prefix header for all source files of the 'GrammarDesigner' target in the 'GrammarDesigner' project//#ifdef __OBJC__		#import <Cocoa/Cocoa.h>#endif

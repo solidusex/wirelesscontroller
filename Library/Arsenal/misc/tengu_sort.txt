@@ -1,0 +1,56 @@
+﻿
+
+var blub_sort(arr)
+{
+		var i,k,t, n = table.count(arr);
+		for(i = 0; i < n; ++i)
+		{
+				for(k = n-1; k > 0; --k)
+				{
+						if(arr[k-1] > arr[k])
+						{
+								t = arr[k];
+								arr[k] = arr[k-1];
+								arr[k-1] = t;
+						}
+				}
+		}
+}
+
+
+var insertion_sort(arr)
+{
+	var n = table.count(arr);
+	var i,k,t;
+	
+	for(i = n - 1; i > 0; --i)
+	{
+		if(arr[i] < arr[i-1])
+		{
+			t = arr[i];
+			arr[i] = arr[i-1];
+			arr[i-1] = t;
+		}
+	}	
+
+	for(i = 1; i < n; ++i)
+	{
+		for(k = i; k > 0; --k)
+		{
+			if(arr[k] < arr[k-1])
+			{
+				t = arr[k];
+				arr[k] = arr[k-1];
+				arr[k-1] = t;
+			}else
+			{
+				break;
+			}
+		}
+	}
+}
+
+
+
+
+

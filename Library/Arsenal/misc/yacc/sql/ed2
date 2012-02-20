@@ -1,0 +1,31 @@
+set -x
+echo $1>nt
+ed rwords >ed2.out <<EOF
+\$
+. s/, \$//
+w
+q
+EOF
+ed rnums >>ed2.out <<EOF
+\$
+. s/, \$//
+w
+q
+EOF
+ed tmprws.h >>ed2.out <<EOF
+/RWORDS/
+.s/[0-9][0-9]//
+.r nt
+-
+.,.+1j
+/\~\~/
+. d
+-
+. r rwords
+/\~\~/
+. d
+-
+. r rnums
+w parser.h
+q
+EOF

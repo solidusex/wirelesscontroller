@@ -1,0 +1,668 @@
+
+%name	delim 		:	"[ \r\n\t]"			
+				;
+%name	comment		:	"/\*([^\*]|\*+[^\*/])*\*+/"	
+				;
+%name	comment_line	:	"//[^\n]*\n"			
+				;
+%name skip_lexem	: 	"{delim}|{comment}|{comment_line}"
+				;
+
+
+
+
+%name	digit			:	"[0-9]"				
+				;
+%name	number		:	"{digit}+"				
+				;
+%name	letter		:	"[A-Z_a-z]"
+				;
+
+
+%name	int_type_suffix	:	"((u|U)?(l|L))|((u|U)(l|L)?)"
+				;
+
+%name hex_digit		:	"[0-9a-fA-F]"
+				;
+
+%name hex_literal 	:	"0(x|X){hex_digit}+{int_type_suffix}?"
+				;
+
+%name oct_literal	:	"0[0-7]+{int_type_suffix}?"
+				;
+
+%name dec_literal	:	"(0|[1-9][0-9]*){int_type_suffix}?"
+				;
+
+
+
+
+%name	exponet			:	"(e|E)(\+|\-)?[0-9]+"
+					;
+
+%name float_type_suffix	:	"(f|F|d|D)"
+					;
+
+
+
+%name float_literal		:	"(((([0-9]\.[0-9]*)|(\.[0-9]+)){exponet}?)|([0-9]+{exponet})){float_type_suffix}?"
+					;
+
+
+
+
+
+
+/*  '"'  == \x22,  '\'' == \x27 */
+
+%name	escape_seq		:	"(\\(\x22|\x27))"	
+				;
+
+%name	string_literal	: 	"(\x22({escape_seq}|[^\x22])*\x22)"		//只能提取"..."或"\""此类串，其它C规则要到语义例程中处理	
+				;
+
+%name	char_literal	:	"\x27({escape_seq}|[^\x27])*\x27"		//提取'...'或'\''此类串，其它C规则要到语义例程中处理	
+				;
+
+%name	keyword_lhd	:	"[A-Z_a-z0-9]"
+				;
+
+
+%name		float_constant	:	"{float_literal}(?!{keyword_lhd})"
+					;
+%name		hex_constant	:	"{hex_literal}(?!{keyword_lhd})"
+					;
+%name		oct_constant	:	"{oct_literal}(?!{keyword_lhd})"
+					;
+%name		dec_constant	:	"{dec_literal}(?!{keyword_lhd})"
+					;
+
+
+%token 	%skip			:	"{skip_lexem}+"				,1		%value	"TOK_DELIM_ID"	;//空白，需要过滤
+%token	TYPE_ID		:	'^$'						,0		%value	"TOK_TYPE_ID"	;//不会出现在输入流中
+%token	DONE_ID		:	'^$'						,0		%value	"TOK_DONE_ID"	;//不会出现在输入流中
+
+
+%token	CHAR_CONSTANT	:	"{char_literal}"					%value	"TOK_CHAR_CONSTANT"					;
+%token	STRING_LITERAL	:	"{string_literal}"					%value	"TOK_STRING_LITERAL"					;
+
+%token	FLOAT_NUMBER	:	"{float_constant}"						,2	%value	"TOK_FLOAT_NUMBER"	;
+%token	INT_NUMBER		:	"{hex_constant}|{oct_constant}|{dec_constant}"	,2	%value	"TOK_INT_NUMBER"	;
+
+
+
+
+
+
+%token	IDENTIFIER		:	"{letter}({letter}|{digit})*"					%value "TOK_IDENTIFIER"		;
+
+
+
+
+
+
+%token	"switch"	:	'"switch"(?!{keyword_lhd})'	,1					%value 	"TOK_SWITCH"		;
+%token	"for"		:	'"for"(?!{keyword_lhd})'		,1					%value	"TOK_FOR"			;
+%token	"goto"	:	'"goto"(?!{keyword_lhd})'		,1					%value	"TOK_GOTO"			;
+%token	"return"	:	'"return"(?!{keyword_lhd})'	,1					%value	"TOK_RETURN"		;
+%token	"do"		:	'"do"(?!{keyword_lhd})'		,1					%value	"TOK_DO"			;
+%token	"while"	:	'"while"(?!{keyword_lhd})'		,1					%value	"TOK_WHILE"		;
+%token	"if"		:	'"if"(?!{keyword_lhd})'		,1					%value	"TOK_IF"			;
+%token	"else"	:	'"else"(?!{keyword_lhd})'		,1					%value	"TOK_ELSE"			;
+
+
+%token	"continue"	:	'"continue"(?!{keyword_lhd})'	,1					%value	"TOK_CONTINUE"		;
+%token	"default"	:	'"default"(?!{keyword_lhd})'	,1					%value	"TOK_DEFAULT"		;
+%token	"case"	:	'"case"(?!{keyword_lhd})'		,1					%value	"TOK_CASE"			;
+%token	"break"	:	'"break"(?!{keyword_lhd})'		,1					%value	"TOK_BREAK"		;
+
+
+
+%token	"const"	:	'"const"(?!{keyword_lhd})'		,1					%value	"TOK_CONST"		;
+%token	"volatile"	:	'"volatile"(?!{keyword_lhd})'	,1					%value	"TOK_VOLATILE"		;
+
+
+%token	"struct"	:	'"struct"(?!{keyword_lhd})'	,1					%value	"TOK_STRUCT"		;
+%token	"union"	:	'"union"(?!{keyword_lhd})'		,1					%value	"TOK_UNION"		;
+
+
+%token	"typedef"	:	'"typedef"(?!{keyword_lhd})'	,1					%value	"TOK_TYPEDEF"		;
+%token	"static"	:	'"static"(?!{keyword_lhd})'	,1					%value	"TOK_STATIC"		;
+
+%token	"sizeof"	:	'"sizeof"(?!{keyword_lhd})'	,1					%value	"TOK_SIZEOF"		;
+
+
+%token	"void"	:	'"void"(?!{keyword_lhd})'		,1					%value	"TOK_VOID"			;
+%token	"byte"	:	'"byte"(?!{keyword_lhd})'		,1					%value	"TOK_BYTE"			;//BYTE	sizeof(byte) == 1
+%token	"char"	:	'"char"(?!{keyword_lhd})'		,1					%value	"TOK_CHAR"			;//CHAR	sizeof(char) == 2
+%token	"short"	:	'"short"(?!{keyword_lhd})'		,1					%value	"TOK_SHORT"		;//SHORT	sizeof(short) == 3
+%token	"int"		:	'"int"(?!{keyword_lhd})'		,1					%value	"TOK_INT"			;//INT	sizeof(int)	== 4
+%token	"long"	:	'"long"(?!{keyword_lhd})'		,1					%value	"TOK_LONG"			;//LONG	sizeof(long)	== 8
+%token	"signed"	:	'"signed"(?!{keyword_lhd})'	,1					%value	"TOK_SIGNED"		;//SIGNED	sizeof(signed)	== sizeof(int)
+%token	"unsigned"	:	'"unsigned"(?!{keyword_lhd})'	,1					%value	"TOK_UNSIGNED"		;//UNSIGNED	sizeof(signed)	== sizeof(int)
+%token	"float"	:	'"float"(?!{keyword_lhd})'		,1					%value	"TOK_FLOAT"		;//FLOAT	sizeof(float)	== 4
+%token	"double"	:	'"double"(?!{keyword_lhd})'	,1					%value	"TOK_DOUBLE"		;//DOUBLE	sizeof(double) == 8
+
+
+%token	"import"		:	'"import"(?!{keyword_lhd})'	,1				%value	"TOK_IMPORT"		;
+%token	"export"		:	'"export"(?!{keyword_lhd})'	,1				%value	"TOK_EXPORT"		;
+%token	"attribute" 	:	'"attribute"'				,1				%value	"TOK_ATTRIBUTE"		;
+
+
+%token	">>="		:	'">>="'		,2								%value	"TOK_RSHIFT_ASSIGN"	;
+%token	"<<="		:	'"<<="'		,2								%value	"TOK_LSHIFT_ASSIGN"	;
+%token	"+="		:	'"+="'		,1								%value	"TOK_ADD_ASSIGN"	;
+%token	"-="		:	'"-="'		,1								%value	"TOK_SUB_ASSIGN"	;
+%token	"*="		:	'"*="'		,1								%value	"TOK_MUL_ASSIGN"	;
+%token	"/="		:	'"/="'		,1								%value	"TOK_DIV_ASSIGN"	;
+%token	"%="		:	'"%="'		,1								%value	"TOK_MOD_ASSIGN"	;
+%token	"&="		:	'"&="'		,1								%value	"TOK_AND_ASSIGN"	;
+%token	"^="		:	'"^="'		,1								%value	"TOK_XOR_ASSIGN"	;
+%token	"|="		:	'"|="'		,1								%value	"TOK_OR_ASSIGN"		;
+
+%token	">>"		:	'">>"'		,1								%value	"TOK_RSHIFT"		;
+%token	"<<"		:	'"<<"'		,1								%value	"TOK_LSHIFT"		;
+%token	"++"		:	'"++"'		,1								%value	"TOK_INC"			;
+%token	"--"		:	'"--"'		,1								%value	"TOK_DEC"			;
+
+
+%token	"->"		:	'"->"'		,1								%value	"TOK_PTR"			;
+%token	"&&"		:	'"&&"'		,1								%value	"TOK_ANDAND"		;
+%token	"||"		:	'"||"'		,1								%value	"TOK_OROR"			;
+
+%token	"<="		:	'"<="'		,1								%value 	"TOK_LE"		;
+%token	">="		:	'">="'		,1								%value 	"TOK_GE"		;
+%token	"=="		:	'"=="'		,1								%value 	"TOK_EQ"		;
+%token	"!="		:	'"!="'		,1								%value	"TOK_NE"		;
+%token	"<"		:	'"<"'			,0								%value	"TOK_LESS"		;
+%token	">"		:	'">"'			,0								%value	"TOK_GREATER"	;
+
+
+
+
+%token	"{"		:	'"{"'			,0								%value "TOK_L_BRACES"		;
+%token	"}"		:	'"}"'			,0								%value "TOK_R_BRACES"		;
+%token	"("		:	'"("'			,0								%value "TOK_L_PAREN"			;
+%token	")"		:	'")"'			,0								%value "TOK_R_PAREN"			;
+%token	"["		:	'"["'			,0								%value "TOK_L_SQUARE"		;
+%token	"]"		:	'"]"'			,0								%value "TOK_R_SQUARE"		;
+
+%token	";"		:	'";"'			,0								%value "TOK_SEMICOLON"			;
+%token	","		:	'","'			,0								%value "TOK_COMMA"				;
+%token	":"		:	'":"'			,0								%value "TOK_COLON"				;
+%token	"="		:	'"="'			,0								%value "TOK_ASSIGN"				;
+
+%token	"."		:	'"."'			,0								%value "TOK_DOT"				;
+%token	"&"		:	'"&"'			,0								%value "TOK_AND"				;
+%token	"!"		:	'"!"'			,0								%value "TOK_NOT"				;
+%token	"~"		:	'"~"'			,0								%value "TOK_TILDE"				;
+%token	"+"		:	'"+"'			,0								%value "TOK_ADD"				;
+%token	"-"		:	'"-"'			,0								%value "TOK_SUB"				;
+%token	"*"		:	'"*"'			,0								%value "TOK_MUL"				;
+%token	"/"		:	'"/"'			,0								%value "TOK_DIV"				;
+%token	"%"		:	'"%"'			,0								%value "TOK_MOD"				;
+
+%token	"^"		:	'"^"'			,0								%value "TOK_XOR"				;
+%token	"|"		:	'"|"'			,0								%value "TOK_OR"				;
+%token	"?"		:	'"?"'			,0								%value "TOK_QUEST"				;
+
+
+
+
+
+
+
+
+
+
+
+
+%left		"||"								;
+%left		"&&"								;
+%left		"|"								;
+%left		"^"								;
+%left		"&"								;
+%left		"=="	"!="							;
+%left		"<"	"<="	">"	">="					;
+%left		"<<"	">>"							;
+%left		"+"	"-"							;
+%left		"*"	"/"	"%"						;
+
+/*
+"if" "(" expression ")" statement "else" statement 
+产生式的优先级依赖于其最右终结符或显性指定,这里就是"else"
+*/
+%nonassoc IF_WITHOUT_ELSE						;
+%nonassoc "else"							;
+
+
+/**************************************************************************************/
+%start 				program				;
+
+
+
+program			:	translation_unit	//	DONE_ID
+				|	DONE_ID
+				;
+
+/*编译单元*/
+translation_unit	:	external_declaration	
+				|	translation_unit external_declaration
+				;
+
+
+
+/*函数定义或声明*/
+external_declaration		:	function_definition
+					|	declaration
+					|	access_unit
+					|	attribute_unit
+					;
+
+
+access_unit			:	import_or_export	STRING_LITERAL ";"
+					|	import_or_export 	error 
+					;
+
+import_or_export		:	"import"
+					|	"export"
+					;
+
+attribute_unit			:	"attribute"  	STRING_LITERAL  ";"	
+					|	"attribute"	error 
+					;
+
+
+
+function_declaration		:	declaration_specifiers declarator
+					;
+
+function_definition		:	function_declaration	compound_statement
+					;
+
+
+
+/****************************************类型********************************************/
+
+
+
+type_qualifier			:	"const"
+					|	"volatile"
+					;
+
+type_qualifier_list		:	type_qualifier_list	type_qualifier
+					|	type_qualifier
+					;
+
+
+
+type_specifier			:	"void"
+					|	"byte"
+					|	"char"
+					|	"short"
+					|	"int"	
+					|	"long"
+					|	"float"
+					|	"double"
+					|	"signed"
+					|	"unsigned"
+					|	struct_or_union_specifier
+					|	TYPE_ID
+					;
+
+
+/*结构声明*/
+
+struct_or_union_specifier	:	struct_or_union  IDENTIFIER "{" struct_declaration_list  "}"
+					|	struct_or_union  "{" struct_declaration_list  "}"
+					|	struct_or_union  IDENTIFIER
+					;
+
+struct_or_union 		:	"struct"
+					|	"union"
+					;
+
+
+struct_declaration_list	:	struct_declaration
+					|	struct_declaration_list struct_declaration
+					;
+
+
+struct_declaration		:	specifier_qualifier_list  struct_declarator_list	";"
+					|	specifier_qualifier_list  struct_declarator_list	error
+					;
+
+
+struct_declarator_list	:	declarator 
+					|	struct_declarator_list "," declarator 
+					;
+
+
+
+
+/*************************************声明***************************************************/
+
+declaration			:	declaration_specifiers init_declarator_list ";"
+					|	declaration_specifiers ";"	
+					|	declaration_specifiers init_declarator_list	error
+					|	declaration_specifiers	error
+					;
+
+
+storage_class_specifier	:	"typedef"	
+					|	"static"
+					;
+
+
+
+declaration_specifiers	:	storage_class_specifier 
+					|	storage_class_specifier declaration_specifiers 
+					|	type_specifier 
+					|	type_specifier declaration_specifiers 
+					|	type_qualifier 
+					|	type_qualifier declaration_specifiers 
+					;
+
+declaration_list		:	declaration
+					|	declaration_list declaration
+					;
+
+
+
+
+init_declarator_list		:	init_declarator
+					|	init_declarator_list "," init_declarator
+					;
+
+
+init_declarator			:	declarator
+					|	declarator "=" initializer
+					;
+
+
+
+
+initializer			:	assignment_expression
+					|	"{" initializer_list "}"
+					;
+
+
+initializer_list		:	initializer
+					|	initializer_list "," initializer
+					;
+
+
+
+/*****************************************************************/
+
+
+declarator				:	direct_declarator
+					|	pointer direct_declarator
+					;
+
+
+direct_declarator		:	IDENTIFIER								//variable
+					|	IDENTIFIER 	"[" constant_expression "]"	//array
+					|	IDENTIFIER 	"[" "]"					//undefined array
+					|	IDENTIFIER 	"(" parameter_list ")"		//function
+					|	IDENTIFIER		"(" ")"					//zero parameter function
+					;
+
+
+
+abstract_declarator		:	pointer
+					|	direct_abstract_declarator
+					|	pointer direct_abstract_declarator
+					;
+
+
+direct_abstract_declarator	:	"[" "]"
+					|	"[" constant_expression "]"
+					;
+
+
+
+
+
+
+pointer				:	"*"
+					|	"*" type_qualifier_list
+					|	"*" type_qualifier_list pointer 
+					|	"*" pointer
+					;
+
+
+
+
+parameter_list			:	parameter_declaration
+					|	parameter_list "," parameter_declaration
+					;
+
+
+
+parameter_declaration		:	declaration_specifiers declarator
+					|	declaration_specifiers abstract_declarator
+					|	declaration_specifiers
+					;
+
+
+
+type_name				:	specifier_qualifier_list
+					|	specifier_qualifier_list abstract_declarator
+					;
+
+
+
+
+
+
+specifier_qualifier_list	:	type_qualifier
+					|	type_specifier
+					|	type_qualifier	specifier_qualifier_list
+					|	type_specifier	specifier_qualifier_list
+					;
+
+
+/*************************************语句***************************************************/
+
+
+statement				:	labeled_statement	%action	"semantic_auto_return_0"
+					|	compound_statement	%action	"semantic_auto_return_0"
+					|	expression_statement	%action	"semantic_auto_return_0"
+					|	selection_statement	%action	"semantic_auto_return_0"
+					|	iteration_statement	%action	"semantic_auto_return_0"
+					|	jump_statement		%action	"semantic_auto_return_0"
+					;
+
+labeled_statement		:	"case" constant_expression ":" statement
+					|	"default" ":" statement
+					|	IDENTIFIER ":" statement	
+					;
+
+
+/**************************************compound_statement*****************************/
+
+compound_statement		:	start_block	compound_statement_body
+					;
+
+start_block			:	"{"
+					;
+
+compound_statement_body	:	compound_statement_declarations	"}"
+					|	compound_statement_declarations statement_list	"}"
+					;
+
+compound_statement_declarations	:	declaration_list
+						|	.
+						;
+
+/*****************************************************************************/
+
+statement_list			:	statement
+					|	statement_list statement
+					;
+
+expression_statement		:	";"
+					|	expression ";"
+					|	expression	error
+					;
+
+selection_statement		:	"if" "(" expression ")" statement				%prec IF_WITHOUT_ELSE
+					|	"if" "(" expression ")" statement "else" statement	
+					|	"switch" "(" expression ")" statement
+					;
+
+iteration_statement		:	"while" "(" expression ")" statement
+					|	"do" statement "while" "(" expression ")" ";"
+					|	"do" statement "while" "(" expression ")" error
+					|	"for" "(" expression_statement expression_statement ")" statement
+					|	"for" "(" expression_statement expression_statement expression ")" statement
+					;
+
+jump_statement			:	"goto" IDENTIFIER ";"
+					|	"continue" ";"
+					|	"break" ";"
+					|	"return" ";"
+					|	"return" expression ";"
+
+					|	"goto" IDENTIFIER	error
+					|	"continue" 		error
+					|	"break" 			error
+					|	"return" 			error
+					|	"return" expression 	error
+
+					;
+
+
+
+
+
+/*****************************************表达式*********************************************/
+
+
+
+expression			:	assignment_expression
+				|	expression "," assignment_expression
+				;
+
+
+primary_expression	:	"(" expression ")"	%action	"semantic_auto_return_1"
+				|	IDENTIFIER	
+				|	FLOAT_NUMBER
+				|	INT_NUMBER
+				|	CHAR_CONSTANT
+				|	string_list
+				;
+
+string_list		:	string_list	STRING_LITERAL
+				|	STRING_LITERAL
+				;
+
+
+
+postfix_expression	:	primary_expression						%action	"semantic_auto_return_0"
+				|	postfix_expression "[" expression "]"				
+				|	postfix_expression "(" ")"						
+				|	postfix_expression "(" argument_expression_list ")"	
+				|	postfix_expression "." IDENTIFIER				
+				|	postfix_expression "->" IDENTIFIER				
+				|	postfix_expression "++"						
+				|	postfix_expression "--"						
+				;
+
+
+argument_expression_list	:	assignment_expression							%action	"semantic_auto_return_0"
+					|	argument_expression_list "," assignment_expression
+					;
+
+
+unary_expression	:	postfix_expression								%action	"semantic_auto_return_0"
+				|	"++" unary_expression		
+				|	"--" unary_expression		
+				|	"&"	cast_expression		
+				|	"*"	cast_expression
+				|	"+"	cast_expression
+				|	"-"	cast_expression
+				|	"~"	cast_expression
+				|	"!"	cast_expression
+				|	"sizeof"  unary_expression 
+				|	"sizeof" "(" type_name ")"
+				;
+
+
+cast_expression		:	unary_expression			%action	"semantic_auto_return_0"
+				|	"(" type_name ")" cast_expression
+				;
+
+
+binary_expression	:	cast_expression							%action	"semantic_auto_return_0"	
+/*************************************************arithmetic expr****************/
+				|	binary_expression	"+"	binary_expression
+				|	binary_expression	"-"	binary_expression
+				|	binary_expression	"*"	binary_expression
+				|	binary_expression	"/"	binary_expression
+				|	binary_expression	"%"	binary_expression
+/*************************************************shift expr****************/
+				|	binary_expression	"<<"	binary_expression
+				|	binary_expression	">>"	binary_expression
+/*************************************************relational expr****************/
+				|	binary_expression	"<"	binary_expression
+				|	binary_expression	"<="	binary_expression
+				|	binary_expression	">"	binary_expression
+				|	binary_expression	">="	binary_expression
+/*************************************************equality expr****************/
+				|	binary_expression	"=="	binary_expression
+				|	binary_expression	"!="	binary_expression
+/*************************************************bitwise expr****************/
+				|	binary_expression	"&"	binary_expression
+				|	binary_expression	"^"	binary_expression
+				|	binary_expression	"|"	binary_expression
+/*************************************************logical expr****************/
+				|	binary_expression	"&&"	binary_expression
+				|	binary_expression	"||"	binary_expression
+				;
+
+
+
+constant_expression		:	binary_expression			%action	"semantic_auto_return_0"
+					|	binary_expression	"?"	expression	":"	constant_expression
+					;
+
+assignment_expression		:	constant_expression			%action	"semantic_auto_return_0"
+					|	unary_expression assignment_operator assignment_expression
+					;
+
+assignment_operator		:	"="
+					|	"*="
+					|	"/="
+					|	"%="
+					|	"+="
+					|	"-="
+					|	"<<="
+					|	">>="
+					|	"&="
+					|	"^="
+					|	"|="
+					;
+
+
+
+
+
+/*
+丢弃的终结符
+%token	"enum"	:	'"enum"(?!{keyword_lhd})'			,1		;	//ENUM					;
+%token	"..."		:	'"..."'						,1		;	//ELLIPSIS
+%token	"auto"	:	'"auto"(?!{keyword_lhd})'			,1		;	//AUTO
+%token	"register"	:	'"register"(?!{keyword_lhd})'		,1		;	//REGISTER
+%token	"extern"	:	'"extern"(?!{keyword_lhd})'		,1		;	//EXTERN
+
+%name	octal_escape	:	"(\\[0-3][0-7][0-7])|(\\[0-7][0-7])|(\\[0-7])"	;
+%name	escape_seq		:	"(\\(b|t|n|f|r|\x22|\x27|\\))|{octal_escape}"	;
+%name	string_literal	: 	"(\x22({escape_seq}|[^\x22\\])*\x22)"			;
+%name	char_literal	:	"\x27({escape_seq}|[^\x27\\])\x27"			;
+
+*/
+
+
+

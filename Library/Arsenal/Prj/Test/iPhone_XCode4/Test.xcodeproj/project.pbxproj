@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE2E4B7514F216A100ACFBB5 /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E4B7414F216A100ACFBB5 /* Arsenal.a */; };
+		BE2E4B7814F2177100ACFBB5 /* ArsenalWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2E4B7714F2177100ACFBB5 /* ArsenalWrapper.m */; };
+		BE82C8FB14F211CE00F30E56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE82C8FA14F211CE00F30E56 /* UIKit.framework */; };
+		BE82C8FD14F211CE00F30E56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE82C8FC14F211CE00F30E56 /* Foundation.framework */; };
+		BE82C8FF14F211CE00F30E56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE82C8FE14F211CE00F30E56 /* CoreGraphics.framework */; };
+		BE82C92D14F2127500F30E56 /* dabaopku.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE82C92C14F2127500F30E56 /* dabaopku.plist */; };
+		BE82C95414F2149500F30E56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82C94714F2149500F30E56 /* AppDelegate.m */; };
+		BE82C95514F2149500F30E56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE82C94914F2149500F30E56 /* InfoPlist.strings */; };
+		BE82C95614F2149500F30E56 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE82C94B14F2149500F30E56 /* MainStoryboard_iPad.storyboard */; };
+		BE82C95714F2149500F30E56 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE82C94D14F2149500F30E56 /* MainStoryboard_iPhone.storyboard */; };
+		BE82C95814F2149500F30E56 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82C94F14F2149500F30E56 /* main.m */; };
+		BE82C95914F2149500F30E56 /* Test-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE82C95014F2149500F30E56 /* Test-Info.plist */; };
+		BE82C95A14F2149500F30E56 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82C95314F2149500F30E56 /* ViewController.m */; };
+		BED34EA114F21EF100426EF6 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BED34EA014F21EF100426EF6 /* libpthread.dylib */; };
+		BED34EA414F21EF700426EF6 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BED34EA314F21EF700426EF6 /* libiconv.dylib */; };
+		BED34EAC14F2208C00426EF6 /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = BED34EA914F2208C00426EF6 /* ARException.m */; };
+		BED34EAD14F2208C00426EF6 /* ARUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BED34EAB14F2208C00426EF6 /* ARUtility.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BE2E4B7414F216A100ACFBB5 /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-aemgsvjvwhfzdvfmozsywsigwotc/Build/Products/Debug-iphoneos/Arsenal.a"; sourceTree = "<group>"; };
+		BE2E4B7614F2175800ACFBB5 /* ArsenalWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArsenalWrapper.h; sourceTree = SOURCE_ROOT; };
+		BE2E4B7714F2177100ACFBB5 /* ArsenalWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArsenalWrapper.m; sourceTree = SOURCE_ROOT; };
+		BE82C8F614F211CE00F30E56 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE82C8FA14F211CE00F30E56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BE82C8FC14F211CE00F30E56 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BE82C8FE14F211CE00F30E56 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE82C92C14F2127500F30E56 /* dabaopku.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = dabaopku.plist; sourceTree = "<group>"; };
+		BE82C94614F2149500F30E56 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		BE82C94714F2149500F30E56 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		BE82C94A14F2149500F30E56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		BE82C94C14F2149500F30E56 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		BE82C94E14F2149500F30E56 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		BE82C94F14F2149500F30E56 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		BE82C95014F2149500F30E56 /* Test-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BE82C95214F2149500F30E56 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = SOURCE_ROOT; };
+		BE82C95314F2149500F30E56 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = SOURCE_ROOT; };
+		BE82C95E14F2161400F30E56 /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-aemgsvjvwhfzdvfmozsywsigwotc/Build/Products/Release-iphoneos/Arsenal.a"; sourceTree = "<group>"; };
+		BED34EA014F21EF100426EF6 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
+		BED34EA314F21EF700426EF6 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		BED34EA814F2208C00426EF6 /* ARException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARException.h; sourceTree = SOURCE_ROOT; };
+		BED34EA914F2208C00426EF6 /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARException.m; sourceTree = SOURCE_ROOT; };
+		BED34EAA14F2208C00426EF6 /* ARUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARUtility.h; sourceTree = SOURCE_ROOT; };
+		BED34EAB14F2208C00426EF6 /* ARUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARUtility.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE82C8F314F211CE00F30E56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED34EA414F21EF700426EF6 /* libiconv.dylib in Frameworks */,
+				BED34EA114F21EF100426EF6 /* libpthread.dylib in Frameworks */,
+				BE2E4B7514F216A100ACFBB5 /* Arsenal.a in Frameworks */,
+				BE82C8FB14F211CE00F30E56 /* UIKit.framework in Frameworks */,
+				BE82C8FD14F211CE00F30E56 /* Foundation.framework in Frameworks */,
+				BE82C8FF14F211CE00F30E56 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE82C8EB14F211CE00F30E56 = {
+			isa = PBXGroup;
+			children = (
+				BED34EA314F21EF700426EF6 /* libiconv.dylib */,
+				BED34EA014F21EF100426EF6 /* libpthread.dylib */,
+				BE2E4B7414F216A100ACFBB5 /* Arsenal.a */,
+				BE82C95E14F2161400F30E56 /* Arsenal.a */,
+				BE82C92C14F2127500F30E56 /* dabaopku.plist */,
+				BE82C90014F211CE00F30E56 /* Test */,
+				BE82C8F914F211CE00F30E56 /* Frameworks */,
+				BE82C8F714F211CE00F30E56 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE82C8F714F211CE00F30E56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE82C8F614F211CE00F30E56 /* Test.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE82C8F914F211CE00F30E56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE82C8FA14F211CE00F30E56 /* UIKit.framework */,
+				BE82C8FC14F211CE00F30E56 /* Foundation.framework */,
+				BE82C8FE14F211CE00F30E56 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE82C90014F211CE00F30E56 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				BED34EA814F2208C00426EF6 /* ARException.h */,
+				BED34EA914F2208C00426EF6 /* ARException.m */,
+				BED34EAA14F2208C00426EF6 /* ARUtility.h */,
+				BED34EAB14F2208C00426EF6 /* ARUtility.m */,
+				BE82C94614F2149500F30E56 /* AppDelegate.h */,
+				BE82C94714F2149500F30E56 /* AppDelegate.m */,
+				BE2E4B7614F2175800ACFBB5 /* ArsenalWrapper.h */,
+				BE2E4B7714F2177100ACFBB5 /* ArsenalWrapper.m */,
+				BE82C94814F2149500F30E56 /* en.lproj */,
+				BE82C94F14F2149500F30E56 /* main.m */,
+				BE82C95014F2149500F30E56 /* Test-Info.plist */,
+				BE82C95214F2149500F30E56 /* ViewController.h */,
+				BE82C95314F2149500F30E56 /* ViewController.m */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		BE82C94814F2149500F30E56 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				BE82C94914F2149500F30E56 /* InfoPlist.strings */,
+				BE82C94B14F2149500F30E56 /* MainStoryboard_iPad.storyboard */,
+				BE82C94D14F2149500F30E56 /* MainStoryboard_iPhone.storyboard */,
+			);
+			path = en.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE82C8F514F211CE00F30E56 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE82C91714F211CE00F30E56 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				BE82C8F214F211CE00F30E56 /* Sources */,
+				BE82C8F314F211CE00F30E56 /* Frameworks */,
+				BE82C8F414F211CE00F30E56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = BE82C8F614F211CE00F30E56 /* Test.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE82C8ED14F211CE00F30E56 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = none;
+			};
+			buildConfigurationList = BE82C8F014F211CE00F30E56 /* Build configuration list for PBXProject "Test" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BE82C8EB14F211CE00F30E56;
+			productRefGroup = BE82C8F714F211CE00F30E56 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE82C8F514F211CE00F30E56 /* Test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE82C8F414F211CE00F30E56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE82C92D14F2127500F30E56 /* dabaopku.plist in Resources */,
+				BE82C95514F2149500F30E56 /* InfoPlist.strings in Resources */,
+				BE82C95614F2149500F30E56 /* MainStoryboard_iPad.storyboard in Resources */,
+				BE82C95714F2149500F30E56 /* MainStoryboard_iPhone.storyboard in Resources */,
+				BE82C95914F2149500F30E56 /* Test-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE82C8F214F211CE00F30E56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE82C95414F2149500F30E56 /* AppDelegate.m in Sources */,
+				BE82C95814F2149500F30E56 /* main.m in Sources */,
+				BE82C95A14F2149500F30E56 /* ViewController.m in Sources */,
+				BE2E4B7814F2177100ACFBB5 /* ArsenalWrapper.m in Sources */,
+				BED34EAC14F2208C00426EF6 /* ARException.m in Sources */,
+				BED34EAD14F2208C00426EF6 /* ARUtility.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BE82C94914F2149500F30E56 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE82C94A14F2149500F30E56 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BE82C94B14F2149500F30E56 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE82C94C14F2149500F30E56 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		BE82C94D14F2149500F30E56 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE82C94E14F2149500F30E56 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE82C91514F211CE00F30E56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = dabaopku.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OBJROOT = ../../../Temp;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SYMROOT = ../../../Binary;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE82C91614F211CE00F30E56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = dabaopku.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OBJROOT = ../../../Temp;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SYMROOT = ../../../Binary;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE82C91814F211CE00F30E56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = dabaopku.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				INFOPLIST_FILE = "Test-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-aemgsvjvwhfzdvfmozsywsigwotc/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-aemgsvjvwhfzdvfmozsywsigwotc/Build/Products/Release-iphoneos\"",
+				);
+				OBJROOT = ../../../Temp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = ../../../Binary;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BE82C91914F211CE00F30E56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = dabaopku.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				INFOPLIST_FILE = "Test-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-aemgsvjvwhfzdvfmozsywsigwotc/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-aemgsvjvwhfzdvfmozsywsigwotc/Build/Products/Release-iphoneos\"",
+				);
+				OBJROOT = ../../../Temp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = ../../../Binary;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE82C8F014F211CE00F30E56 /* Build configuration list for PBXProject "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE82C91514F211CE00F30E56 /* Debug */,
+				BE82C91614F211CE00F30E56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE82C91714F211CE00F30E56 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE82C91814F211CE00F30E56 /* Debug */,
+				BE82C91914F211CE00F30E56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE82C8ED14F211CE00F30E56 /* Project object */;
+}

@@ -1,0 +1,320 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE185ED514E849250095DB44 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BE185ED314E849250095DB44 /* main.c */; };
+		BE185ED614E849250095DB44 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BE185ED314E849250095DB44 /* main.c */; };
+		BE185ED814E84A7E0095DB44 /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE185ED714E84A7E0095DB44 /* Arsenal.a */; };
+		BECEC36B14E84C4200A7D4CB /* Arsenal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BECEC36A14E84C4200A7D4CB /* Arsenal.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE185EA114E846F10095DB44 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		BE185EC414E847860095DB44 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BE185EA314E846F10095DB44 /* TestLib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestLib; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE185EC614E847860095DB44 /* TestDLL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestDLL; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE185ED314E849250095DB44 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = SOURCE_ROOT; };
+		BE185ED714E84A7E0095DB44 /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug/Arsenal.a"; sourceTree = "<group>"; };
+		BECEC36814E84C0700A7D4CB /* Arsenal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Arsenal.dylib; path = "../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Release/Arsenal.dylib"; sourceTree = "<group>"; };
+		BECEC36A14E84C4200A7D4CB /* Arsenal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Arsenal.dylib; path = "../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug/Arsenal.dylib"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE185EA014E846F10095DB44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE185ED814E84A7E0095DB44 /* Arsenal.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE185EC314E847860095DB44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BECEC36B14E84C4200A7D4CB /* Arsenal.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE185E9814E846F10095DB44 = {
+			isa = PBXGroup;
+			children = (
+				BECEC36A14E84C4200A7D4CB /* Arsenal.dylib */,
+				BECEC36814E84C0700A7D4CB /* Arsenal.dylib */,
+				BE185ED714E84A7E0095DB44 /* Arsenal.a */,
+				BE185EA614E846F10095DB44 /* Test */,
+				BE185EA414E846F10095DB44 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE185EA414E846F10095DB44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE185EA314E846F10095DB44 /* TestLib */,
+				BE185EC614E847860095DB44 /* TestDLL */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE185EA614E846F10095DB44 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				BE185ED314E849250095DB44 /* main.c */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE185EA214E846F10095DB44 /* TestLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE185EAD14E846F10095DB44 /* Build configuration list for PBXNativeTarget "TestLib" */;
+			buildPhases = (
+				BE185E9F14E846F10095DB44 /* Sources */,
+				BE185EA014E846F10095DB44 /* Frameworks */,
+				BE185EA114E846F10095DB44 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestLib;
+			productName = Test;
+			productReference = BE185EA314E846F10095DB44 /* TestLib */;
+			productType = "com.apple.product-type.tool";
+		};
+		BE185EC514E847860095DB44 /* TestDLL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE185ECD14E847860095DB44 /* Build configuration list for PBXNativeTarget "TestDLL" */;
+			buildPhases = (
+				BE185EC214E847860095DB44 /* Sources */,
+				BE185EC314E847860095DB44 /* Frameworks */,
+				BE185EC414E847860095DB44 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestDLL;
+			productName = TestDLL;
+			productReference = BE185EC614E847860095DB44 /* TestDLL */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE185E9A14E846F10095DB44 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = none;
+			};
+			buildConfigurationList = BE185E9D14E846F10095DB44 /* Build configuration list for PBXProject "Test" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BE185E9814E846F10095DB44;
+			productRefGroup = BE185EA414E846F10095DB44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE185EA214E846F10095DB44 /* TestLib */,
+				BE185EC514E847860095DB44 /* TestDLL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE185E9F14E846F10095DB44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE185ED514E849250095DB44 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE185EC214E847860095DB44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE185ED614E849250095DB44 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BE185EAB14E846F10095DB44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BE185EAC14E846F10095DB44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BE185EAE14E846F10095DB44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug\"",
+				);
+				OBJROOT = ../../../Temp;
+				PRODUCT_NAME = TestLib;
+				SYMROOT = ../../../Binary;
+			};
+			name = Debug;
+		};
+		BE185EAF14E846F10095DB44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug\"",
+				);
+				OBJROOT = ../../../Temp;
+				PRODUCT_NAME = TestLib;
+				SYMROOT = ../../../Binary;
+			};
+			name = Release;
+		};
+		BE185ECE14E847860095DB44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Release\"",
+				);
+				OBJROOT = ../../../Temp;
+				PRODUCT_NAME = TestDLL;
+				SYMROOT = ../../../Binary;
+			};
+			name = Debug;
+		};
+		BE185ECF14E847860095DB44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
+				HEADER_SEARCH_PATHS = ../../../Arsenal;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Arsenal-dklbavanfxrpxtdcqgesieswyeaq/Build/Products/Release\"",
+				);
+				OBJROOT = ../../../Temp;
+				PRODUCT_NAME = TestDLL;
+				SYMROOT = ../../../Binary;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE185E9D14E846F10095DB44 /* Build configuration list for PBXProject "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE185EAB14E846F10095DB44 /* Debug */,
+				BE185EAC14E846F10095DB44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE185EAD14E846F10095DB44 /* Build configuration list for PBXNativeTarget "TestLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE185EAE14E846F10095DB44 /* Debug */,
+				BE185EAF14E846F10095DB44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE185ECD14E847860095DB44 /* Build configuration list for PBXNativeTarget "TestDLL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE185ECE14E847860095DB44 /* Debug */,
+				BE185ECF14E847860095DB44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE185E9A14E846F10095DB44 /* Project object */;
+}

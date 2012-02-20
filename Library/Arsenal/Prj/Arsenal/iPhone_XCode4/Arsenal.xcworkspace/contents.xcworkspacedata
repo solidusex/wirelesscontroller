@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Arsenal.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../Test/iPhone_XCode4/Test.xcodeproj">
+   </FileRef>
+</Workspace>

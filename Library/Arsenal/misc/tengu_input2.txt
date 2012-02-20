@@ -1,0 +1,166 @@
+﻿
+var abc;
+
+var t = 
+{
+	abc =	"d"
+};
+
+var tgu_print = null;
+
+tgu_print("abcdefg");
+
+
+
+/*
+
+import "test.tgu";
+
+import "test";
+
+
+var x = print(test:test);
+*/
+
+/*
+import ;
+
+
+tengu_test_model = 33;
+*/
+
+/*
+var test()
+{
+
+}
+
+var test;
+
+test = 3;
+*/
+
+/*
+var print()
+{
+		var print = 3;
+}
+
+
+var print2()
+{
+		print2 = 3;
+}
+*/
+
+
+//var x = 3.14159265;
+
+//++x = 3;
+
+//x++ = 3;
+
+//3++;
+
+//3["abc"]= 33;
+
+//x.abc = 4;
+
+
+//x = (3 + 4 ) * 5;
+
+/*
+
+
+
+
+*/
+
+
+
+/*
+
+var test()
+{
+	var tbl = {};
+	var i = 0;
+	while(i < 1000)tbl[i] = rand();
+
+	do{
+		print(tbl[i++]);
+	}while(i < 1000);
+	
+}
+
+
+
+var insertion_sort(arr)
+{
+	var n = table.count(arr);
+	var i,k,t;
+	
+	for(i = n - 1; i > 0; --i)
+	{
+		if(arr[i] < arr[i-1])
+		{
+			t = arr[i];
+			arr[i] = arr[i-1];
+			arr[i-1] = t;
+		}
+	}	
+
+	for(i = 1; i < n; ++i)
+	{
+		for(k = i; k > 0; --k)
+		{
+			if(arr[k] < arr[k-1])
+			{
+				t = arr[k];
+				arr[k] = arr[k-1];
+				arr[k-1] = t;
+			}else
+			{
+				break;
+			}
+		}
+	}
+}
+
+
+
+
+var blub_sort(arr)
+{
+	var n = count(arr);
+	var i = 1;
+	
+	while(i < n)
+	{
+		var k = i;
+		while(k > 0)
+		{
+			if(arr[k] < arr[k-1])
+			{
+				var tmp = arr[k];
+				arr[k] = arr[k-1];
+				arr[k-1] = tmp;
+				k--;
+			}else
+			{
+				break;
+			}
+			
+		}
+		i++;
+	}
+}
+
+
+var g_tbl = { a = b = "abc" };
+
+var str = "abc
+";
+
+
+*/
+
