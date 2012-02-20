@@ -1,0 +1,13 @@
+ed y.tab.h > ed1.out <<EOF
+/ALLFIELDS/
+.,$ d
+/BBEGIN/
+.s/BBEGIN/BEGIN/
+/NULLN/
+.s/NULLN/NULL/
+1
+/extern/
+1,.d
+w y.h
+q
+EOF

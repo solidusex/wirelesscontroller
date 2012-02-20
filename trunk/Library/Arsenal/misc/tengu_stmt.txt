@@ -1,0 +1,76 @@
+
+#import "system.tgu";
+
+
+
+var print(a)
+{
+	
+}
+
+
+
+var function()
+{
+		var test, i, print;
+
+
+		test = 
+		[
+			print(33), 
+			3 * 4, 
+			5 * 8, 
+		
+			{
+				0 : "@",
+				1 : "a",
+				2 : "b",	
+				3 : "c"
+			},
+		
+			test.a,
+			test.b
+		];
+
+}
+
+
+var test,i,table;
+
+
+
+for(test = ["a", "b", "c"], i = 0; i < list.count(test); ++i)
+{
+	print(test[i]);
+}
+
+
+
+var shutdown()
+{
+	return null;
+}
+
+while(i < 100)
+{
+	var x = 1*2*3*4;
+	if(x >= 8 && x <= 40)
+	{
+		print("abc");
+	}else
+	{
+		shutdown();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

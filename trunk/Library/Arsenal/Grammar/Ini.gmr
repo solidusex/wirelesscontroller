@@ -1,0 +1,109 @@
+﻿
+/*
+#define AR_LEX_LF		L'\x000A'		//Line Feed
+#define AR_LEX_VT		L'\x000B'		//Vertical Tab
+#define AR_LEX_FF		L'\x000C'		//Form Feed
+#define AR_LEX_CR		L'\x000D'		//Carriage Return
+#define AR_LEX_NEL	L'\x0085'		//Next Line
+#define AR_LEX_LS		L'\x2028'		//Line Separator
+#define AR_LEX_PS		L'\x2029'		//Paragraph Separator
+*/
+
+/*
+\x{0009}
+\x{0020}
+\x{00A0}
+\x{1680}
+\x{180E}
+\x{2000}-\x{200A}
+\x{202F}
+\x{205F}
+\x{3000}
+
+[\x{0009}\x{0020}\x{00A0}\x{1680}\x{180E}\x{2000}-\x{200A}\x{202F}\x{205F}\x{3000}]
+*/
+
+%name line_terminator 	: "(\r\n|\n\r|\n|\r|\x{000B}|\x{000c}|\x{0085}|\x{2028}|\x{2029})"
+             				;
+
+%name white_space    	:  "[\x{0009}\x{0020}\x{00A0}\x{1680}\x{180E}\x{2000}-\x{200A}\x{202F}\x{205F}\x{3000}]"
+            				;
+
+%name comment_start    	:    "(;|#)"
+            				;
+
+
+//空行
+
+%token    %skip            :    "\B{white_space}+\E"                    ,    1    
+                           ;
+
+
+
+%token    %skip             :    "{line_terminator}"                    ,    1
+                			   ;
+
+
+
+
+%token    comment_line        : 	"\B{white_space}*{comment_start}[^\n\r\x{000B}\x{000c}\x{0085}\x{2028}\x{2029}]*\E"        ,    2 
+                		   ;
+
+
+%token    comment_post      :    "{comment_start}[^\n\r\x{000B}\x{000c}\x{0085}\x{2028}\x{2029}]*\E"                ,    2
+               		;
+
+
+
+%token    section        :    "\[.+\]"
+                			;
+
+%token    string           :    "[^\x{0009}\x{0020}\x{00A0}\x{1680}\x{180E}\x{2000}-\x{200A}\x{202F}\x{205F}\x{3000};#\n\r\x{000B}\x{000c}\x{0085}\x{2028}\x{2029}][^#;\n\r\x{000B}\x{000c}\x{0085}\x{2028}\x{2029}]*"
+                ;
+
+
+
+%token    combine_str        :    "([^\x{0009}\x{0020}\x{00A0}\x{1680}\x{180E}\x{2000}-\x{200A}\x{202F}\x{205F}\x{3000};#\n\r\x{000B}\x{000c}\x{0085}\x{2028}\x{2029}][^;#\n\r\x{000B}\x{000c}\x{0085}\x{2028}\x{2029}]*\\{white_space}*)\E" , 2
+                ;
+
+
+
+
+%start    ini_file        ;
+
+
+ini_file                :    item_list
+                    ;
+
+
+item_list                :    item_list    item
+                    |    item
+                    ;
+
+
+item                    :    section_header
+                    |    comment_line
+                    |    info
+                    ;
+
+
+comment                :    comment_post
+                    |    .
+                    ;
+
+
+section_header            :    section     comment 
+                    ;
+
+info                    :    combine_string comment
+                    |    string comment
+                    |    error comment 
+                    ;
+
+combine_string            :    combine_list    string
+                    ;
+
+combine_list                :    combine_list combine_str 
+                    |    combine_str 
+                    ;
+

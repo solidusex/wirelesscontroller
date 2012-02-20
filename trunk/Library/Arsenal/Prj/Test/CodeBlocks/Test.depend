@@ -1,0 +1,180 @@
+# depslib dependency file v1.0
+1298754742 source:/root/Desktop/Programming/Arsenal/Prj/Test/CodeBlocks/main.c
+	"test.h"
+	<iostream>
+	<locale.h>
+	<wchar.h>
+
+1298754742 /root/Desktop/Programming/Arsenal/Prj/Test/CodeBlocks/test.h
+	"../../../Arsenal/Arsenal.h"
+
+1302790699 /root/Desktop/Programming/Arsenal/Arsenal/Arsenal.h
+	"./Common/common.h"
+	"./Lex/lex.h"
+	"./Parser/parser.h"
+	"./Tools/tools.h"
+	"./Tengu/tengu.h"
+
+1302790698 /root/Desktop/Programming/Arsenal/Arsenal/Common/common.h
+	"config.h"
+
+1301423842 /root/Desktop/Programming/Arsenal/Arsenal/Common/config.h
+	"platform.h"
+	<stdlib.h>
+	<crtdbg.h>
+	<stdlib.h>
+	<stdio.h>
+	<wchar.h>
+	<stddef.h>
+	<stdarg.h>
+	<limits.h>
+	<assert.h>
+	<memory.h>
+	<string.h>
+	<math.h>
+	<wctype.h>
+	<string.h>
+	<float.h>
+	<stdint.h>
+	<stdbool.h>
+	<windows.h>
+	<unistd.h>
+	<pthread.h>
+	<iconv.h>
+	<sys/select.h>
+	<sys/time.h>
+	<libkern/OSAtomic.h>
+
+1298754691 /root/Desktop/Programming/Arsenal/Arsenal/Common/platform.h
+	<TargetConditionals.h>
+
+1302790698 /root/Desktop/Programming/Arsenal/Arsenal/Lex/lex.h
+	"../Common/common.h"
+
+1272882841 /root/Desktop/Programming/Arsenal/Arsenal/Lex/match.h
+	"../Common/common.h"
+
+1272882846 /root/Desktop/Programming/Arsenal/Arsenal/Parser/grammar.h
+	"symbol.h"
+
+1272882846 /root/Desktop/Programming/Arsenal/Arsenal/Parser/symbol.h
+	"parser.h"
+
+1302790699 /root/Desktop/Programming/Arsenal/Arsenal/Parser/parser.h
+	"../Common/common.h"
+
+1302790698 /root/Desktop/Programming/Arsenal/Arsenal/Tools/tools.h
+	"grammar_config.h"
+	"serializer.h"
+
+1298754690 /root/Desktop/Programming/Arsenal/Arsenal/Tools/grammar_config.h
+	"../Parser/parser.h"
+	"../Lex/lex.h"
+
+1298754742 source:/root/Desktop/Programming/Arsenal/Prj/Test/CodeBlocks/test.c
+	"test.h"
+
+1298754742 source:/root/Desktop/Programming/Arsenal/Prj/Test/CodeBlocks/parser_test.c
+	<locale.h>
+	"test.h"
+
+1298754690 /root/Desktop/Programming/Arsenal/Arsenal/Tools/serializer.h
+	"../Common/common.h"
+
+1302791011 source:/root/Desktop/Programming/Arsenal/Prj/Test/CodeBlocks/com_test.c
+	"test.h"
+	<locale.h>
+
+1272882844 /root/Desktop/Programming/Arsenal/Arsenal/Ray/ray.h
+	"../Common/common.h"
+	"../Lex/lex.h"
+	"../Parser/grammar.h"
+	"../Parser/parser.h"
+
+1302790698 /root/Desktop/Programming/Arsenal/Arsenal/Tengu/tengu.h
+	"../Common/common.h"
+	"../Lex/lex.h"
+	"../Parser/parser.h"
+
+1302151507 source:/root/Desktop/Arsenal/Prj/Test/CodeBlocks/com_test.c
+	"test.h"
+	<locale.h>
+
+1264893324 /root/Desktop/Arsenal/Prj/Test/CodeBlocks/test.h
+	"../../../Arsenal/Arsenal.h"
+
+1301634939 /root/Desktop/Arsenal/Arsenal/Arsenal.h
+	"./Common/common.h"
+	"./Lex/lex.h"
+	"./Parser/parser.h"
+	"./Tools/tools.h"
+	"./Tengu/tengu.h"
+
+1302146339 /root/Desktop/Arsenal/Arsenal/Common/common.h
+	"config.h"
+
+1300664324 /root/Desktop/Arsenal/Arsenal/Common/config.h
+	"platform.h"
+	<stdlib.h>
+	<crtdbg.h>
+	<stdlib.h>
+	<stdio.h>
+	<wchar.h>
+	<stddef.h>
+	<stdarg.h>
+	<limits.h>
+	<assert.h>
+	<memory.h>
+	<string.h>
+	<math.h>
+	<wctype.h>
+	<string.h>
+	<float.h>
+	<stdint.h>
+	<stdbool.h>
+	<windows.h>
+	<unistd.h>
+	<pthread.h>
+	<iconv.h>
+	<sys/select.h>
+	<sys/time.h>
+	<libkern/OSAtomic.h>
+
+1298475803 /root/Desktop/Arsenal/Arsenal/Common/platform.h
+	<TargetConditionals.h>
+
+1301634831 /root/Desktop/Arsenal/Arsenal/Lex/lex.h
+	"../Common/common.h"
+
+1301634831 /root/Desktop/Arsenal/Arsenal/Parser/parser.h
+	"../Common/common.h"
+
+1301634855 /root/Desktop/Arsenal/Arsenal/Tengu/tengu.h
+	"../Common/common.h"
+	"../Lex/lex.h"
+	"../Parser/parser.h"
+
+1301634831 /root/Desktop/Arsenal/Arsenal/Tools/tools.h
+	"grammar_config.h"
+	"serializer.h"
+
+1290502149 /root/Desktop/Arsenal/Arsenal/Tools/grammar_config.h
+	"../Parser/parser.h"
+	"../Lex/lex.h"
+
+1294392301 /root/Desktop/Arsenal/Arsenal/Tools/serializer.h
+	"../Common/common.h"
+
+1298550183 source:/root/Desktop/Arsenal/Prj/Test/CodeBlocks/main.c
+	"test.h"
+	<iostream>
+	<locale.h>
+	<wchar.h>
+
+1297893146 source:/root/Desktop/Arsenal/Prj/Test/CodeBlocks/parser_test.c
+	<locale.h>
+	"test.h"
+
+1297893146 source:/root/Desktop/Arsenal/Prj/Test/CodeBlocks/test.c
+	"test.h"
+

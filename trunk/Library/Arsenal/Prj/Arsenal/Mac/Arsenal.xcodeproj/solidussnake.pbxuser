@@ -1,0 +1,99 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = D2AAC045055464E500DB518D /* Arsenal */;
+		addToTargets = (
+			D2AAC045055464E500DB518D /* Arsenal */,
+		);
+		codeSenseManager = D0A07236127BBAD400F315D2 /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 310099682;
+			PBXWorkspaceStateSaveDate = 310099682;
+		};
+		sourceControlManager = D0A07235127BBAD400F315D2 /* Source Control */;
+		userBuildSettings = {
+			OBJROOT = ../../../Temp/Mac;
+			SYMROOT = ../../../Binary/Mac;
+		};
+	};
+	D0A07235127BBAD400F315D2 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	D0A07236127BBAD400F315D2 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	D0A07250127BBB9100F315D2 /* Arsenal.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {870, 663}}";
+			sepNavSelRange = "{766, 10}";
+			sepNavVisRange = "{457, 450}";
+			sepNavWindowFrame = "{{956, 409}, {929, 573}}";
+		};
+	};
+	D0A07255127BBB9100F315D2 /* common.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {915, 2327}}";
+			sepNavSelRange = "{1191, 15}";
+			sepNavVisRange = "{944, 499}";
+			sepNavWindowFrame = "{{861, 401}, {929, 573}}";
+		};
+	};
+	D0A07265127BBB9100F315D2 /* lex.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {870, 4589}}";
+			sepNavSelRange = "{642, 3}";
+			sepNavVisRange = "{4, 768}";
+			sepNavWindowFrame = "{{903, 400}, {929, 573}}";
+		};
+	};
+	D0A0726B127BBB9100F315D2 /* rgx_misc.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {901, 8177}}";
+			sepNavSelRange = "{10791, 0}";
+			sepNavVisRange = "{10225, 742}";
+			sepNavWindowFrame = "{{899, 429}, {929, 573}}";
+		};
+	};
+	D0A0726C127BBB9100F315D2 /* rgx_node.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {870, 7566}}";
+			sepNavSelRange = "{937, 0}";
+			sepNavVisRange = "{597, 573}";
+			sepNavWindowFrame = "{{858, 379}, {929, 573}}";
+		};
+	};
+	D2AAC045055464E500DB518D /* Arsenal */ = {
+		activeExec = 0;
+	};
+}

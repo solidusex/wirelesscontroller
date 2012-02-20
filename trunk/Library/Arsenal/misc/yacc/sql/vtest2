@@ -1,0 +1,444 @@
+#0#
+create domain s# is char5 where s# is not null;
+#1#
+create domain p# is char6 where p# is not null;
+#2#
+create domain j# is char4 where j# is not null;
+#3#
+create domain name is char20;
+#4#
+create domain status, weight, qty is int;
+#5#
+create domain city is char15;
+#6#
+create domain color is char6 where color in ( "green", "red", "blue");
+#7#
+create table s
+        primary (s#)
+        ( s_name, status, city);
+
+#8#
+create table p
+        primary (p#)
+        ( p_name, color, weight, city);
+
+#9#
+create table j
+        primary (j#)
+        ( j_name, city);
+
+#10#
+create table spj
+        primary (s#, p#, j#) 
+        foreign (s# identifies s
+                nulls not allowed
+                delete of s restricted
+                update of s.s# cascades) 
+        foreign (p# identifies p
+                nulls not allowed
+                delete of p restricted
+                update of p.p# restricted) 
+        foreign (j# identifies j
+                nulls not allowed
+                delete of s restricted
+                update of j.j# cascades) 
+        (qty);
+
+#11#
+create unique index sx  on s (s#);
+#12#
+create unique index px  on p (p#);
+#13#
+create unique index jx  on j (j#);
+#14#
+create unique index spjx        on spj (s#, p#, j#);
+
+#15#
+insert into s from sdate;
+#16#
+insert into p from pdate;
+#17#
+insert into j from jdate;
+#18#
+insert into spj from spjdate;
+
+#19#
+create view sp
+        as select s#, p# from spj;
+
+#20#
+select s#, status
+from s
+where city = 'Paris';
+
+#21#
+select p#
+from sp;
+
+#22#
+select unique p#
+from sp;
+
+#23#
+select p#, weight * 454
+from p;
+
+#24#
+select p#, "Weight in grams =", weight * 454
+from p;
+
+#25#
+select *
+from s;
+
+#26#
+select s#, s_name, status, city
+from s;
+
+#27#
+select s.*
+from s;
+
+#28#
+select s#
+from s
+where city = "paris"
+and status > 20;
+
+#29#
+select s#, status
+from s
+where city = "paris"
+order by status desc;
+
+#30#
+select p#, weight * 454
+from p
+order by 2, P#;
+
+#31#
+select p#, pname, color, weight, city
+from p
+where weight between 16 and 19;
+
+#32#
+select p#, pname, color, weight, city
+from p
+where weight not between 16 and 19;
+
+#33#
+select p#, pname, color, weight, city
+from p
+where weight in (12, 16, 17);
+
+#34#
+select p#, pname, color, weight, city
+from p
+where weight not in (12, 16, 17);
+
+#35#
+select p#, pname, color, weight, city
+from p
+where  weight = 12 or weight = 16 or weight = 17;
+
+#36#
+select p#, pname, color, weight, city
+from p
+where pname like 'C%';
+
+#37#
+select s#
+from s
+where status is null;
+
+#38#
+select s.*, p.*
+from s, p
+where s.city = p.city;
+
+#39#
+select s.*, p.*
+from s, p
+where s.city > p.city;
+
+#40#
+select s.*, p.*
+from s, p
+where s.city = p.city
+and  s.status != 20;
+
+#41#
+select s.s#, p.p#
+from s, p
+where s.city = p.city;
+
+#42#
+select unique s.*, p.*
+from s, sp, p
+where s.s# = sp.s#
+and sp.p# = p.p#;
+
+#43#
+select first.s#, second.s#
+from s first, s second
+where first.city = second.city;
+
+#44#
+select first.s#, second.s#
+from s first, s second
+where first.city = second.city
+and first.s# < second.s#;
+
+#45#
+select s#, p#, j#
+from s, p, j
+where not
+        (s.city = p.city and p.city = j.city);
+
+#46#
+select s#, p#, j#
+from s, p, j
+where s.city != p.city
+and p.city != j.city
+and j.city != s.city;
+
+#47#
+select unique j#
+from spj spjx
+where not exists
+        (select *
+        from spj spjy
+        where spjy.j# = spjx.j#
+        and  not exists
+                (select *
+                from spj spjz
+                where spjz.p# = spjy.p#
+                and spjz.s# = 'S1'
+                )
+        );
+
+#48#
+select unique j#
+from spj spjx
+where not exists
+        (select *
+        from spj spjy
+        where exists
+                (select *
+                from spj spja
+                where spja.s# = spjy.s#
+                and spja.p# in
+                        (select  p#
+                        from p
+                        where color = 'red')
+                and not exists
+                        (select *
+                        from spj spjb
+                        where spjb.s# = spjy.s#
+                        and spjb.j# = spjx.j# )));
+
+#49#
+select unique s#
+from spj
+where p# in
+        ( select p#
+        from spj
+        where s# in
+                (select s#
+                from spj
+                where p# in
+                        (select p#
+                        from p
+                        where color = "red" )));
+
+#50#
+select unique s#
+from spj spjx
+where p# = 'p1'
+and qty >
+        ( select avg(qty)
+        from spj spjy
+        where p# = 'P1'
+        and spjy.j# = spjx.j# );
+
+#51#
+select count(unique j#)
+from spj
+where s# = 's1';
+
+#52#
+select j#
+from spj
+where p# = 'p1'
+group by j#
+having avg (qty) >
+        (select max(qty)
+        from spj
+        where j# = 'j1');
+
+#53#
+select city from s
+union
+select city from p
+union
+select city from j
+order by 1;
+
+#54#
+select p#, 'weight >16 lb'
+from p
+where weight >16
+union
+select p#, 'supplied by S2'
+from sp
+where s# = 'S2'
+order by 2, 1;
+
+#55#
+select p.p#, 'Weight in grams =', p.weight * 454, p.color,
+        'Max shipped quantity =', max(sp.qty)
+from p, sp
+where p.p# = sp.p#
+and p.color in ('red', 'blue')
+and sp.qty >200
+group by p.p#, p.weight, p.color
+having sum(qty) >350
+order by 6, p.p# desc;
+
+#56#
+select unique spjx.j#
+from spj spjx
+where exists
+        (select *
+        from spj spjy
+        where spjy.p# = spjx.p#
+        and spjy.s# = 's1');
+
+#57#
+update p
+set color = 'Orange'
+Where color = 'Red';
+
+#58#
+delete
+from j
+where j# not in
+        (select j#
+        from spj );
+
+#59#
+create table reds (s#);
+
+#60#
+insert into red (s#)
+        select unique s#
+        from spj, p
+        where spj.p# = p.p#
+        and color = 'Red';
+
+#61#
+update spj
+set qty = qty *1.1
+where s# in
+        (select s#
+        from REDS );
+
+#62#
+drop table reds;
+
+#63#
+delete
+from spj
+where 'Rome' =
+        (select city
+        from j
+        where j.j# = spj.j#);
+
+#64#
+delete
+from j
+where city = 'Rome';
+
+#65#
+insert
+into s (s#, s_name, city)
+values ('S10', 'white', 'New York');
+
+#66#
+insert
+into s (s#, s_name, status, city)
+values ('S11', 'white', NULL, 'New York');
+
+#67#
+create view spv (s#, p#, qty )
+        as select s#, p#, sum (qty)
+        from spj
+        group by s#, p#;
+
+#68#
+create view jc (j#, city )
+        as select unique j.j#, j.city
+        from j, spj
+        where j.j# = spj.j#
+        and  (spj.s# = 'S1' or spj.p# = 'P1' );
+
+#69#
+create view jc (j#, city)
+        as select j.j#, j.city
+        from j
+        where j.j# in
+                (select j#
+                from spj
+                where s# = 'S1')
+        and j.j# in
+                (select j#
+                from spj
+                where p# = 'P1');
+
+#70#
+create view non_colocated
+        as select s#, p#
+        from s, p
+        where s.city != p.city;
+
+#71#
+create view london_suppliers
+        as select s#, s_name, status
+        from s
+        where city = "London";
+
+#72#
+grant  select on table s to charly;
+
+#73#
+grant select , update(status, city) on table s
+        to judy, jack, john;
+
+#74#
+grant createtab on database dbx to sharon;
+
+#75#
+grant select on table s to u2 with grant option;
+
+#76#
+revoke select on table s from u2;
+
+#77#
+revoke select, update on table s from u2;
+
+#78#
+lock table s in exclusive mode;
+
+#79#
+lock table p in share mode;
+
+#80#
+store program backup ( name = "p", fname = "/backup/p" )
+lock table name in exclusive mode;
+dump table name to fname;
+lock table name in share mode;
+commit work;
+end store;
+
+#81#
+firstprog ( "p", "/backup/p" );

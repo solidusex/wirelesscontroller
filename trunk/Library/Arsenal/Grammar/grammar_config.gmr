@@ -1,0 +1,196 @@
+﻿
+
+%name delim    :    "[\t\r\n ]+"
+            ;
+
+%name letter    :     "[A-Z_a-z]"
+            ;
+
+
+%name digit    :    "[0-9]"
+            ;
+
+%name number    :    "0|[1-9]{digit}*"
+            ;
+
+%name name        :    "{letter}({letter}|{digit})*"
+            ;
+
+
+/*  '"'  == \x22,  '\'' == \x27 */
+
+%name lexeme        :    "{name}|(\x22([^\x22\n])+\x22)|(\x27([^\x27\n])+\x27)"
+            ;
+
+%name comment        :     "/\*([^\*]|\*+[^\*/])*\*+/"
+                ;
+
+%name comment_line    :     "//[^\n]*\n"
+                ;
+
+%name skip_lexem        :     "{delim}|{comment}|{comment_line}"
+                ;
+
+%name key_lookahead       :     '{skip_lexem}+|"{"'
+                ;
+
+
+%token    %skip            :    "{skip_lexem}+"
+                ;
+
+%token    SKIP            :     "%skip(?={key_lookahead})"
+                ;
+
+%token    START            :    "%start(?={key_lookahead})"
+                ;
+
+%token    NAME            :    "%name(?={key_lookahead})"
+                ;
+
+%token    TOKEN            :    "%token(?={key_lookahead})"
+                ;
+
+%token    PREC            :    "%prec(?={key_lookahead})"
+                ;
+
+%token    ACTION            :    "%action(?={skip_lexem}+)"
+                ;
+
+%token    VALUE            :    "%value(?={skip_lexem}+)"
+                ;
+
+%token    ASSOC            :    '"%"(left|right|nonassoc)(?={key_lookahead})'
+                ;
+
+%token    LEXEME            :    "{lexeme}"
+                ;
+                
+
+%token    NUMBER            :    "{number}"
+                ;
+
+
+
+%token    CODE           :    '"%code"'
+                    		;
+
+%token    CODE_BLOCK        :    '\{:[^\u0]*?:\}'            /*'\{((\\\{|\\\})|[^\{\}])*?\}'*/
+                    			;
+
+
+%token    "."        :    '"."'
+            ;
+
+%token    ","        :    '","'
+            ;
+
+%token    ":"        :    '":"'
+            ;
+
+%token    ";"        :    '";"'
+            ;
+
+%token    "|"        :    '"|"'
+            ;
+
+
+%token    ATTR        :    '"%attribute"'
+            ;
+
+
+%token    "("        :    '"("'
+            ;
+
+%token    ")"        :    '")"'
+            ;
+
+
+%start            program    ;
+
+
+program         :        item_list 
+                |        item_list error
+                ;
+
+item_list       :        item_list item                
+                |        .
+                ;
+        
+item            :        code_decl       semi
+                |        start_def       semi        
+                |        name_def        semi        
+                |        token_def       semi    
+                |        prec_def        semi
+                |        rule_def        semi
+                |        error           ";"
+                ;
+
+semi            :        ";"
+                |        error
+                ;
+
+name_def        :        NAME LEXEME ":" LEXEME 
+                ;
+
+token_def       :          TOKEN SKIP token_val_prec      ":" LEXEME token_val_prec  token_value    action_decl      
+                |          TOKEN LEXEME token_val_prec ":" LEXEME token_val_prec  token_value    action_decl     
+                ;
+
+token_value     :        VALUE        LEXEME
+                |        .
+                ;    
+
+token_val_prec  :        "," NUMBER            
+                |        .                 
+                ;
+
+
+prec_def        :          ASSOC term_list     
+                ;
+
+
+rule_def        :         LEXEME ":" rhs_list     
+                ;
+
+
+rhs_list        :         rhs_list  "|" rhs    
+                |        rhs
+                ;
+
+rhs             :        term_list prec_decl action_decl    
+                |        "." prec_decl action_decl
+                ;
+
+term_list       :        term_list LEXEME         
+                |        LEXEME                 
+                ;
+
+
+prec_decl       :        PREC LEXEME             
+                |        .                    
+                ;
+
+action_decl     :        ACTION LEXEME CODE_BLOCK
+                |        ACTION LEXEME             
+                |        .    
+                ;
+
+
+start_def       :          START LEXEME 
+                ;
+
+
+code_decl       :        CODE decl_attr    LEXEME CODE_BLOCK
+                |        CODE decl_attr    CODE_BLOCK
+                ;
+
+
+decl_attr       :        ATTR "("    attr_list    ")"
+                |        .
+                ;
+
+attr_list       :        attr_list "," LEXEME 
+                |        LEXEME 
+                ;
+
+

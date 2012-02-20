@@ -1,0 +1,50 @@
+﻿
+
+
+function test()
+{
+	for(i = 0; ; ++i);
+	
+	for(first(); !is_done(); next());
+
+	for(; ; a);
+	for(; ; );
+	for(x in arr)print(x);
+
+	test(a,b,c);
+	x = 8;
+}
+
+
+
+a = 1;
+b = 3;
+c = {a,b,c};
+
+function test()
+{
+	i = 100; 
+	
+	x =	{
+		a,b,c
+	};
+
+	x = { {"a"} ,{"a"}, {"a"}};
+
+	
+	{
+		for(x in arr)print(x);
+		for(; i < 100; ++i)
+		{
+			for(a.x = b,c = 0,z =5; true ; call_next())
+			{
+
+			}
+		}
+	}
+}
+a;
+a = test() + c;
+
+a = c;
+

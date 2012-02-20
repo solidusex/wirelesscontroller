@@ -1,0 +1,16 @@
+linux:
+	compiler:
+		-Wno-unused
+		-lpthreads
+		-std=gnu99
+		-fgnu89-inline
+
+	linker:
+		pthread
+windows:
+	compiler:
+		-Wno-unused
+		-lpthreads
+		-std=gnu99
+
+	linker:

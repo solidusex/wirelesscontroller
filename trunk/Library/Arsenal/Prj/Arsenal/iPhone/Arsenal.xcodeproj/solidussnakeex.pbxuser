@@ -1,0 +1,237 @@
+// !$*UTF8*$!
+{
+	0867D690FE84028FC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = LibDebug;
+		activeSDKPreference = iphonesimulator4.3;
+		activeTarget = BE01B84013F21F120031FB4C /* ArsenalLib */;
+		addToTargets = (
+			BE01B84013F21F120031FB4C /* ArsenalLib */,
+		);
+		breakpoints = (
+			BE255A8A13FDAD8200879039 /* tguparser.c:45 */,
+		);
+		codeSenseManager = BE08CD55127D29BC00C91273 /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = 1;
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_ObjectSize_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1153,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1194,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 339332648;
+			PBXWorkspaceStateSaveDate = 339332648;
+		};
+		sourceControlManager = BE08CD54127D29BC00C91273 /* Source Control */;
+		userBuildSettings = {
+			OBJROOT = ../../../Temp;
+			SYMROOT = ../../../Binary;
+		};
+	};
+	BE01B84013F21F120031FB4C /* ArsenalLib */ = {
+		activeExec = 0;
+	};
+	BE01B84A13F220120031FB4C /* Arsenal.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 1365}}";
+			sepNavSelRange = "{487, 0}";
+			sepNavVisRange = "{0, 673}";
+		};
+	};
+	BE01B85113F220120031FB4C /* common.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1332, 10096}}";
+			sepNavSelRange = "{19220, 6}";
+			sepNavVisRange = "{19042, 1028}";
+			sepNavWindowFrame = "{{15, 91}, {750, 787}}";
+		};
+	};
+	BE01B85213F220120031FB4C /* config.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 9030}}";
+			sepNavSelRange = "{743, 0}";
+			sepNavVisRange = "{813, 680}";
+		};
+	};
+	BE01B85613F220120031FB4C /* platform.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 2850}}";
+			sepNavSelRange = "{2000, 0}";
+			sepNavVisRange = "{1387, 865}";
+		};
+	};
+	BE01B85813F220120031FB4C /* strconv.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1332, 8216}}";
+			sepNavSelRange = "{8534, 0}";
+			sepNavVisRange = "{8058, 627}";
+		};
+	};
+	BE01B85C13F220120031FB4C /* thread.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 634}}";
+			sepNavSelRange = "{623, 0}";
+			sepNavVisRange = "{0, 769}";
+		};
+	};
+	BE01B85E13F220120031FB4C /* thread_posix.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1332, 1508}}";
+			sepNavSelRange = "{484, 0}";
+			sepNavVisRange = "{28, 809}";
+		};
+	};
+	BE01B86413F220120031FB4C /* match.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1332, 6214}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 756}";
+		};
+	};
+	BE01B86513F220120031FB4C /* rgx.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 5310}}";
+			sepNavSelRange = "{3885, 0}";
+			sepNavVisRange = "{3569, 443}";
+		};
+	};
+	BE01B87B13F220130031FB4C /* tengu.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 585}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{138, 551}";
+		};
+	};
+	BE01B87C13F220130031FB4C /* tengu.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 1590}}";
+			sepNavSelRange = "{809, 0}";
+			sepNavVisRange = "{280, 714}";
+		};
+	};
+	BE01B87D13F220130031FB4C /* tgu_parser_impl.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 45915}}";
+			sepNavSelRange = "{57642, 0}";
+			sepNavVisRange = "{54756, 973}";
+		};
+	};
+	BE01B87E13F220130031FB4C /* tgucompiler.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 480}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 712}";
+		};
+	};
+	BE01B87F13F220130031FB4C /* tgucompiler.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 809}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 715}";
+		};
+	};
+	BE01B88013F220130031FB4C /* tguparser.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 4740}}";
+			sepNavSelRange = "{582, 0}";
+			sepNavVisRange = "{471, 600}";
+		};
+	};
+	BE01B88113F220130031FB4C /* tguparser.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 1410}}";
+			sepNavSelRange = "{754, 14}";
+			sepNavVisRange = "{423, 734}";
+		};
+	};
+	BE01B88413F220130031FB4C /* tguutility.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 3285}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1209}";
+		};
+	};
+	BE01B88613F220130031FB4C /* tguvm.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 3180}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1119}";
+		};
+	};
+	BE01B88A13F220130031FB4C /* grammar_collector.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 36570}}";
+			sepNavSelRange = "{49145, 0}";
+			sepNavVisRange = "{48827, 553}";
+		};
+	};
+	BE08CD54127D29BC00C91273 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	BE08CD55127D29BC00C91273 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	BE255A8A13FDAD8200879039 /* tguparser.c:45 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = BE01B88013F220130031FB4C /* tguparser.c */;
+		functionName = "__parser_core_init()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 45;
+		location = Test;
+		modificationTime = 335392198.028107;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+}

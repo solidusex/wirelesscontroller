@@ -1,0 +1,367 @@
+
+
+
+%name	delim 		:	"[ \r\n\t]"			
+				;
+%name	comment		:	"/\*([^\*]|\*+[^\*/])*\*+/"	
+				;
+%name	comment_line	:	"//[^\n]*\n"			
+				;
+
+%name	lua_comment_line	:	"\-\-[^\n]*\n"			
+					;
+
+%name skip_lexem	: 	"{delim}|{comment}|{comment_line}|{lua_comment_line}"
+				;
+
+
+
+
+%name	digit			:	"[0-9]"				
+				;
+%name	number		:	"{digit}+"				
+				;
+%name	letter		:	"[A-Z_a-z]"
+				;
+
+
+%name hex_digit		:	"[0-9a-fA-F]"
+				;
+
+%name hex_literal 	:	"0(x|X){hex_digit}+"
+				;
+
+%name oct_literal	:	"0[0-7]+"
+				;
+
+%name dec_literal	:	"(0|[1-9][0-9]*)"
+				;
+
+
+
+
+%name	exponet			:	"(e|E)(\+|\-)?[0-9]+"
+					;
+
+
+
+%name float_literal		:	"(((([0-9]\.[0-9]*)|(\.[0-9]+)){exponet}?)|([0-9]+{exponet}))"
+					;
+
+
+
+/*  '"'  == \x22,  '\'' == \x27 */
+
+%name	escape_seq		:	"(\\(\x22|\x27))"	
+				;
+
+%name	string_dq		: 	"(\x22({escape_seq}|[^\x22])*\x22)"		//只能提取"..."或"\""此类串，其它C规则要到语义例程中处理	
+				;
+
+%name	string_sq		:	"\x27({escape_seq}|[^\x27])*\x27"		//提取'...'或'\''此类串，其它C规则要到语义例程中处理	
+				;
+
+%name	keyword_lhd	:	"[A-Z_a-z0-9]"
+				;
+
+
+%name		float_constant	:	"{float_literal}(?!{keyword_lhd})"
+					;
+%name		hex_constant	:	"{hex_literal}(?!{keyword_lhd})"
+					;
+%name		oct_constant	:	"{oct_literal}(?!{keyword_lhd})"
+					;
+%name		dec_constant	:	"{dec_literal}(?!{keyword_lhd})"
+					;
+
+
+
+%token 	%skip			:	"{skip_lexem}+"				,1		%value	"TOK_DELIM_ID"	;//空白，需要过滤
+
+
+
+
+
+
+%token	NAME		:	"{letter}({letter}|{digit})*"								%value "TOK_NAME"			;
+%token	STRING	:	"{string_sq}|{string_dq}"									%value "TOK_STRING"			;
+%token	NUMBER	:	"{float_constant}|{hex_constant}|{oct_constant}|{dec_constant}"	,2	%value "TOK_NUMBER"			;
+
+%token	"nil"		:	'"nil"(?!{keyword_lhd})'		,1					%value	"TOK_NIL"			;
+%token	"if"		:	'"if"(?!{keyword_lhd})'		,1					%value	"TOK_IF"			;
+%token	"else"	:	'"else"(?!{keyword_lhd})'		,1					%value	"TOK_ELSE"			;
+%token	"elseif"	:	'"elseif"(?!{keyword_lhd})'	,1					%value	"TOK_ELSEIF"		;
+
+%token	"and"		:	'"and"(?!{keyword_lhd})'		,1				%value	"TOK_AND"			;
+%token	"or"		:	'"or"(?!{keyword_lhd})'		,1				%value	"TOK_OR"		;
+%token	"not"		:	'"not"(?!{keyword_lhd})'	,1				%value	"TOK_NOT"		;
+
+%token	"end"		:	'"end"(?!{keyword_lhd})'		,1				%value	"TOK_END"			;
+%token	"then"	:	'"then"(?!{keyword_lhd})'	,1					%value	"TOK_THEN"			;
+%token	"repeat"	:	'"repeat"(?!{keyword_lhd})'	,1				%value	"TOK_REPEAT"		;
+%token	"local"	:	'"local"(?!{keyword_lhd})'	,1					%value	"TOK_LOCALE"		;
+%token	"until"	:	'"until"(?!{keyword_lhd})'	,1					%value	"TOK_UNTIL"		;
+%token	"function"	:	'"function"(?!{keyword_lhd})'	,1				%value	"TOK_FUNCTION"		;
+
+%token	"do"		:	'"do"(?!{keyword_lhd})'		,1				%value	"TOK_DO"			;
+%token	"while"	:	'"while"(?!{keyword_lhd})'		,1				%value	"TOK_WHILE"		;
+%token	"for"		:	'"for"(?!{keyword_lhd})'		,1				%value	"TOK_FOR"			;
+%token	"return"	:	'"return"(?!{keyword_lhd})'	,1				%value	"TOK_RETURN"		;
+%token	"break"	:	'"break"(?!{keyword_lhd})'		,1				%value	"TOK_BREAK"		;
+%token	"in"		:	'"in"(?!{keyword_lhd})'		,1				%value	"TOK_IN"			;
+
+%token	"true"	:	'"true"(?!{keyword_lhd})'		,1				%value	"TOK_TRUE"			;
+%token	"false"	:	'"false"(?!{keyword_lhd})'		,1				%value	"TOK_FALSE"			;
+
+
+
+%token	"..."		:	'"..."'		,2								%value	"TOK_DOTS"	;
+
+%token	".."		:	'".."'		,1								%value 	"TOK_CONC"		;
+%token	"<="		:	'"<="'		,1								%value 	"TOK_LE"		;
+%token	">="		:	'">="'		,1								%value 	"TOK_GE"		;
+%token	"=="		:	'"=="'		,1								%value 	"TOK_EQ"		;
+%token	"~="		:	'"~="'		,1								%value	"TOK_NE"		;
+
+
+%token	":"		:	'":"'			,0								%value "TOK_COLON"				;
+%token	"{"		:	'"{"'			,0								%value "TOK_L_BRACES"		;
+%token	"}"		:	'"}"'			,0								%value "TOK_R_BRACES"		;
+%token	"("		:	'"("'			,0								%value "TOK_L_PAREN"			;
+%token	")"		:	'")"'			,0								%value "TOK_R_PAREN"			;
+%token	"["		:	'"["'			,0								%value "TOK_L_SQUARE"		;
+%token	"]"		:	'"]"'			,0								%value "TOK_R_SQUARE"		;
+%token	";"		:	'";"'			,0								%value "TOK_SEMICOLON"		;
+%token	","		:	'","'			,0								%value "TOK_COMMA"			;
+%token	"="		:	'"="'			,0								%value "TOK_ASSIGN"			;
+%token	"."		:	'"."'			,0								%value "TOK_DOT"			;
+%token	"+"		:	'"+"'			,0								%value "TOK_ADD"			;
+%token	"-"		:	'"-"'			,0								%value "TOK_SUB"			;
+%token	"*"		:	'"*"'			,0								%value "TOK_MUL"			;
+%token	"/"		:	'"/"'			,0								%value "TOK_DIV"			;
+%token	"%"		:	'"%"'			,0								%value "TOK_MOD"		;
+%token	"^"		:	'"^"'			,0								%value "TOK_XOR"		;
+%token	"<"		:	'"<"'			,0								%value "TOK_LESS"		;
+%token	">"		:	'">"'			,0								%value "TOK_GREATER"		;
+
+
+
+
+
+
+
+
+%left      "or"						;
+%left      "and"					;
+%left      "<"	"<="	">"	">="	"=="	"~="	;
+%right     ".." 					;
+%left      "+"	"-"					;
+%left      "*"	"/"	"%"				;
+%right     "not"					;
+%right     "^"						;
+%nonassoc	PREC_ARGS					;
+%nonassoc	PREC_CALL_EXP				;
+
+
+
+
+%start		chunk					;
+
+
+
+
+
+chunk		:	block  
+		;
+
+semi		:	";"
+		|	.
+		;
+
+
+
+block      :	scope statlist 
+		|	scope statlist laststat semi
+		;
+
+ublock     :	block "until" exp 
+		;
+
+scope      :	scope statlist binding semi
+		|	.
+		;
+
+statlist   :	.
+		|	statlist stat semi
+		;
+
+stat       :	"do"		block "end"
+		|	"while"	exp	"do" block "end"
+		|	repetition "do"	block "end"
+		|	"repeat" ublock
+		|	"if"	conds "end"
+		|	"function"	funcname funcbody
+		|	setlist "=" explist1 
+		|	functioncall		
+		;
+
+
+repetition :	"for"		NAME "="	explist23
+		|	"for"		namelist "in"	explist1 
+		;
+
+
+conds      :	condlist 
+		|	condlist "else" block 
+		;
+
+condlist	:	cond 
+		|	condlist "elseif" cond
+		;
+
+cond		:	exp	"then"	block 
+		;
+
+laststat	:	"break"
+		|	"return"
+		|	"return" explist1 
+		;
+
+
+
+binding	: "local" namelist
+		| "local" namelist "=" explist1
+		| "local" "function" NAME funcbody
+		;
+
+funcname	:	dottedname
+		|	dottedname ":" NAME
+		;
+
+dottedname	:	NAME 
+		|	dottedname "." NAME
+		;
+
+namelist	:	NAME 
+		|	namelist "," NAME
+		;
+
+
+explist1	:	exp
+		|	explist1 "," exp
+		;
+
+explist23	:	exp "," exp
+		|	exp "," exp "," exp 
+		;
+
+
+
+
+exp		:	"nil"
+		|	"true"
+		|	"false"
+		|	NUMBER
+		|	STRING
+		|	"..." 
+		|	function_def
+		|	prefixexp
+		|	tableconstructor
+		|	"not"		exp
+		|	"-"		exp		%prec		"not"
+		|	exp	"or"	exp
+		|	exp	"and"	exp
+		|	exp	"<"	exp
+		|	exp	"<="	exp
+		|	exp	">"	exp
+		|	exp	">="	exp
+		|	exp	"=="	exp
+		|	exp	"~="	exp
+		|	exp	".."	exp
+		|	exp	"+"	exp
+		|	exp	"-"	exp
+		|	exp	"*"	exp
+		|	exp	"/"	exp
+		|	exp	"%"	exp
+		|	exp	"^"	exp
+		;
+
+
+
+
+
+setlist	:	var 
+		|	setlist ","	var
+		;
+
+var		:	NAME
+		|	prefixexp "["	exp "]"
+		|	prefixexp "."	NAME
+		;
+
+
+
+prefixexp	:	var
+		|	"(" exp ")"
+		|	functioncall	%prec		PREC_CALL_EXP
+		;
+
+
+functioncall	:	prefixexp args			
+			|	prefixexp ":" NAME args
+			;
+
+
+args		:	"(" explist1 ")"	%prec		PREC_ARGS
+		|	"(" ")" 			%prec		PREC_ARGS
+		|	tableconstructor
+		|	STRING
+		;
+
+
+function_def	:	"function" funcbody 
+			;
+
+funcbody	:	params block "end"
+		;
+
+params	:	"(" parlist ")"
+		;
+
+parlist	:	.
+		|	namelist
+		|	"..."
+		|	namelist	","	"..."
+		;
+
+
+tableconstructor	:	"{" "}"
+				|	"{" fieldlist "}"
+				|	"{" fieldlist "," "}"
+				|	"{" fieldlist ";" "}"
+				;
+
+
+fieldlist		:	field 
+			|	fieldlist "," field
+			|	fieldlist ";" field
+			;
+
+            
+field       	:	exp
+			|	NAME "="	exp
+			|	"["	exp	"]"	"="	exp
+			;
+
+
+
+
+
+
+
+
+
+
+
+
+

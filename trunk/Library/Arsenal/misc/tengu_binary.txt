@@ -1,0 +1,24 @@
+
+
+
+
+var b = File::read("1.dat");
+
+var l = Binary::Length(b);
+var byte = b[i];
+
+var s = Binary::ToString(b);
+var s = Binary::SetLength(b, 200);
+
+Binary::WriteVar(b, "abcdef");
+Binary::WriteVar(b, 1234567);
+Binary::WriteVar(b, t);
+
+
+
+if(!File::write("2.dat", b))
+{
+	print("failed\r\n");
+}
+
+

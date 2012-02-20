@@ -1,0 +1,190 @@
+﻿
+
+
+
+struct test{
+	unsigned int *a,b,c;
+
+};
+
+
+const signed long *x;
+
+typedef int test_f(void);
+
+
+struct xx_tag{
+	
+	struct inner_tag{
+		int xxx;
+	}xx;
+		
+};
+
+
+int struct_test()
+{
+	struct xx_tag{
+		int x;
+	};
+
+	struct xx_tag2{
+		float f;
+	};
+
+	
+	typedef struct __test_tag{
+		int a;
+		int b;
+	}test_t;
+		
+
+}
+
+
+
+
+
+
+int cmp_f(void *l, void *r);
+
+void __insertion_sort(byte *lo, byte *hi)
+{
+		byte *p,*t;
+		AR_ASSERT(lo != NULL && hi != NULL && lo < hi);
+
+
+		for(p = hi; p > lo; p -= width)
+		{
+				if(cmp_f(p, p - width) < 0)AR_memswap(p,p - width,width);
+		}
+
+		for(t = lo + width; t <= hi; t += width)
+		{
+				for(p = t; p > lo; p -= width)
+				{
+						if(cmp_f(p,p - width) < 0)
+						{
+								AR_memswap(p,p-width,width);
+						}else
+						{
+								break;
+						}
+				}
+		}
+		
+
+}
+
+const char* strstr(const char *str, const char *p);
+
+int cmp_f(void *l, void *r)
+{
+	return strstr((const char*)l, (const char*)r);
+}
+
+
+const char* strstr(const char *str, const char *p)
+{
+	int i;
+	assert(str != NULL && p != NULL);
+	
+	for(i = 0; str[i]; ++i)
+	{
+		int k = 0;
+		for(k = 0; p[k] && str[i + k] && p[k] == str[i + k]; k++);
+		
+		if(p[k] == '\0')
+		{
+			return str + i;
+		}
+
+		if(str[i + k] == '\0')break;
+	}
+
+	return NULL;
+}
+
+
+
+
+
+int strcmp(const char *l, const char *r)
+{
+		int ret;
+
+		while((ret = *l - *r) == 0 && *l && *r)
+		{
+				l++; r++;
+		}
+		return ret;
+}
+
+
+
+
+
+
+
+
+int		dec	=	0;
+int		dec2	=	10;
+int		dec3	=	10L;
+
+int		oct	=	060L;
+int		oct2	=	060;
+
+int		hex	=	0x80;
+int		hex1	=	0xAB;
+
+int		hex2	=	0x80L;
+int		hex3	=	0xABu;
+
+
+double	d	=	3.14d;
+float 	f	=	0.0F;
+float 	f	=	.0f;
+float 	f	=	.12;
+
+
+
+double	d	=	3.14e+10d;
+float 	f	=	0.0e-10F;
+float 	f	=	.0e10f;
+float 	f	=	.12e10;
+
+float 	f	=	1e-6;
+float 	f	=	.1e-6;
+float 	f	=	0.1e-6;
+
+
+/*错误的constant
+
+
+int		dec	=	0La;
+int		dec2	=	10La;
+int		dec3	=	10Lf;
+
+int		oct	=	060aL;
+int		oct2	=	060a;
+
+int		hex	=	0x80LW;
+int		hex1	=	0xABLW;
+
+int		hex2	=	0x80LW;
+int		hex3	=	0xABLW;
+
+
+double	d	=	3.14dW;
+float 	f	=	0.0FW;
+float 	f	=	.0fW;
+float 	f	=	W.12W;
+
+
+
+*/
+
+
+
+
+

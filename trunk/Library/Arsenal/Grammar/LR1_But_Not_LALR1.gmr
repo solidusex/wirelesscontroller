@@ -1,0 +1,34 @@
+
+
+%token "a"	:	"a"
+		;
+
+%token	"b"	:	"b"
+		;
+
+%token	"c"	:	"c"
+		;
+
+%token	"d"	:	"d"
+		;
+
+%token	"e"	:	"e"
+		;
+
+%start	G;
+
+G	: 	A;
+
+A	:	a B1 c
+	|	a B2 d
+	|	e B1 d
+	|	e B2 c
+	;
+
+B1 	:	 b
+	;
+B2 	:	 b
+	;
+
+
+

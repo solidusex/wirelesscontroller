@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Test - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Temp\RSP58.tmp" with contents
+[
+/nologo /MLd /W4 /Gm /GX /ZI /Od /I "..\..\Arsenal\\" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_UNICODE" /FR"Debug/" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\User\Desktop\Arsenal\Prj\VC6\main.cpp"
+]
+Creating command line "cl.exe @C:\Temp\RSP58.tmp" 
+<h3>Output Window</h3>
+Compiling...
+main.cpp
+d:\user\desktop\arsenal\prj\vc6\main.cpp(3) : fatal error C1083: Cannot open include file: 'Arsenal.h': No such file or directory
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+main.obj - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

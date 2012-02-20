@@ -1,0 +1,123 @@
+
+/*此gmr是为了测试lex，用LR解析ini格式纯属闲的蛋疼*/
+
+/*
+单行注释,例如
+
+;注释:xxxxxxxx
+
+*/
+
+
+%name	line_end	:	"(\r\n|\n\r|\r|\n)"
+			;
+
+
+%token	LINE			:	"\B.+\E"					;
+
+%token	LINE_END		:	"{line_end}"							;
+
+
+//%token	comment_line	:	"\B[ \t\r]*;[^\r\n]*\E"	,	3		;
+
+
+
+/*
+追加注释，例如：
+
+[section1] ;注释:xxxxxxx
+
+*/
+
+//%token	comment_post	:	";[^\r\n]*"				,	1			;
+
+
+/*
+空白
+*/
+//%token	%skip			:	"[ \t]+"					,	1	;
+
+
+/*
+空行
+*/
+//%token	%skip			:	"\B[ \t]*\E"				,	2	;
+
+
+
+
+
+
+
+
+//%token	section		:	"\[.+\]"				;
+
+
+//%token	string   		:	"[^ ;\r\n][^;\r\n]*"			;
+
+
+
+//%token	combine_str	:	"([^ ;\r\n][^;\r\n]*\\[ \t]*)\E" , 2		;
+
+
+
+
+
+%start	ini_file		;
+
+
+ini_file				:	line_list
+					;
+	
+line_list				:	line_list	line	
+					|	line
+					;
+
+					
+line					:	LINE	LINE_END
+					|	LINE_END
+					;
+
+
+
+/*
+ini_file				:	item_list
+					;
+
+
+
+item_list				:	item_list	item
+					|	item
+					;
+
+
+item					:	section_header
+					|	comment_line
+					|	info
+					;
+
+
+comment				:	comment_post
+					|	.
+					;
+
+
+section_header			:	section 	comment LINE_END
+					;
+
+info					:	string comment LINE_END
+					|	combine_string comment LINE_END
+					|	error comment LINE_END
+					;
+
+combine_string			:	combine_list	string
+					;
+
+combine_list				:	combine_str comment LINE_END combine_list
+					|	combine_str comment LINE_END
+					;
+
+
+*/
+
+

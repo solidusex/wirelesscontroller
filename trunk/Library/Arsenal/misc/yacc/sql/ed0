@@ -1,0 +1,6 @@
+ed lex.yy.c > ed0.out <<EOF
+/output/
+.,.+2 d
+w
+q
+EOF

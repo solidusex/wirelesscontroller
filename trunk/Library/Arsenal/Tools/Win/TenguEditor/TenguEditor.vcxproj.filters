@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Sources Files">
+      <UniqueIdentifier>{e692d656-0c5d-4326-b9d8-60372c3d501c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChildFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CntrItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertiesWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TenguEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TenguEditorDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TenguEditorView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\class_view.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\class_view_hc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\classview.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\classview_hc.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\explorer.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\explorer_hc.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\file_view.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\file_view_hc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fileview.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fileview_hc.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\menuimages.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\menuimages_hc.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\output_wnd.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\output_wnd_hc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\properties.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\properties_hc.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\properties_wnd.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\properties_wnd_hc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\sort.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\sort_hc.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\TenguEditor.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\TenguEditor.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\TenguEditorDoc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+    <None Include="TenguEditor.reg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TenguEditor.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ChildFrm.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassView.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CntrItem.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileView.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputWnd.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertiesWnd.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TenguEditor.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TenguEditorDoc.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TenguEditorView.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textfile.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewTree.cpp">
+      <Filter>Sources Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

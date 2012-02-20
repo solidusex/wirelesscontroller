@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DSTest">
+      <UniqueIdentifier>{26ccc16f-44c5-4604-b4ec-ddad91605fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{abc0f6e2-9b18-434d-a3dc-0dddc2a8ffd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{d88172c1-9a67-4bfd-a684-357f196bfac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexer">
+      <UniqueIdentifier>{b1293d32-2f38-4192-9b7e-64e9e93982fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Test\avltree.c">
+      <Filter>DSTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\rbtree.c">
+      <Filter>DSTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\splaytree.c">
+      <Filter>DSTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\ds_test.c">
+      <Filter>DSTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\calc_test2.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\calc_test3.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\com_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\tokenizer_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\gen_code_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\gmr_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\grammar_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\ini_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\lex_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\mem_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\parser_gen_perf_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\parser_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\perf_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\psr_misc.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\ray_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\serialize_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\tengu_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\math_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Test\grammar_config_test.c">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Test\avltree.h">
+      <Filter>DSTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Test\rbtree.h">
+      <Filter>DSTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Test\splaytree.h">
+      <Filter>DSTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Test\calc_test3_impl.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Test\test.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Test\gen_code_impl.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Test\parser_gen_perf_javascript_code_impl.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Test\parser_gen_perf_sql_code_impl.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
