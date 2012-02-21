@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67EFE3E714F3904500C8A4DC /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67EFE3E614F3904500C8A4DC /* Arsenal.a */; };
 		BE8B9AF214F2BB090034EEA0 /* NSString_Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8B9AF114F2BB090034EEA0 /* NSString_Convert.m */; };
 		BEE095A314F24120007B93C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE095A214F24120007B93C2 /* UIKit.framework */; };
 		BEE095A514F24120007B93C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE095A414F24120007B93C2 /* Foundation.framework */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67EFE3E614F3904500C8A4DC /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos/Arsenal.a"; sourceTree = "<group>"; };
 		BE8B9AF014F2BB090034EEA0 /* NSString_Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_Convert.h; sourceTree = "<group>"; };
 		BE8B9AF114F2BB090034EEA0 /* NSString_Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Convert.m; sourceTree = "<group>"; };
 		BEE0959E14F24120007B93C2 /* WiController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiController.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67EFE3E714F3904500C8A4DC /* Arsenal.a in Frameworks */,
 				BEE095A314F24120007B93C2 /* UIKit.framework in Frameworks */,
 				BEE095A514F24120007B93C2 /* Foundation.framework in Frameworks */,
 				BEE095A714F24120007B93C2 /* CoreGraphics.framework in Frameworks */,
@@ -58,6 +61,7 @@
 		BEE0959314F24120007B93C2 = {
 			isa = PBXGroup;
 			children = (
+				67EFE3E614F3904500C8A4DC /* Arsenal.a */,
 				BEE095CF14F241B1007B93C2 /* dabaopku.plist */,
 				BEE095A814F24120007B93C2 /* WiController */,
 				BEE095A114F24120007B93C2 /* Frameworks */,
@@ -213,7 +217,9 @@
 				CODE_SIGN_ENTITLEMENTS = dabaopku.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -227,10 +233,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				OBJROOT = "$(SYMROOT)";
+				OTHER_LDFLAGS = "";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SYMROOT = build;
 				USER_HEADER_SEARCH_PATHS = ../Library/Arsenal/Arsenal;
 			};
@@ -245,6 +255,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -252,11 +263,15 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				OBJROOT = "$(SYMROOT)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SYMROOT = build;
 				USER_HEADER_SEARCH_PATHS = ../Library/Arsenal/Arsenal;
 				VALIDATE_PRODUCT = YES;
@@ -269,14 +284,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WiController/WiController-Prefix.pch";
 				INFOPLIST_FILE = "WiController/WiController-Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../Binary/Release-iphoneos\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphonesimulator\"",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -288,14 +301,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WiController/WiController-Prefix.pch";
 				INFOPLIST_FILE = "WiController/WiController-Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../Binary/Release-iphoneos\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-fliamfrbdchysebpmaiwtdfbkxpb/Build/Products/Debug-iphonesimulator\"",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
