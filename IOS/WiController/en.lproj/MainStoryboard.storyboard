@@ -130,7 +130,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bN-h7-K71" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="znP-Ap-1I9" customClass="MouseViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="axy-eC-UiN">
+                    <view key="view" contentMode="scaleToFill" id="axy-eC-UiN" customClass="MouseUIView">
                         <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -478,6 +478,48 @@
             <point key="canvasLocation" x="614" y="726"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="KeyboardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KeyboardViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeKeyboard:"/>
+                <relationship kind="action" name="returnToMainFrame:"/>
+                <relationship kind="outlet" name="standardInputText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MouseUIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MouseUIView.h"/>
+        </class>
+        <class className="MouseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MouseViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="leftButtonDown:"/>
+                <relationship kind="action" name="leftButtonUpInside:"/>
+                <relationship kind="action" name="leftButtonUpOutside:"/>
+                <relationship kind="action" name="middleButtonDown:"/>
+                <relationship kind="action" name="middleButtonUpInside:"/>
+                <relationship kind="action" name="middleButtonUpOutside:"/>
+                <relationship kind="action" name="returnToMainFrame:"/>
+                <relationship kind="action" name="rightButtonDown:"/>
+                <relationship kind="action" name="rightButtonUpInside:"/>
+                <relationship kind="action" name="rightButtonUpOutside:"/>
+            </relationships>
+        </class>
+        <class className="ShortcutsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShortcutsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToMainFrame:"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTap:"/>
+                <relationship kind="outlet" name="ipText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pwdText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

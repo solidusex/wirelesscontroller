@@ -19,10 +19,34 @@
         [super dealloc];
 }
 
+
+- (void) reachabilityChanged: (NSNotification* )note
+{
+        Reachability* curReach = [note object];
+        NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+        
+        if(curReach != localWifiReachability)
+        {
+                return;
+        }
+        
+        if([curReach currentReachabilityStatus] != ReachableViaWiFi)
+        {
+                
+        }
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
         [ArsenalWrapper instance];
+        
+        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+        
+        localWifiReachability = [Reachability reachabilityForLocalWiFi];
+        [localWifiReachability retain];
+        [localWifiReachability startNotifier];
         
         return YES;
 }
@@ -64,7 +88,9 @@
          Save data if appropriate.
          See also applicationDidEnterBackground:.
          */
-        
+        [localWifiReachability stopNotifier];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [localWifiReachability release];
         [ArsenalWrapper unInstance];
 
 }
