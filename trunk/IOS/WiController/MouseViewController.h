@@ -25,6 +25,7 @@
         
         BOOL    touchesBegan;
         CGPoint lastLocation;
+        
 }
 
 @property(nonatomic, assign)    id<MouseViewControllerDelegate>         delegate;

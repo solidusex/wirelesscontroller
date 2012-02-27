@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6708F1E514FC18FE00B0DF7A /* MouseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6708F1E414FC18FE00B0DF7A /* MouseUIView.m */; };
+		6708F1EC14FC224A00B0DF7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6708F1EB14FC224A00B0DF7A /* Reachability.m */; };
+		6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */; };
 		6739EC9B14FB991E007B525C /* NetMessage.c in Sources */ = {isa = PBXBuildFile; fileRef = 6739EC9A14FB991E007B525C /* NetMessage.c */; };
 		67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */; };
 		67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */; };
@@ -27,6 +30,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6708F1E314FC18FE00B0DF7A /* MouseUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseUIView.h; sourceTree = "<group>"; };
+		6708F1E414FC18FE00B0DF7A /* MouseUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseUIView.m; sourceTree = "<group>"; };
+		6708F1EA14FC224A00B0DF7A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6708F1EB14FC224A00B0DF7A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6739EC9A14FB991E007B525C /* NetMessage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetMessage.c; sourceTree = "<group>"; };
 		6739EC9C14FB992D007B525C /* NetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetMessage.h; sourceTree = "<group>"; };
 		67B4FD8714FB4ABA00CD40DB /* WiController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiController.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */,
 				67B4FDCA14FB4FDF00CD40DB /* Arsenal.a in Frameworks */,
 				67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */,
 				67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */,
@@ -76,6 +85,7 @@
 		67B4FD7C14FB4ABA00CD40DB = {
 			isa = PBXGroup;
 			children = (
+				6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */,
 				67B4FDCB14FB503100CD40DB /* Arsenal.a */,
 				67B4FDC914FB4FDF00CD40DB /* Arsenal.a */,
 				67B4FDB214FB4B5400CD40DB /* dabaopku.plist */,
@@ -106,6 +116,8 @@
 		67B4FD9114FB4ABA00CD40DB /* WiController */ = {
 			isa = PBXGroup;
 			children = (
+				6708F1EA14FC224A00B0DF7A /* Reachability.h */,
+				6708F1EB14FC224A00B0DF7A /* Reachability.m */,
 				67B4FDBF14FB4E3100CD40DB /* ArsenalWrapper.h */,
 				67B4FDC014FB4E3100CD40DB /* ArsenalWrapper.m */,
 				67B4FDC114FB4E3100CD40DB /* NSString_Convert.h */,
@@ -124,6 +136,8 @@
 				67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */,
 				6739EC9A14FB991E007B525C /* NetMessage.c */,
 				6739EC9C14FB992D007B525C /* NetMessage.h */,
+				6708F1E314FC18FE00B0DF7A /* MouseUIView.h */,
+				6708F1E414FC18FE00B0DF7A /* MouseUIView.m */,
 			);
 			path = WiController;
 			sourceTree = "<group>";
@@ -212,6 +226,8 @@
 				67C70A3214FB6C8000EA1BFA /* KeyboardViewController.m in Sources */,
 				67C70A3614FB6CAA00EA1BFA /* ShortcutsViewController.m in Sources */,
 				6739EC9B14FB991E007B525C /* NetMessage.c in Sources */,
+				6708F1E514FC18FE00B0DF7A /* MouseUIView.m in Sources */,
+				6708F1EC14FC224A00B0DF7A /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 none. All rights reserved.
 //
 
+#import "MouseUIView.h"
 #import "MouseViewController.h"
 
 @implementation MouseViewController
@@ -167,6 +168,10 @@
         NSLog(@"touchesBegan");
         
         touchesBegan = YES;
+        
+        MouseUIView *mouse_view = (MouseUIView*)self.view;
+        
+        [mouse_view.points removeAllObjects];
 
         UITouch *touch = [touches anyObject];
         if(touch != nil)
@@ -174,7 +179,11 @@
                 CGPoint beg = [touch locationInView : self.view];
                 lastLocation = beg;
         }
+        
+        [mouse_view.points addObject : [NSValue valueWithCGPoint : lastLocation]];
+        
 }
+
 
 
 
@@ -209,6 +218,7 @@
         x = location.x - lastLocation.x;
         y = location.y - lastLocation.y;
         
+        
         if(middleIsPressed)
         {
                 if(y != 0.0)
@@ -234,12 +244,19 @@
                 msg.data = 0.0;
         }
         
+        lastLocation = location;
         [self.delegate onMouseEvent : &msg];
+
+        
+        MouseUIView *mouse_view = (MouseUIView*)self.view;
+        
+        if(mouse_view.points)
+        {
+                [mouse_view.points addObject : [NSValue valueWithCGPoint : lastLocation]];
+                [mouse_view setNeedsDisplay];
+        }
         
 }
-
-
-
 
 
 
