@@ -160,6 +160,11 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="middleButtonDown:" destination="znP-Ap-1I9" eventType="touchDown" id="4tx-nZ-Bij"/>
+                                    <action selector="middleButtonUpInside:" destination="znP-Ap-1I9" eventType="touchUpInside" id="3qA-eg-Zyv"/>
+                                    <action selector="middleButtonUpOutside:" destination="znP-Ap-1I9" eventType="touchUpOutside" id="TWz-uz-jBb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XAl-eQ-t8J">
                                 <rect key="frame" x="380" y="192" width="80" height="40"/>
@@ -172,6 +177,11 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="leftButtonDown:" destination="znP-Ap-1I9" eventType="touchDown" id="2Hz-CG-qky"/>
+                                    <action selector="leftButtonUpInside:" destination="znP-Ap-1I9" eventType="touchUpInside" id="2Ah-MD-hV0"/>
+                                    <action selector="leftButtonUpOutside:" destination="znP-Ap-1I9" eventType="touchUpOutside" id="5Xg-Ch-efd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lKd-wj-xjr">
                                 <rect key="frame" x="380" y="240" width="80" height="40"/>
@@ -184,6 +194,11 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="rightButtonDown:" destination="znP-Ap-1I9" eventType="touchDown" id="XxK-k8-saG"/>
+                                    <action selector="rightButtonUpInside:" destination="znP-Ap-1I9" eventType="touchUpInside" id="w2z-Rr-vLq"/>
+                                    <action selector="rightButtonUpOutside:" destination="znP-Ap-1I9" eventType="touchUpOutside" id="fvo-u1-IYs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
