@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */; };
+		67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */; };
+		67B4FD9014FB4ABA00CD40DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8F14FB4ABA00CD40DB /* CoreGraphics.framework */; };
+		67B4FD9614FB4ABA00CD40DB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67B4FD9414FB4ABA00CD40DB /* InfoPlist.strings */; };
+		67B4FD9814FB4ABA00CD40DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FD9714FB4ABA00CD40DB /* main.m */; };
+		67B4FD9C14FB4ABA00CD40DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FD9B14FB4ABA00CD40DB /* AppDelegate.m */; };
+		67B4FD9F14FB4ABA00CD40DB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B4FD9D14FB4ABA00CD40DB /* MainStoryboard.storyboard */; };
+		67B4FDA214FB4ABA00CD40DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FDA114FB4ABA00CD40DB /* ViewController.m */; };
+		67B4FDB314FB4B5400CD40DB /* dabaopku.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67B4FDB214FB4B5400CD40DB /* dabaopku.plist */; };
+		67B4FDC314FB4E3100CD40DB /* ArsenalWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FDC014FB4E3100CD40DB /* ArsenalWrapper.m */; };
+		67B4FDC414FB4E3100CD40DB /* NSString_Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FDC214FB4E3100CD40DB /* NSString_Convert.m */; };
+		67B4FDCA14FB4FDF00CD40DB /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FDC914FB4FDF00CD40DB /* Arsenal.a */; };
+		67B4FDCC14FB503100CD40DB /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FDCB14FB503100CD40DB /* Arsenal.a */; };
+		67B4FDD314FB5DFD00CD40DB /* MouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FDD214FB5DFD00CD40DB /* MouseViewController.m */; };
+		67C70A3214FB6C8000EA1BFA /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C70A3114FB6C8000EA1BFA /* KeyboardViewController.m */; };
+		67C70A3614FB6CAA00EA1BFA /* ShortcutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		67B4FD8714FB4ABA00CD40DB /* WiController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		67B4FD8F14FB4ABA00CD40DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		67B4FD9314FB4ABA00CD40DB /* WiController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WiController-Info.plist"; sourceTree = "<group>"; };
+		67B4FD9514FB4ABA00CD40DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		67B4FD9714FB4ABA00CD40DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		67B4FD9914FB4ABA00CD40DB /* WiController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WiController-Prefix.pch"; sourceTree = "<group>"; };
+		67B4FD9A14FB4ABA00CD40DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		67B4FD9B14FB4ABA00CD40DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		67B4FD9E14FB4ABA00CD40DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		67B4FDA014FB4ABA00CD40DB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		67B4FDA114FB4ABA00CD40DB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		67B4FDB214FB4B5400CD40DB /* dabaopku.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = dabaopku.plist; sourceTree = "<group>"; };
+		67B4FDBF14FB4E3100CD40DB /* ArsenalWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArsenalWrapper.h; sourceTree = "<group>"; };
+		67B4FDC014FB4E3100CD40DB /* ArsenalWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArsenalWrapper.m; sourceTree = "<group>"; };
+		67B4FDC114FB4E3100CD40DB /* NSString_Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_Convert.h; sourceTree = "<group>"; };
+		67B4FDC214FB4E3100CD40DB /* NSString_Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Convert.m; sourceTree = "<group>"; };
+		67B4FDC914FB4FDF00CD40DB /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos/Arsenal.a"; sourceTree = "<group>"; };
+		67B4FDCB14FB503100CD40DB /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator/Arsenal.a"; sourceTree = "<group>"; };
+		67B4FDD114FB5DFD00CD40DB /* MouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseViewController.h; sourceTree = "<group>"; };
+		67B4FDD214FB5DFD00CD40DB /* MouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseViewController.m; sourceTree = "<group>"; };
+		67C70A3014FB6C8000EA1BFA /* KeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
+		67C70A3114FB6C8000EA1BFA /* KeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		67C70A3414FB6CAA00EA1BFA /* ShortcutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsViewController.h; sourceTree = "<group>"; };
+		67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67B4FD8414FB4ABA00CD40DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67B4FDCA14FB4FDF00CD40DB /* Arsenal.a in Frameworks */,
+				67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */,
+				67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */,
+				67B4FD9014FB4ABA00CD40DB /* CoreGraphics.framework in Frameworks */,
+				67B4FDCC14FB503100CD40DB /* Arsenal.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		67B4FD7C14FB4ABA00CD40DB = {
+			isa = PBXGroup;
+			children = (
+				67B4FDCB14FB503100CD40DB /* Arsenal.a */,
+				67B4FDC914FB4FDF00CD40DB /* Arsenal.a */,
+				67B4FDB214FB4B5400CD40DB /* dabaopku.plist */,
+				67B4FD9114FB4ABA00CD40DB /* WiController */,
+				67B4FD8A14FB4ABA00CD40DB /* Frameworks */,
+				67B4FD8814FB4ABA00CD40DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		67B4FD8814FB4ABA00CD40DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				67B4FD8714FB4ABA00CD40DB /* WiController.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		67B4FD8A14FB4ABA00CD40DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */,
+				67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */,
+				67B4FD8F14FB4ABA00CD40DB /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		67B4FD9114FB4ABA00CD40DB /* WiController */ = {
+			isa = PBXGroup;
+			children = (
+				67B4FDBF14FB4E3100CD40DB /* ArsenalWrapper.h */,
+				67B4FDC014FB4E3100CD40DB /* ArsenalWrapper.m */,
+				67B4FDC114FB4E3100CD40DB /* NSString_Convert.h */,
+				67B4FDC214FB4E3100CD40DB /* NSString_Convert.m */,
+				67B4FD9A14FB4ABA00CD40DB /* AppDelegate.h */,
+				67B4FD9B14FB4ABA00CD40DB /* AppDelegate.m */,
+				67B4FD9D14FB4ABA00CD40DB /* MainStoryboard.storyboard */,
+				67B4FDA014FB4ABA00CD40DB /* ViewController.h */,
+				67B4FDA114FB4ABA00CD40DB /* ViewController.m */,
+				67B4FD9214FB4ABA00CD40DB /* Supporting Files */,
+				67B4FDD114FB5DFD00CD40DB /* MouseViewController.h */,
+				67B4FDD214FB5DFD00CD40DB /* MouseViewController.m */,
+				67C70A3014FB6C8000EA1BFA /* KeyboardViewController.h */,
+				67C70A3114FB6C8000EA1BFA /* KeyboardViewController.m */,
+				67C70A3414FB6CAA00EA1BFA /* ShortcutsViewController.h */,
+				67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */,
+			);
+			path = WiController;
+			sourceTree = "<group>";
+		};
+		67B4FD9214FB4ABA00CD40DB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				67B4FD9314FB4ABA00CD40DB /* WiController-Info.plist */,
+				67B4FD9414FB4ABA00CD40DB /* InfoPlist.strings */,
+				67B4FD9714FB4ABA00CD40DB /* main.m */,
+				67B4FD9914FB4ABA00CD40DB /* WiController-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		67B4FD8614FB4ABA00CD40DB /* WiController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67B4FDA514FB4ABA00CD40DB /* Build configuration list for PBXNativeTarget "WiController" */;
+			buildPhases = (
+				67B4FD8314FB4ABA00CD40DB /* Sources */,
+				67B4FD8414FB4ABA00CD40DB /* Frameworks */,
+				67B4FD8514FB4ABA00CD40DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WiController;
+			productName = WiController;
+			productReference = 67B4FD8714FB4ABA00CD40DB /* WiController.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		67B4FD7E14FB4ABA00CD40DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = none;
+			};
+			buildConfigurationList = 67B4FD8114FB4ABA00CD40DB /* Build configuration list for PBXProject "WiController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 67B4FD7C14FB4ABA00CD40DB;
+			productRefGroup = 67B4FD8814FB4ABA00CD40DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				67B4FD8614FB4ABA00CD40DB /* WiController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		67B4FD8514FB4ABA00CD40DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67B4FD9614FB4ABA00CD40DB /* InfoPlist.strings in Resources */,
+				67B4FD9F14FB4ABA00CD40DB /* MainStoryboard.storyboard in Resources */,
+				67B4FDB314FB4B5400CD40DB /* dabaopku.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		67B4FD8314FB4ABA00CD40DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67B4FD9814FB4ABA00CD40DB /* main.m in Sources */,
+				67B4FD9C14FB4ABA00CD40DB /* AppDelegate.m in Sources */,
+				67B4FDA214FB4ABA00CD40DB /* ViewController.m in Sources */,
+				67B4FDC314FB4E3100CD40DB /* ArsenalWrapper.m in Sources */,
+				67B4FDC414FB4E3100CD40DB /* NSString_Convert.m in Sources */,
+				67B4FDD314FB5DFD00CD40DB /* MouseViewController.m in Sources */,
+				67C70A3214FB6C8000EA1BFA /* KeyboardViewController.m in Sources */,
+				67C70A3614FB6CAA00EA1BFA /* ShortcutsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		67B4FD9414FB4ABA00CD40DB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67B4FD9514FB4ABA00CD40DB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		67B4FD9D14FB4ABA00CD40DB /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67B4FD9E14FB4ABA00CD40DB /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		67B4FDA314FB4ABA00CD40DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = dabaopku.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../Library/Arsenal/Arsenal;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		67B4FDA414FB4ABA00CD40DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = dabaopku.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../Library/Arsenal/Arsenal;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		67B4FDA614FB4ABA00CD40DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WiController/WiController-Prefix.pch";
+				INFOPLIST_FILE = "WiController/WiController-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		67B4FDA714FB4ABA00CD40DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WiController/WiController-Prefix.pch";
+				INFOPLIST_FILE = "WiController/WiController-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		67B4FD8114FB4ABA00CD40DB /* Build configuration list for PBXProject "WiController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67B4FDA314FB4ABA00CD40DB /* Debug */,
+				67B4FDA414FB4ABA00CD40DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67B4FDA514FB4ABA00CD40DB /* Build configuration list for PBXNativeTarget "WiController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67B4FDA614FB4ABA00CD40DB /* Debug */,
+				67B4FDA714FB4ABA00CD40DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 67B4FD7E14FB4ABA00CD40DB /* Project object */;
+}
