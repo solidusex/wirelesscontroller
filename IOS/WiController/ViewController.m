@@ -224,6 +224,11 @@
 
 
 
+-(void)onMouseEvent           :  (const mouseNetMsg_t*)event
+{
+        NSLog(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
+        
+}
 
 
 
