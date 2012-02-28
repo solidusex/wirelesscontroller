@@ -130,14 +130,14 @@
 				67B4FD9214FB4ABA00CD40DB /* Supporting Files */,
 				67B4FDD114FB5DFD00CD40DB /* MouseViewController.h */,
 				67B4FDD214FB5DFD00CD40DB /* MouseViewController.m */,
+				6708F1E314FC18FE00B0DF7A /* MouseUIView.h */,
+				6708F1E414FC18FE00B0DF7A /* MouseUIView.m */,
 				67C70A3014FB6C8000EA1BFA /* KeyboardViewController.h */,
 				67C70A3114FB6C8000EA1BFA /* KeyboardViewController.m */,
 				67C70A3414FB6CAA00EA1BFA /* ShortcutsViewController.h */,
 				67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */,
 				6739EC9A14FB991E007B525C /* NetMessage.c */,
 				6739EC9C14FB992D007B525C /* NetMessage.h */,
-				6708F1E314FC18FE00B0DF7A /* MouseUIView.h */,
-				6708F1E414FC18FE00B0DF7A /* MouseUIView.m */,
 			);
 			path = WiController;
 			sourceTree = "<group>";
