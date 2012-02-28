@@ -20,19 +20,43 @@
 }
 
 
+
+-(void)alertLocalWifiReachability
+{
+        if(wifiAlertView != nil)
+        {
+                if([localWifiReachability currentReachabilityStatus] == ReachableViaWiFi)
+                {
+                        [wifiAlertView dismissWithClickedButtonIndex : 0 
+                                                            animated : YES
+                         ];
+                        [wifiAlertView release];
+                        wifiAlertView = nil;
+                }
+        }else
+        {       if([localWifiReachability currentReachabilityStatus] != ReachableViaWiFi)
+                {
+                        wifiAlertView  = [[UIAlertView alloc] initWithTitle : @"Warning"
+                                                                     message: @"Wifi disabled" 
+                                                                    delegate: nil 
+                                                           cancelButtonTitle: nil 
+                                                           otherButtonTitles: nil
+                                          ];
+                        [wifiAlertView show];
+                }
+        }
+}
+
+
+
 - (void) reachabilityChanged: (NSNotification* )note
 {
         Reachability* curReach = [note object];
         NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
         
-        if(curReach != localWifiReachability)
+        if(curReach == localWifiReachability)
         {
-                return;
-        }
-        
-        if([curReach currentReachabilityStatus] != ReachableViaWiFi)
-        {
-                
+                [self alertLocalWifiReachability];
         }
 }
 
@@ -47,6 +71,8 @@
         localWifiReachability = [Reachability reachabilityForLocalWiFi];
         [localWifiReachability retain];
         [localWifiReachability startNotifier];
+        
+        [self alertLocalWifiReachability];
         
         return YES;
 }
