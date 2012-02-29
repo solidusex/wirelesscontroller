@@ -296,7 +296,16 @@ static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFData
 {
         
         ViewController *controller = (ViewController*)info;
-        [controller handle_write];
+        
+        switch(type)
+        {
+        case kCFSocketWriteCallBack:
+             [controller handle_write];
+             break;
+        default:
+               assert(false);
+               break;
+        }
         
 }
 
@@ -640,7 +649,34 @@ END_POINT:
 
 -(void)onMouseEvent           :  (const mouseEvent_t*)event
 {
-        NSLog(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
+        arBuffer_t *buf;
+//        NSLog(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
+        
+        buf = MouseEvent_To_NetMessage(event);
+        
+        if(buf)
+        {
+                size_t out_len = AR_GetBufferAvailable(buf);
+                if(out_len == 0)
+                {
+                        assert(false);
+                        AR_DestroyBuffer(buf);
+                        buf = NULL;
+                        return;
+                }
+                        
+                
+                NSData *data = [NSData dataWithBytes :(const void *)AR_GetBufferData(buf)
+                                               length:out_len
+                                ];
+                        
+                [outlist addObject : data];
+                
+                AR_DestroyBuffer(buf);
+                buf = NULL;
+
+                CFSocketEnableCallBacks(sock_handle, kCFSocketWriteCallBack);
+        }
         
 }
 
@@ -663,23 +699,42 @@ END_POINT:
 
         }
         
+        
+        
+        
         if([outlist count] == 0)
         {
                 return;
         }
         
-        for(int i = 0; i < 4 && [outlist count] > 0; ++i)
+        BOOL send_ok = YES;
+        NSData *data = [outlist objectAtIndex : 0];
+                
+        if([data length] > 0)
         {
-                NSData *data = [outlist objectAtIndex : 0];
+                int sock_native = CFSocketGetNative(sock_handle);
                 
                 
-                [outlist removeObjectAtIndex : 0];
+                ssize_t sn = sendto(sock_native, [data bytes], [data length], 0, NULL, 0);
                 
+                if(sn <= 0)
+                {
+                        NSLog(@"error code == %d\r\n", errno);
+                        send_ok = NO;
+                }
                 
+                NSLog(@"Sendto %d bytes\r\n", (int)sn);
         }
-        [outlist removeAllObjects];
         
-        
+        if(send_ok)
+        {
+                [data release];
+                [outlist removeObjectAtIndex : 0];
+        }
+
+
+        NSLog(@"Remain count == %d\r\n", [outlist count]);
+        CFSocketEnableCallBacks(sock_handle, kCFSocketWriteCallBack);
 }
 
 
