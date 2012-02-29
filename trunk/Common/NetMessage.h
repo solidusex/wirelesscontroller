@@ -9,6 +9,7 @@
 #ifndef WiController_NetMessage_h
 #define WiController_NetMessage_h
 
+#include "Arsenal.h"
 
 typedef enum
 {
@@ -37,4 +38,15 @@ typedef struct __mouse_net_message_tag
 
 
 
+
+
+
+
+
+
+
 #endif
+
+
+
+

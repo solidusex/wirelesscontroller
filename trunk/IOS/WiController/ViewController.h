@@ -22,7 +22,7 @@
 
 
 
-
+#import "NetMessage.h"
 #import "MouseViewController.h"
 #import "KeyboardViewController.h"
 #import "ShortcutsViewController.h"
@@ -33,12 +33,10 @@
 {
         BOOL            localNetResourcesIsSeted;
         
-        CFSocketRef             sock_handle;
-        CFDataRef               host_addr;
+        CFSocketRef     sock_handle;
+        CFDataRef       host_addr;
         
-        UIAlertView             *alert_view;
-        BOOL                    isAlerted;
-        
+        NSMutableArray  *outlist;
 }
 
 @property (retain, nonatomic) IBOutlet UITextField *ipText;
@@ -57,7 +55,8 @@
 -(void)     uninitLocalNetResources;
 
 -(void)     showAlert : (NSString*)alert cancel : (NSString*)cancel;
--(void)     hideAlert;
+
+
 
 
 @end
