@@ -23,18 +23,22 @@
 
 -(void)alertLocalWifiReachability
 {
-        if(wifiAlertView != nil)
+        if(isAlerted)
         {
                 if([localWifiReachability currentReachabilityStatus] == ReachableViaWiFi)
                 {
                         [wifiAlertView dismissWithClickedButtonIndex : 0 
                                                             animated : YES
                          ];
+                        
                         [wifiAlertView release];
                         wifiAlertView = nil;
+                        isAlerted = NO;
+
                 }
         }else
-        {       if([localWifiReachability currentReachabilityStatus] != ReachableViaWiFi)
+        {   
+                if([localWifiReachability currentReachabilityStatus] != ReachableViaWiFi)
                 {
                         wifiAlertView  = [[UIAlertView alloc] initWithTitle : @"Warning"
                                                                      message: @"Wifi disabled" 
@@ -42,7 +46,9 @@
                                                            cancelButtonTitle: nil 
                                                            otherButtonTitles: nil
                                           ];
+                        
                         [wifiAlertView show];
+                        isAlerted = YES;
                 }
         }
 }
@@ -63,9 +69,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+        
     // Override point for customization after application launch.
         [ArsenalWrapper instance];
         
+        isAlerted = NO;
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
         
         localWifiReachability = [Reachability reachabilityForLocalWiFi];

@@ -11,6 +11,7 @@
 		6708F1EC14FC224A00B0DF7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6708F1EB14FC224A00B0DF7A /* Reachability.m */; };
 		6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */; };
 		6739EC9B14FB991E007B525C /* NetMessage.c in Sources */ = {isa = PBXBuildFile; fileRef = 6739EC9A14FB991E007B525C /* NetMessage.c */; };
+		67AB456414FDFBF6000CC0E1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */; };
 		67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */; };
 		67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */; };
 		67B4FD9014FB4ABA00CD40DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8F14FB4ABA00CD40DB /* CoreGraphics.framework */; };
@@ -37,6 +38,7 @@
 		6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6739EC9A14FB991E007B525C /* NetMessage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetMessage.c; sourceTree = "<group>"; };
 		6739EC9C14FB992D007B525C /* NetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetMessage.h; sourceTree = "<group>"; };
+		67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		67B4FD8714FB4ABA00CD40DB /* WiController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67AB456414FDFBF6000CC0E1 /* CFNetwork.framework in Frameworks */,
 				6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */,
 				67B4FDCA14FB4FDF00CD40DB /* Arsenal.a in Frameworks */,
 				67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */,
@@ -85,6 +88,7 @@
 		67B4FD7C14FB4ABA00CD40DB = {
 			isa = PBXGroup;
 			children = (
+				67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */,
 				6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */,
 				67B4FDCB14FB503100CD40DB /* Arsenal.a */,
 				67B4FDC914FB4FDF00CD40DB /* Arsenal.a */,

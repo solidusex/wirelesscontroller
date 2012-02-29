@@ -31,7 +31,8 @@
 
 
 -(IBAction)returnToMainFrame : (id)sender;
--(IBAction)closeKeyboard     : (id)sender;
+-(IBAction) backgroundTap : (id)sender;
+
 
 @end
 
