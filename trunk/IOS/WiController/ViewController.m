@@ -494,6 +494,7 @@ static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFData
                 return NO;
         }
         
+        [self clearOutList];
         
         if(ipText.text == nil || [ipText.text length] == 0)
         {
@@ -602,6 +603,8 @@ END_POINT:
         
         localNetResourcesIsSeted = NO;
         
+        [self clearOutList];
+        
 }
 
 
@@ -635,7 +638,7 @@ END_POINT:
 }
 
 
--(void)onMouseEvent           :  (const mouseNetMsg_t*)event
+-(void)onMouseEvent           :  (const mouseEvent_t*)event
 {
         NSLog(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
         
@@ -645,14 +648,32 @@ END_POINT:
 
 -(void) handle_write
 {
+        BOOL is_valid = CFSocketIsValid(sock_handle);
+
+        if(!is_valid)
+        {
+                [self showAlert : @"Socket disconnect"
+                         cancel : @"OK"
+                 ];
+              
+                [self uninitLocalNetResources];
+                [self dismissViewControllerAnimated : YES
+                                         completion : nil
+                 ];
+
+        }
+        
         if([outlist count] == 0)
         {
                 return;
         }
         
-        for(int i = 0; i < [outlist count]; ++i)
+        for(int i = 0; i < 4 && [outlist count] > 0; ++i)
         {
-                NSData *data = [outlist objectAtIndex : i];
+                NSData *data = [outlist objectAtIndex : 0];
+                
+                
+                [outlist removeObjectAtIndex : 0];
                 
                 
         }

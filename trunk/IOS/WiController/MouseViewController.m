@@ -77,7 +77,7 @@
 
 -(IBAction)middleButtonDown : (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         middleIsPressed = YES;
         
         
@@ -90,7 +90,7 @@
 
 -(IBAction)middleButtonUpInside : (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         middleIsPressed = NO;
         
         memset(&msg, 0, sizeof(msg));
@@ -101,7 +101,7 @@
 
 -(IBAction)middleButtonUpOutside : (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         middleIsPressed = NO;
         
         memset(&msg, 0, sizeof(msg));
@@ -113,7 +113,7 @@
 
 -(IBAction)leftButtonDown       :  (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_LBUTTONDOWN;
         [self.delegate onMouseEvent : &msg];
@@ -121,7 +121,7 @@
 
 -(IBAction)leftButtonUpInside   :  (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_LBUTTONUP;
         [self.delegate onMouseEvent : &msg];
@@ -129,7 +129,7 @@
 
 -(IBAction)leftButtonUpOutside  :  (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_LBUTTONUP;
         [self.delegate onMouseEvent : &msg]; 
@@ -138,7 +138,7 @@
 
 -(IBAction)rightButtonDown       :  (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_RBUTTONDOWN;
         [self.delegate onMouseEvent : &msg];
@@ -146,7 +146,7 @@
 
 -(IBAction)rightButtonUpInside   :  (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_RBUTTONUP;
         [self.delegate onMouseEvent : &msg];
@@ -154,7 +154,7 @@
 
 -(IBAction)rightButtonUpOutside  :  (id)sender
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_RBUTTONUP;
         [self.delegate onMouseEvent : &msg];
@@ -203,7 +203,7 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-        mouseNetMsg_t msg;
+        mouseEvent_t msg;
         
         UITouch *touch = [touches anyObject];
         if(touch == nil)
@@ -245,8 +245,29 @@
         }
         
         lastLocation = location;
+        
+        
+        
+        /*如果位移太小了就不要了*/
+        if(msg.t == WI_MOUSEWHEEL)
+        {
+                if((int)msg.data == 0)
+                {
+                        return;
+                }
+                
+        }else if(msg.t == WI_MOUSEMOVE)
+        {
+                if((int)msg.x == 0 && (int)msg.y == 0)
+                {
+                        return;
+                }
+        }else
+        {
+                return;
+        }
+        
         [self.delegate onMouseEvent : &msg];
-
         
         MouseUIView *mouse_view = (MouseUIView*)self.view;
         

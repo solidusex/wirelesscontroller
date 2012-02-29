@@ -10,7 +10,9 @@
 		6708F1E514FC18FE00B0DF7A /* MouseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6708F1E414FC18FE00B0DF7A /* MouseUIView.m */; };
 		6708F1EC14FC224A00B0DF7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6708F1EB14FC224A00B0DF7A /* Reachability.m */; };
 		6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */; };
-		677CFE7014FE47AD00238716 /* NetMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 677CFE6F14FE47AD00238716 /* NetMessage.cpp */; };
+		677CFE7014FE47AD00238716 /* NetMessage.c in Sources */ = {isa = PBXBuildFile; fileRef = 677CFE6F14FE47AD00238716 /* NetMessage.c */; };
+		677CFE7A14FE623E00238716 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 677CFE7914FE623E00238716 /* libiconv.dylib */; };
+		677CFE7C14FE624400238716 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 677CFE7B14FE624400238716 /* libpthread.dylib */; };
 		67AB456414FDFBF6000CC0E1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */; };
 		67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */; };
 		67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */; };
@@ -37,7 +39,9 @@
 		6708F1EB14FC224A00B0DF7A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		677CFE6E14FE47AD00238716 /* NetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetMessage.h; path = ../Common/NetMessage.h; sourceTree = "<group>"; };
-		677CFE6F14FE47AD00238716 /* NetMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetMessage.cpp; path = ../Common/NetMessage.cpp; sourceTree = "<group>"; };
+		677CFE6F14FE47AD00238716 /* NetMessage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = NetMessage.c; path = ../Common/NetMessage.c; sourceTree = "<group>"; };
+		677CFE7914FE623E00238716 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		677CFE7B14FE624400238716 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		67B4FD8714FB4ABA00CD40DB /* WiController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -72,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				677CFE7C14FE624400238716 /* libpthread.dylib in Frameworks */,
+				677CFE7A14FE623E00238716 /* libiconv.dylib in Frameworks */,
 				67AB456414FDFBF6000CC0E1 /* CFNetwork.framework in Frameworks */,
 				6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */,
 				67B4FDCA14FB4FDF00CD40DB /* Arsenal.a in Frameworks */,
@@ -89,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				677CFE6E14FE47AD00238716 /* NetMessage.h */,
-				677CFE6F14FE47AD00238716 /* NetMessage.cpp */,
+				677CFE6F14FE47AD00238716 /* NetMessage.c */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -97,6 +103,8 @@
 		67B4FD7C14FB4ABA00CD40DB = {
 			isa = PBXGroup;
 			children = (
+				677CFE7B14FE624400238716 /* libpthread.dylib */,
+				677CFE7914FE623E00238716 /* libiconv.dylib */,
 				677CFE6D14FE479D00238716 /* Common */,
 				67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */,
 				6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */,
@@ -239,7 +247,7 @@
 				67C70A3614FB6CAA00EA1BFA /* ShortcutsViewController.m in Sources */,
 				6708F1E514FC18FE00B0DF7A /* MouseUIView.m in Sources */,
 				6708F1EC14FC224A00B0DF7A /* Reachability.m in Sources */,
-				677CFE7014FE47AD00238716 /* NetMessage.cpp in Sources */,
+				677CFE7014FE47AD00238716 /* NetMessage.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
