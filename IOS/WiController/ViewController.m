@@ -638,10 +638,9 @@ END_POINT:
 {
         if(outlist != nil)
         {
-                for(int i = 0; i < [outlist count]; ++i)
+                while([outlist count] > 0)
                 {
-                        NSData *data = [outlist objectAtIndex : i];
-                        [data release];
+                        [outlist removeObjectAtIndex : 0];
                 }
         }
 }
@@ -719,7 +718,7 @@ END_POINT:
                 
                 if(sn <= 0)
                 {
-                        NSLog(@"error code == %d\r\n", errno);
+                        NSLog(@"error code == %s\r\n", strerror(errno));
                         send_ok = NO;
                 }
                 
@@ -728,7 +727,6 @@ END_POINT:
         
         if(send_ok)
         {
-                [data release];
                 [outlist removeObjectAtIndex : 0];
         }
 

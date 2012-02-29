@@ -29,6 +29,7 @@
 
 
 
+
 @interface ViewController : UIViewController<MouseViewControllerDelegate, KeyboardViewControllerDelegate, ShortcutsViewControllerDelegate, UITextFieldDelegate>
 {
         BOOL            localNetResourcesIsSeted;

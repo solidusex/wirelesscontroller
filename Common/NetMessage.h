@@ -25,7 +25,7 @@ typedef enum
         WI_MBUTTONUP    =       0x0008,
         WI_MBUTTONDBLCLK=       0x0009,
         WI_MOUSEWHEEL   =       0x000A,
-        WI_MOUSEHWHEEL  =       0x000E
+        WI_MOUSEHWHEEL  =       0x000B
 }wiMouseEventType_t;
 
 

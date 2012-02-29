@@ -249,7 +249,7 @@
         
         
         /*如果位移太小了就不要了*/
-        if(msg.t == WI_MOUSEWHEEL)
+        if(msg.t == WI_MOUSEWHEEL || msg.t == WI_MOUSEHWHEEL)
         {
                 if((int)msg.data == 0)
                 {
