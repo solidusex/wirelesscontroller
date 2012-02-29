@@ -55,8 +55,8 @@
 -(void)     uninitLocalNetResources;
 
 -(void)     showAlert : (NSString*)alert cancel : (NSString*)cancel;
-
-
+-(void)     clearOutList;
+-(void)     handle_write;
 
 
 @end

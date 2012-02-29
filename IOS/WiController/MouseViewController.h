@@ -14,7 +14,7 @@
 @protocol MouseViewControllerDelegate<NSObject>
 
 -(void)mouseReturnToMainFrame : (MouseViewController*)controller;
--(void)onMouseEvent           :  (const mouseNetMsg_t*)event;
+-(void)onMouseEvent           :  (const mouseEvent_t*)event;
 @end
 
 
