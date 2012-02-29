@@ -19,8 +19,6 @@
 
 
 
-
-
 - (BOOL)textViewShouldBeginEditing:(UITextView *)aTextView 
 {
         return YES;
@@ -116,8 +114,7 @@
         localNetResourcesIsSeted = NO;
         sock_handle = NULL;
         
-        alert_view = nil;
-        isAlerted = NO;
+        outlist = [[NSMutableArray alloc] initWithCapacity : 128];
         
 }
 
@@ -136,7 +133,6 @@
     // e.g. self.myOutlet = nil;
         localNetResourcesIsSeted = NO;
         sock_handle = NULL;
-        alert_view = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -177,10 +173,18 @@
 
 
 
-- (void)dealloc {
+
+
+- (void)dealloc 
+{
+        [self clearOutList];
+        if(outlist != nil)
+        {
+                [outlist release];
+                outlist = nil;
+        }
         [ipText release];
         [pwdText release];
-        
         [super dealloc];
 }
 
@@ -236,12 +240,6 @@
 
 
 
--(void)onMouseEvent           :  (const mouseNetMsg_t*)event
-{
-        NSLog(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
-        
-}
-
 
 
 -(IBAction) transToMouseView : (id)sender
@@ -278,16 +276,18 @@
 }
 
 
-
+-(unsigned short) getDestinationPort
+{
+        return 28412;
+}
 
 
 -(IBAction) setDestinationAddress : (id)sender
 {
-        
         [self uninitLocalNetResources];
         
         [self initLocalNetResources : ipText.text
-                               port : 28412
+                               port : [self getDestinationPort]
         ];
 }
 
@@ -295,7 +295,12 @@
 static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFDataRef address, const void *data, void *info)
 {
         
+        ViewController *controller = (ViewController*)info;
+        [controller handle_write];
+        
 }
+
+
 
 
 
@@ -552,6 +557,7 @@ static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFData
                 goto END_POINT;
         }
         
+        localNetResourcesIsSeted = status;
         
 END_POINT:        
         if(host_handle != NULL)
@@ -594,48 +600,71 @@ END_POINT:
                 host_addr = NULL;
         }
         
+        localNetResourcesIsSeted = NO;
+        
 }
 
 
 -(void)     showAlert : (NSString*)alert cancel : (NSString*)cancel
 {
         
-        if(isAlerted)
-        {
-                return;
-        }
-        
-        alert_view = [[UIAlertView alloc] initWithTitle : @"Warning"
+             
+       UIAlertView             *alert_view = [[UIAlertView alloc] initWithTitle : @"Warning"
                                                      message: alert
                                                     delegate: nil 
                                            cancelButtonTitle: cancel
                                            otherButtonTitles: nil
                               ];
         [alert_view show];
-        isAlerted = YES;
+        
+        [alert_view release];
+        alert_view = nil;
+}
+
+
+-(void)clearOutList
+{
+        if(outlist != nil)
+        {
+                for(int i = 0; i < [outlist count]; ++i)
+                {
+                        NSData *data = [outlist objectAtIndex : i];
+                        [data release];
+                }
+        }
+}
+
+
+-(void)onMouseEvent           :  (const mouseNetMsg_t*)event
+{
+        NSLog(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
+        
 }
 
 
 
--(void)     hideAlert
+-(void) handle_write
 {
-        
-        if(!isAlerted)
+        if([outlist count] == 0)
         {
                 return;
         }
         
-        [alert_view dismissWithClickedButtonIndex : 0 
-                                            animated : YES
-         ];
+        for(int i = 0; i < [outlist count]; ++i)
+        {
+                NSData *data = [outlist objectAtIndex : i];
+                
+                
+        }
+        [outlist removeAllObjects];
         
-
-        [alert_view release];
-        alert_view = nil;
-        isAlerted = NO;
         
-
 }
+
+
+
+
+
 
 
 @end
