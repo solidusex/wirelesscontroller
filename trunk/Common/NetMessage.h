@@ -54,13 +54,11 @@ typedef enum
 
 
 arBuffer_t* MouseEvent_To_NetMessage(const mouseEvent_t *me);
-arStatus_t  NetMessage_To_MouseEvent(mouseEvent_t *me, const arBuffer_t *input);
-
-
 arBuffer_t* KeyboardEvent_To_NetMessage(const mouseEvent_t *ke);
 arBuffer_t* ShortcutsEvent_To_NetMessage(const mouseEvent_t *se);
 
 
+arStatus_t  NetMessage_To_MouseEvent(mouseEvent_t *me, snObject_t *obj);
 
 
 
