@@ -157,18 +157,17 @@
 }
 
 
--(IBAction)closeKeyboard     : (id)sender
-{
-        [self.standardInputText resignFirstResponder];
-}
-
 -(IBAction)returnToMainFrame : (id)sender
 {
-        [self closeKeyboard : self];
+        [self backgroundTap : self];
         [self.delegate keyboardReturnToMainFrame : self];
 }
 
 
+-(IBAction) backgroundTap : (id)sender
+{
+        [self.standardInputText resignFirstResponder];
+}
 
 - (void)dealloc {
         [standardInputText release];
