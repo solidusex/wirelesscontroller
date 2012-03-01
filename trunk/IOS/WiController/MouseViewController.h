@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#include "Arsenal.h"
 #import "NetMessage.h"
 
 @class    MouseViewController;
