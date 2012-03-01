@@ -221,11 +221,11 @@
         
         if(middleIsPressed)
         {
-                if(y != 0.0)
+                if(AR_abs_flt(y) > AR_abs_flt(x))
                 {
                         msg.t = WI_MOUSEWHEEL;
                         msg.data = y;
-                }if(x != 0.0)
+                }else if(x != 0.0)
                 {
                         msg.t = WI_MOUSEHWHEEL;
                         msg.data = x;
