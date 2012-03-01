@@ -11,6 +11,53 @@
 #endif
 
 
+///////////////////////////////////////
+
+
+static void	AR_STDCALL __on_error_func(int_t level, const wchar_t *msg, void *ctx)
+{
+		using namespace ARSpace;
+		AR_UNUSED(level);
+		AR_UNUSED(ctx);
+		OutputDebugStringW(msg);
+}
+
+static void	AR_STDCALL __on_print_func(const wchar_t *msg, void *ctx)
+{
+		using namespace ARSpace;
+		AR_UNUSED(ctx);
+		OutputDebugStringW(msg);
+}
+
+
+
+static BOOL Init_Arsenal()
+{
+		using namespace ARSpace;
+		arInit_t init;
+		
+		init.global_io_ctx.ctx = NULL;
+		init.global_io_ctx.on_error = __on_error_func;
+		init.global_io_ctx.on_print = __on_print_func;
+
+		Arsenal_Init(&init);
+		
+
+		return TRUE;
+}
+
+static BOOL UnInit_Arsenal()
+{
+		ARSpace::Arsenal_UnInit();
+		return TRUE;
+}
+
+
+///////////////////////////////////////
+
+
+
+
 // CWinSrvApp
 
 BEGIN_MESSAGE_MAP(CWinSrvApp, CWinApp)
@@ -67,6 +114,9 @@ BOOL CWinSrvApp::InitInstance()
 	// such as the name of your company or organization
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
+	Init_Arsenal();
+
+
 	CWinSrvDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
@@ -89,6 +139,7 @@ BOOL CWinSrvApp::InitInstance()
 
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
+	UnInit_Arsenal();
 	return FALSE;
 }
 
