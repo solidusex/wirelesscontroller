@@ -27,6 +27,9 @@
     <ClInclude Include="WinSrv.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\NetMessage.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\WinSrv.ico">
@@ -46,6 +49,9 @@
     </Filter>
     <Filter Include="Header">
       <UniqueIdentifier>{4c970d51-11a0-4b2b-9298-f3a81a2e16e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{722b8a90-0319-4b9c-a50f-17fe26892b87}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

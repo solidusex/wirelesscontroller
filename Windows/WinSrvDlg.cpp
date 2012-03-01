@@ -7,9 +7,13 @@
 #include "WinSrvDlg.h"
 #include "afxdialogex.h"
 
+#include "NetMessage.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+
 
 
 // CAboutDlg dialog used for App About
