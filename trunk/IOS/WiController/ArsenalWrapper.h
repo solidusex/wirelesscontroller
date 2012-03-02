@@ -12,16 +12,20 @@
 
 
 @interface ArsenalWrapper : NSObject
+{
+        wchar_t         *tmp;
+}
 
 
 +(void)instance;
 +(void)unInstance;
-
++(ArsenalWrapper*)sharedArsenalWrapper;
 
 -(id)init;
 -(void)dealloc;
 -(void)onPrint : (NSString*) msg;
 -(void)onError : (int)level  Msg : (NSString*)msg;
 
+-(const wchar_t*) stringConvertToWideString : (NSString*)str;
 
 @end
