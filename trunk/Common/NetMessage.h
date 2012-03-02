@@ -16,17 +16,24 @@
 typedef enum
 {
         WI_MOUSEMOVE    =       0x0000,
+        
         WI_LBUTTONDOWN  =       0x0001,
         WI_LBUTTONUP    =       0x0002,
         WI_LBUTTONDBLCLK=       0x0003,
+        
         WI_RBUTTONDOWN  =       0x0004,
         WI_RBUTTONUP    =       0x0005,
         WI_RBUTTONDBLCLK=       0x0006,
+        
         WI_MBUTTONDOWN  =       0x0007,
         WI_MBUTTONUP    =       0x0008,
         WI_MBUTTONDBLCLK=       0x0009,
         WI_MOUSEWHEEL   =       0x000A,
-        WI_MOUSEHWHEEL  =       0x000B
+        WI_MOUSEHWHEEL  =       0x000B,
+        
+        WI_MBUTTONSGLCLK=       0x0010,
+        WI_LBUTTONSGLCLK=       0x0011,
+        WI_RBUTTONSGLCLK=       0x0012,
 }wiMouseEventType_t;
 
 
@@ -46,15 +53,15 @@ typedef enum
         WI_SHORTCUTS_EVENT_T
 }netMsgEventType_t;
 
-
-#define WI_EVENT_NAME           "Event"
+#define WI_PASSWORD             "PWD"
+#define WI_EVENT_NAME           "EVT"
 #define WI_MOUSE_EVENT_TYPE     "TP"
 #define WI_MOUSE_X              "X"
 #define WI_MOUSE_Y              "Y"
 #define WI_MOUSE_DATA           "D"
 
 
-static AR_INLINE arBuffer_t* MouseEvent_To_NetMessage(const mouseEvent_t *me)
+static AR_INLINE arBuffer_t* MouseEvent_To_NetMessage(const mouseEvent_t *me, const char *pwd)
 {
         arBuffer_t *buf = NULL;
         snObject_t *obj = NULL;
@@ -62,6 +69,11 @@ static AR_INLINE arBuffer_t* MouseEvent_To_NetMessage(const mouseEvent_t *me)
         
         obj = SN_CreateObject(SN_DICT_T);
         
+        if(pwd)
+        {
+                SN_InsertToDictObjectByStrStr(obj, WI_PASSWORD, pwd);
+        }
+
         SN_InsertToDictObjectByStrInt(obj, WI_EVENT_NAME, WI_MOUSE_EVENT_T);
         SN_InsertToDictObjectByStrInt(obj, WI_MOUSE_EVENT_TYPE, me->t);
 
@@ -87,13 +99,13 @@ static AR_INLINE arBuffer_t* MouseEvent_To_NetMessage(const mouseEvent_t *me)
 }
 
 
-static AR_INLINE arBuffer_t* KeyboardEvent_To_NetMessage(const mouseEvent_t *ke)
+static AR_INLINE arBuffer_t* KeyboardEvent_To_NetMessage(const mouseEvent_t *ke, const char *pwd)
 {
 		AR_UNUSED(ke);
 		return NULL;
 }
 
-static AR_INLINE arBuffer_t* ShortcutsEvent_To_NetMessage(const mouseEvent_t *se)
+static AR_INLINE arBuffer_t* ShortcutsEvent_To_NetMessage(const mouseEvent_t *se, const char *pwd)
 {
 		AR_UNUSED(se);
 		return NULL;

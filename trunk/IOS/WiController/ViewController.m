@@ -185,6 +185,7 @@
         }
         [ipText release];
         [pwdText release];
+        [current_pwd release];
         [super dealloc];
 }
 
@@ -246,6 +247,7 @@
 {
         if(localNetResourcesIsSeted)
         {
+                [self backgroundTap : self];
                 [self performSegueWithIdentifier : @"TransmitToMouseView"
                                            sender:self
                  ];
@@ -257,6 +259,8 @@
 {
         if(localNetResourcesIsSeted)
         {
+                [self backgroundTap : self];
+                
                 [self performSegueWithIdentifier : @"TransmitToKeyboardView"
                                            sender:self
                  ];
@@ -268,6 +272,8 @@
 {
         if(localNetResourcesIsSeted)
         {
+                [self backgroundTap : self];
+                
                 [self performSegueWithIdentifier : @"TransmitToShortcutsView"
                                            sender:self
                  ];
@@ -286,9 +292,16 @@
 {
         [self uninitLocalNetResources];
         
-        [self initLocalNetResources : ipText.text
+        if([self initLocalNetResources : ipText.text
                                port : [self getDestinationPort]
-        ];
+        ])
+        {
+                [current_pwd release];
+                current_pwd = [pwdText.text copy];
+                
+                
+                [self transToMouseView : self];
+        }
 }
 
 
@@ -507,7 +520,7 @@ static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFData
         
         if(ipText.text == nil || [ipText.text length] == 0)
         {
-                NSString *alert = [NSString stringWithFormat : @"invalid ip address '%@'", addr];
+                NSString *alert = [NSString stringWithFormat : @"invalid ip address"];
                 
                 [self showAlert : alert
                          cancel : @"OK"
@@ -521,14 +534,22 @@ static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFData
         
         
         CFStreamError       streamError;
-
+        Boolean             resolved;
+        NSArray             *resolved_addresses;
+        
+        
         host_handle = CFHostCreateWithName(kCFAllocatorDefault, (CFStringRef)addr);
+        
         
         
         status = CFHostStartInfoResolution(host_handle, kCFHostAddresses, &streamError);
         
-        Boolean             resolved;
-        NSArray             *resolved_addresses;
+        if(!status)
+        {
+                status = CFHostStartInfoResolution(host_handle, kCFHostAddresses, &streamError);
+        }
+        
+        
         
         if(status)
         {
@@ -649,9 +670,16 @@ END_POINT:
 -(void)onMouseEvent           :  (const mouseEvent_t*)event
 {
         arBuffer_t *buf;
-//        NSLog(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
+//        WI_LOG(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
         
-        buf = MouseEvent_To_NetMessage(event);
+        const char *pwd = NULL;
+        
+        if([current_pwd lengthOfBytesUsingEncoding : NSASCIIStringEncoding] > 0)
+        {
+                pwd = [current_pwd UTF8String];
+        }
+        
+        buf = MouseEvent_To_NetMessage(event, pwd);
         
         if(buf)
         {
@@ -718,20 +746,17 @@ END_POINT:
                 
                 if(sn <= 0)
                 {
-                        NSLog(@"error code == %s\r\n", strerror(errno));
+                        WI_LOG(@"error code == %s\r\n", strerror(errno));
                         send_ok = NO;
                 }
                 
-                NSLog(@"Sendto %d bytes\r\n", (int)sn);
+                WI_LOG(@"Sendto %d bytes\r\n", (int)sn);
         }
         
-        if(send_ok)
-        {
-                [outlist removeObjectAtIndex : 0];
-        }
-
-
-        NSLog(@"Remain count == %d\r\n", [outlist count]);
+        [outlist removeObjectAtIndex : 0];
+        
+        WI_LOG(@"Remain count == %d\r\n", [outlist count]);
+        
         CFSocketEnableCallBacks(sock_handle, kCFSocketWriteCallBack);
 }
 

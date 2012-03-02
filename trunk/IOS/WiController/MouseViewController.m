@@ -12,6 +12,7 @@
 @implementation MouseViewController
 
 @synthesize     delegate;
+@synthesize mouseUIView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,22 +41,27 @@
 }
 */
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
+
+
+//Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-}
-*/
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+        [super viewDidLoad];
+ 
+        mouseUIView.delegate = self;
         
-        middleIsPressed = NO;
-        touchesBegan = NO;
+}
+
+
+-(void)viewDidUnload
+{
+        
+        
+       
+        [self setMouseUIView:nil];
+        [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -78,7 +84,7 @@
 -(IBAction)middleButtonDown : (id)sender
 {
         mouseEvent_t msg;
-        middleIsPressed = YES;
+        mouseUIView.middleIsPressed = YES;
         
         
         memset(&msg, 0, sizeof(msg));
@@ -91,7 +97,7 @@
 -(IBAction)middleButtonUpInside : (id)sender
 {
         mouseEvent_t msg;
-        middleIsPressed = NO;
+        mouseUIView.middleIsPressed = NO;
         
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_MBUTTONUP;
@@ -102,7 +108,7 @@
 -(IBAction)middleButtonUpOutside : (id)sender
 {
         mouseEvent_t msg;
-        middleIsPressed = NO;
+        mouseUIView.middleIsPressed = NO;
         
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_MBUTTONUP;
@@ -161,125 +167,18 @@
 }
 
 
-/*************************Touches*******************************/
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)onMouseEvent           :  (const mouseEvent_t*)event;
 {
-        NSLog(@"touchesBegan");
-        
-        touchesBegan = YES;
-        
-        MouseUIView *mouse_view = (MouseUIView*)self.view;
-        
-        [mouse_view.points removeAllObjects];
-
-        UITouch *touch = [touches anyObject];
-        if(touch != nil)
-        {
-                CGPoint beg = [touch locationInView : self.view];
-                lastLocation = beg;
-        }
-        
-        [mouse_view.points addObject : [NSValue valueWithCGPoint : lastLocation]];
-        
+        assert(event != NULL);
+        [self.delegate onMouseEvent : event];
 }
 
 
 
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-        NSLog(@"touchesEnded");
-        touchesBegan = NO;
-        
+- (void)dealloc {
+        [mouseUIView release];
+        [super dealloc];
 }
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-        NSLog(@"touchesCancelled");
-        touchesBegan = NO;
-}
-
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-        mouseEvent_t msg;
-        
-        UITouch *touch = [touches anyObject];
-        if(touch == nil)
-        {
-                return;
-        }
-        
-        CGPoint location = [touch locationInView : self.view];
-        
-        CGFloat  x,y;
-        
-        x = location.x - lastLocation.x;
-        y = location.y - lastLocation.y;
-        
-        
-        if(middleIsPressed)
-        {
-                if(AR_abs_flt(y) > AR_abs_flt(x))
-                {
-                        msg.t = WI_MOUSEWHEEL;
-                        msg.data = y;
-                }else if(x != 0.0)
-                {
-                        msg.t = WI_MOUSEHWHEEL;
-                        msg.data = x;
-                }else
-                {
-                        return;
-                }
-                
-                msg.x = msg.y = 0.0;
-                
-        }else
-        {
-                msg.t = WI_MOUSEMOVE;
-                msg.x = x;
-                msg.y = y;
-                msg.data = 0.0;
-        }
-        
-        lastLocation = location;
-        
-        
-        
-        /*如果位移太小了就不要了*/
-        if(msg.t == WI_MOUSEWHEEL || msg.t == WI_MOUSEHWHEEL)
-        {
-                if((int)msg.data == 0)
-                {
-                        return;
-                }
-                
-        }else if(msg.t == WI_MOUSEMOVE)
-        {
-                if((int)msg.x == 0 && (int)msg.y == 0)
-                {
-                        return;
-                }
-        }else
-        {
-                return;
-        }
-        
-        [self.delegate onMouseEvent : &msg];
-        
-        MouseUIView *mouse_view = (MouseUIView*)self.view;
-        
-        if(mouse_view.points)
-        {
-                [mouse_view.points addObject : [NSValue valueWithCGPoint : lastLocation]];
-                [mouse_view setNeedsDisplay];
-        }
-        
-}
-
-
-
-
 @end

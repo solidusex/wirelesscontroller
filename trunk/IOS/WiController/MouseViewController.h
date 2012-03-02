@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MouseUIView.h>
 
+#include "stdhdr.h"
 #include "Arsenal.h"
 #import "NetMessage.h"
 
@@ -21,16 +23,14 @@
 
 
 
-@interface MouseViewController : UIViewController
+@interface MouseViewController : UIViewController<MouseUIViewDelegate>
 {
-        BOOL    middleIsPressed;
         
-        BOOL    touchesBegan;
-        CGPoint lastLocation;
         
 }
 
 @property(nonatomic, assign)    id<MouseViewControllerDelegate>         delegate;
+@property (retain, nonatomic) IBOutlet MouseUIView *mouseUIView;
 
 -(IBAction)returnToMainFrame : (id)sender;
 
