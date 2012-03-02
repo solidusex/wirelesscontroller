@@ -22,6 +22,7 @@
 
 
 #include "stdhdr.h"
+#include "Reachability.h"
 #import "MouseViewController.h"
 #import "KeyboardViewController.h"
 #import "ShortcutsViewController.h"
@@ -38,6 +39,14 @@
         
         NSMutableArray  *outlist;
         NSString        *current_pwd;
+        
+        
+        Reachability    *localWifiReachability;
+        UIAlertView     *wifiAlertView;
+        BOOL            isAlerted;
+
+        
+        
 }
 
 @property (retain, nonatomic) IBOutlet UITextField *ipText;
