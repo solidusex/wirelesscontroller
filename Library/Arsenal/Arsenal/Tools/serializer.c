@@ -1786,7 +1786,12 @@ int_t			SN_GetWcsFromStringObject(const snObject_t	*obj, wchar_t *buf, size_t le
 		}
 
 		tmp = AR_NEWARR(char, l);
-		
+
+		if(tmp == NULL)
+		{
+				return -1;
+		}
+
 		l = SN_GetStrFromStringObject(obj, tmp, l);
 
 		if(l < 0)

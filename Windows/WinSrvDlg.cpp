@@ -6,8 +6,8 @@
 #include "WinSrv.h"
 #include "WinSrvDlg.h"
 #include "afxdialogex.h"
-
 #include "NetMessage.h"
+#include "ServerService.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,6 +36,7 @@ protected:
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
 {
+
 }
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
@@ -52,10 +53,17 @@ END_MESSAGE_MAP()
 
 
 
-CWinSrvDlg::CWinSrvDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(CWinSrvDlg::IDD, pParent)
+CWinSrvDlg::CWinSrvDlg(CWnd* pParent /*=NULL*/)	: CDialogEx(CWinSrvDlg::IDD, pParent),m_srv(NULL)
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+		
+		m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+
+	
+}
+
+CWinSrvDlg::~CWinSrvDlg()
+{
+		UninitServerService();
 }
 
 void CWinSrvDlg::DoDataExchange(CDataExchange* pDX)
@@ -68,6 +76,11 @@ BEGIN_MESSAGE_MAP(CWinSrvDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 END_MESSAGE_MAP()
+
+
+
+
+
 
 
 // CWinSrvDlg message handlers
@@ -102,6 +115,13 @@ BOOL CWinSrvDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
+
+	if(!ResetServerService())
+	{
+			AfxMessageBox(_T("Failed to create server socket"), MB_OK | MB_ICONSTOP);
+			return FALSE;
+	}
+
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -155,3 +175,53 @@ HCURSOR CWinSrvDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void	CWinSrvDlg::LoadConfig()
+{
+		
+
+}
+
+
+
+BOOL	CWinSrvDlg::InitServerService(const CString &ip_addr, USHORT port)
+{
+		this->UninitServerService();
+
+		const wchar_t *addr = NULL;
+		if(ip_addr.GetLength() > 0)
+		{
+				addr = ip_addr.GetString();
+		}
+
+		m_srv = new CServerService;
+
+		if(!m_srv->Create(port, SOCK_DGRAM, FD_READ, addr))
+		{
+				delete m_srv;
+				m_srv = NULL;
+				return FALSE;
+		}else
+		{
+				return TRUE;
+		}
+}
+
+
+void	CWinSrvDlg::UninitServerService()
+{
+		if(m_srv != NULL)
+		{
+				m_srv->Close();
+				delete m_srv;
+				m_srv = NULL;
+		}
+}
+
+
+
+BOOL	CWinSrvDlg::ResetServerService()
+{
+		return this->InitServerService(L"", 28412);
+}
