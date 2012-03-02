@@ -19,6 +19,65 @@
 
 
 
+
+-(void)alertLocalWifiReachability
+{
+        if(isAlerted)
+        {
+                if([localWifiReachability currentReachabilityStatus] == ReachableViaWiFi)
+                {
+                        [wifiAlertView dismissWithClickedButtonIndex : 0 
+                                                            animated : YES
+                         ];
+                        
+                        [wifiAlertView release];
+                        wifiAlertView = nil;
+                        isAlerted = NO;
+                        
+                        [self uninitLocalNetResources];
+                        [self dismissViewControllerAnimated : YES
+                                                 completion : nil
+                         ];
+                        
+                }
+        }else
+        {   
+                if([localWifiReachability currentReachabilityStatus] != ReachableViaWiFi)
+                {
+                        wifiAlertView  = [[UIAlertView alloc] initWithTitle : @"Warning"
+                                                                     message: @"Wifi disabled" 
+                                                                    delegate: nil 
+                                                           cancelButtonTitle: nil 
+                                                           otherButtonTitles: nil
+                                          ];
+                        
+                        [wifiAlertView show];
+                        isAlerted = YES;
+                }
+        }
+}
+
+
+
+- (void) reachabilityChanged: (NSNotification* )note
+{
+        Reachability* curReach = [note object];
+        NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+        
+        if(curReach == localWifiReachability)
+        {
+                [self alertLocalWifiReachability];
+        }
+}
+
+
+
+
+
+
+/*************************************************************************************************/
+
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)aTextView 
 {
         return YES;
@@ -104,7 +163,23 @@
 {
         [super viewDidLoad];
         
+        
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        isAlerted = NO;
+        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+        
+        localWifiReachability = [Reachability reachabilityForLocalWiFi];
+        [localWifiReachability retain];
+        [localWifiReachability startNotifier];
+        
+        [self alertLocalWifiReachability];
+        
+        
+        
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         
@@ -120,6 +195,7 @@
 
 - (void)viewDidUnload
 {
+        
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
         
@@ -133,6 +209,13 @@
     // e.g. self.myOutlet = nil;
         localNetResourcesIsSeted = NO;
         sock_handle = NULL;
+        
+        [localWifiReachability stopNotifier];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [localWifiReachability release];
+        
+        
+        
 }
 
 - (void)viewWillAppear:(BOOL)animated

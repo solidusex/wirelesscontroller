@@ -12,9 +12,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-        Reachability    *localWifiReachability;
-        UIAlertView     *wifiAlertView;
-        BOOL            isAlerted;
+        
 }
 
 @property (retain, nonatomic) UIWindow *window;

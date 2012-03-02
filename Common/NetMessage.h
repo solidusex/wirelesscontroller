@@ -266,11 +266,11 @@ static AR_INLINE arStatus_t  NetMessage_To_Event(netEvent_t *e, arBuffer_t *buf,
 		}
 
 		e->type = WI_SHORTCUTS_EVENT_MAX_T;
-		val = ARSpace::SN_FindFromDictObjectByStr(sn_ret.obj, WI_EVENT_NAME);
+		val = SN_FindFromDictObjectByStr(sn_ret.obj, WI_EVENT_NAME);
 
 		if(val)
 		{
-				e->type = (netMsgEventType_t)ARSpace::SN_GetUIntObject(val);
+				e->type = (netMsgEventType_t)SN_GetUIntObject(val);
 		}
 		
 		switch(e->type)

@@ -21,51 +21,6 @@
 
 
 
--(void)alertLocalWifiReachability
-{
-        if(isAlerted)
-        {
-                if([localWifiReachability currentReachabilityStatus] == ReachableViaWiFi)
-                {
-                        [wifiAlertView dismissWithClickedButtonIndex : 0 
-                                                            animated : YES
-                         ];
-                        
-                        [wifiAlertView release];
-                        wifiAlertView = nil;
-                        isAlerted = NO;
-
-                }
-        }else
-        {   
-                if([localWifiReachability currentReachabilityStatus] != ReachableViaWiFi)
-                {
-                        wifiAlertView  = [[UIAlertView alloc] initWithTitle : @"Warning"
-                                                                     message: @"Wifi disabled" 
-                                                                    delegate: nil 
-                                                           cancelButtonTitle: nil 
-                                                           otherButtonTitles: nil
-                                          ];
-                        
-                        [wifiAlertView show];
-                        isAlerted = YES;
-                }
-        }
-}
-
-
-
-- (void) reachabilityChanged: (NSNotification* )note
-{
-        Reachability* curReach = [note object];
-        NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
-        
-        if(curReach == localWifiReachability)
-        {
-                [self alertLocalWifiReachability];
-        }
-}
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -73,14 +28,7 @@
     // Override point for customization after application launch.
         [ArsenalWrapper instance];
         
-        isAlerted = NO;
-        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
         
-        localWifiReachability = [Reachability reachabilityForLocalWiFi];
-        [localWifiReachability retain];
-        [localWifiReachability startNotifier];
-        
-        [self alertLocalWifiReachability];
         
         return YES;
 }
@@ -122,9 +70,7 @@
          Save data if appropriate.
          See also applicationDidEnterBackground:.
          */
-        [localWifiReachability stopNotifier];
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        [localWifiReachability release];
+        
         [ArsenalWrapper unInstance];
 
 }
