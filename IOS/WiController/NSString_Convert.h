@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include "stdhdr.h"
 
 @interface NSString (Convert)
 

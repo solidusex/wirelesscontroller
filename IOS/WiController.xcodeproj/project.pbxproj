@@ -38,6 +38,7 @@
 		6708F1EB14FC224A00B0DF7A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		674FCA5014FEFBEB0079FF62 /* NetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetMessage.h; path = ../Common/NetMessage.h; sourceTree = "<group>"; };
+		674FCA5815005AEC0079FF62 /* stdhdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdhdr.h; sourceTree = "<group>"; };
 		677CFE7914FE623E00238716 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		677CFE7B14FE624400238716 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -155,6 +156,7 @@
 				67C70A3114FB6C8000EA1BFA /* KeyboardViewController.m */,
 				67C70A3414FB6CAA00EA1BFA /* ShortcutsViewController.h */,
 				67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */,
+				674FCA5815005AEC0079FF62 /* stdhdr.h */,
 			);
 			path = WiController;
 			sourceTree = "<group>";

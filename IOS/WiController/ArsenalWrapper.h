@@ -8,7 +8,7 @@
 
 
 #include "Arsenal.h"
-
+#include "stdhdr.h"
 
 
 @interface ArsenalWrapper : NSObject

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
-
+#include "stdhdr.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {

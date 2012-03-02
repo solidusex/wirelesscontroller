@@ -21,7 +21,7 @@
 #include <netinet/tcp.h>	// for TCP_NODELAY
 
 
-
+#include "stdhdr.h"
 #import "MouseViewController.h"
 #import "KeyboardViewController.h"
 #import "ShortcutsViewController.h"
@@ -32,11 +32,12 @@
 @interface ViewController : UIViewController<MouseViewControllerDelegate, KeyboardViewControllerDelegate, ShortcutsViewControllerDelegate, UITextFieldDelegate>
 {
         BOOL            localNetResourcesIsSeted;
-        
+
         CFSocketRef     sock_handle;
         CFDataRef       host_addr;
         
         NSMutableArray  *outlist;
+        NSString        *current_pwd;
 }
 
 @property (retain, nonatomic) IBOutlet UITextField *ipText;

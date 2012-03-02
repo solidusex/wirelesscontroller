@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#include "stdhdr.h"
 
 
 @class    ShortcutsViewController;
