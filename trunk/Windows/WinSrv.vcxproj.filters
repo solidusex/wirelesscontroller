@@ -10,6 +10,9 @@
     <ClCompile Include="WinSrvDlg.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="ServerService.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -29,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="..\Common\NetMessage.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerService.h">
+      <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -115,6 +115,11 @@ BOOL CWinSrvApp::InitInstance()
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
 	Init_Arsenal();
+	if(!AfxSocketInit())
+	{
+			AfxMessageBox(_T("Failed to Initialize Sockets"), MB_OK | MB_ICONSTOP);
+			return FALSE;
+	}
 
 
 	CWinSrvDlg dlg;
@@ -139,7 +144,10 @@ BOOL CWinSrvApp::InitInstance()
 
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
+
+	AfxSocketTerm();
 	UnInit_Arsenal();
+
 	return FALSE;
 }
 
