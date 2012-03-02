@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 none. All rights reserved.
 //
 
-
+#import "ArsenalWrapper.h"
 #import "ViewController.h"
 
 
@@ -288,8 +288,95 @@
 }
 
 
+#define IP_PATTERN      L"(({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5]))(?!{digit})"
+
+static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
+{
+        lex_t *lex = Lex_Create();
+        
+        
+        if(Lex_InsertName(lex, L"delim", L"[ \\r\\t\\n]") != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        if(Lex_InsertName(lex, L"digit", L"[0-9]") != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        lexAction_t act;
+        act.is_skip = true;
+        act.priority = 1;
+        act.value = 0;
+        
+        if(Lex_InsertRule(lex, L"{delim}+", &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        
+        act.is_skip = false;
+        act.priority = 0;
+        act.value = 1;
+        if(Lex_InsertRule(lex, IP_PATTERN, &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        lexMatch_t *match = Lex_CreateMatch(lex);
+        Lex_ResetInput(match, ip);
+        lexToken_t tok;
+        BOOL ret = Lex_Match(match, &tok) == AR_S_YES;
+        
+        if(ret)
+        {
+                assert(tok.count < 16);
+                AR_wcsncpy(valid_ip, tok.str, tok.count);
+                valid_ip[tok.count] = 0;
+        }
+        
+        Lex_DestroyMatch(match);
+        match = NULL;
+        
+        Lex_Destroy(lex);
+        lex = NULL;
+        
+        return ret;
+}
+
+
+
+
 -(IBAction) setDestinationAddress : (id)sender
 {
+        if([ipText.text length] > 0)
+        {
+                wchar_t valid_ip[16];
+                const wchar_t *ip_txt = [[ArsenalWrapper sharedArsenalWrapper] stringConvertToWideString : ipText.text];
+                
+                if(!is_valid_ip_address(ip_txt, valid_ip))
+                {
+                        NSString *alert = [NSString stringWithFormat : @"invalid ip address : '%@'", ipText.text];
+                        
+                        [self showAlert : alert
+                                 cancel : @"OK"
+                         ];
+                        return;
+                }
+                
+                ipText.text = [NSString  stringWithWideString : valid_ip];
+        }else
+        {
+                NSString *alert = [NSString stringWithFormat : @"empty ip address"];
+                
+                [self showAlert : alert
+                         cancel : @"OK"
+                 ];
+                return;
+        }
+        
+        ///////////////////////////////
         [self uninitLocalNetResources];
         
         if([self initLocalNetResources : ipText.text
@@ -298,7 +385,6 @@
         {
                 [current_pwd release];
                 current_pwd = [pwdText.text copy];
-                
                 
                 [self transToMouseView : self];
         }
@@ -382,6 +468,9 @@ static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFData
                         {
                                 struct	in_addr ipv4Addr;
                                 ipv4Addr = addr4->sin_addr;
+                                
+//                              printf("%s\r\n", inet_ntoa(ipv4Addr));
+                                
                                 addr6->sin6_len         = sizeof(*addr6);
                                 addr6->sin6_family      = AF_INET6;
                                 addr6->sin6_port        = htons(port);

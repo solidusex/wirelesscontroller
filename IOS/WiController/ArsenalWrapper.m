@@ -45,7 +45,9 @@ static void AR_STDCALL __g_on_print(const wchar_t *msg, void *ctx)
 
 
 static ArsenalWrapper   *__g_arsenal = NULL;
+
 @implementation ArsenalWrapper
+
 
 +(void)instance
 {
@@ -79,7 +81,10 @@ static ArsenalWrapper   *__g_arsenal = NULL;
         }
 }
 
-
++(ArsenalWrapper*)sharedArsenalWrapper
+{
+        return __g_arsenal;
+}
 
 
 
@@ -88,7 +93,7 @@ static ArsenalWrapper   *__g_arsenal = NULL;
 {
         if((self = [super init]) != nil)
         {
-                
+                tmp = NULL;
         }
         
         return self;
@@ -96,8 +101,14 @@ static ArsenalWrapper   *__g_arsenal = NULL;
 
 -(void)dealloc
 {
-        
         [super dealloc];
+        
+        if(tmp != NULL)
+        {
+                AR_DEL(tmp);
+                tmp = NULL;
+        }
+        
 }
 
 
@@ -112,7 +123,30 @@ static ArsenalWrapper   *__g_arsenal = NULL;
         NSLog(@"error level = %d, error msg = '%@'", level, msg);
 }
 
-
+-(const wchar_t*) stringConvertToWideString : (NSString*)str
+{
+        AR_ASSERT(str != nil);
+        
+        if(tmp != NULL)
+        {
+                AR_DEL(tmp);
+                tmp = NULL;
+        }
+        
+        const char *utf8 = [str UTF8String];
+        
+        if(utf8 != NULL)
+        {
+                tmp = AR_str_convto_wcs(AR_CP_UTF8, utf8, strlen(utf8));
+        }
+        
+        if(tmp == NULL)
+        {
+                tmp = AR_wcsdup(L"");
+        }
+        
+        return tmp;
+}
 
 
 @end

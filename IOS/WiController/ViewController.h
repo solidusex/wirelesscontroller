@@ -27,7 +27,7 @@
 #import "ShortcutsViewController.h"
 
 
-
+#import "NSString_Convert.h"
 
 @interface ViewController : UIViewController<MouseViewControllerDelegate, KeyboardViewControllerDelegate, ShortcutsViewControllerDelegate, UITextFieldDelegate>
 {
