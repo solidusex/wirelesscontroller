@@ -140,23 +140,8 @@
                         <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uoh-Hk-7Bu">
-                                <rect key="frame" x="364" y="20" width="100" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Return">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="returnToMainFrame:" destination="znP-Ap-1I9" eventType="touchUpInside" id="akm-HF-T72"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jFa-qv-lmd">
-                                <rect key="frame" x="364" y="114" width="100" height="50"/>
+                                <rect key="frame" x="370" y="113" width="100" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="M">
@@ -173,7 +158,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XAl-eQ-t8J">
-                                <rect key="frame" x="364" y="172" width="100" height="50"/>
+                                <rect key="frame" x="370" y="171" width="100" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="L">
@@ -190,7 +175,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lKd-wj-xjr">
-                                <rect key="frame" x="364" y="230" width="100" height="50"/>
+                                <rect key="frame" x="370" y="229" width="100" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="R">
@@ -209,8 +194,39 @@
                             <view contentMode="scaleToFill" id="oli-Km-lLV" customClass="MouseUIView">
                                 <rect key="frame" x="0.0" y="0.0" width="356" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="45J-ke-U1D">
+                                        <rect key="frame" x="277" y="253" width="79" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="scrollModeChanged:" destination="znP-Ap-1I9" eventType="valueChanged" id="2lh-ZY-FYM"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" autorepeat="NO" value="1" minimumValue="1" maximumValue="10" id="god-CC-lGx">
+                                <rect key="frame" x="373" y="78" width="94" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="mouseAccelerateChanged:" destination="znP-Ap-1I9" eventType="valueChanged" id="SWb-NG-0HO"/>
+                                </connections>
+                            </stepper>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uoh-Hk-7Bu">
+                                <rect key="frame" x="370" y="20" width="100" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnToMainFrame:" destination="znP-Ap-1I9" eventType="touchUpInside" id="akm-HF-T72"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -501,6 +517,7 @@
                 <relationship kind="action" name="middleButtonDown:"/>
                 <relationship kind="action" name="middleButtonUpInside:"/>
                 <relationship kind="action" name="middleButtonUpOutside:"/>
+                <relationship kind="action" name="mouseAccelerateChanged:"/>
                 <relationship kind="action" name="returnToMainFrame:"/>
                 <relationship kind="action" name="rightButtonDown:"/>
                 <relationship kind="action" name="rightButtonUpInside:"/>
