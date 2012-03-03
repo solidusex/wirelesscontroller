@@ -228,6 +228,6 @@ BOOL	CWinSrvDlg::ResetServerService()
 				return FALSE;
 		}
 
-		this->m_srv->SetPassword(L"abcd");
+		this->m_srv->SetPassword(L"1");
 		return TRUE;
 }
