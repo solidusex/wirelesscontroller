@@ -10,7 +10,6 @@
 
 @implementation MouseUIView
 
-@synthesize middleIsPressed;
 @synthesize delegate;
 
 
@@ -62,15 +61,15 @@
         [single_click requireGestureRecognizerToFail:double_click];
 
         
-        [self addGestureRecognizer : single_click];
-        [self addGestureRecognizer : double_click];
+       // [self addGestureRecognizer : single_click];
+       // [self addGestureRecognizer : double_click];
         
 }
 
 -(void)uninit_gesture_recognizer
 {
-        [self removeGestureRecognizer : single_click];
-        [self removeGestureRecognizer : double_click];
+        //[self removeGestureRecognizer : single_click];
+        //[self removeGestureRecognizer : double_click];
         
         [single_click release];
         single_click = nil;
@@ -86,6 +85,7 @@
     if (self) 
     {
             [self init_gesture_recognizer];
+
     }
     return self;
 }
@@ -185,6 +185,11 @@
 }
 
 
+
+
+
+
+
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
         mouseEvent_t msg;
@@ -203,16 +208,17 @@
         y = location.y - lastLocation.y;
         
         
-        if(middleIsPressed)
+        if([self.delegate isScrollMode])
         {
                 if(AR_abs_flt(y) > AR_abs_flt(x))
                 {
                         msg.t = WI_MOUSEWHEEL;
-                        msg.data = y;
+                        msg.data = -y * 2;
+                        
                 }else if(x != 0.0)
                 {
                         msg.t = WI_MOUSEHWHEEL;
-                        msg.data = x;
+                        msg.data = -x * 2;
                 }else
                 {
                         return;
@@ -223,8 +229,8 @@
         }else
         {
                 msg.t = WI_MOUSEMOVE;
-                msg.x = x;
-                msg.y = y;
+                msg.x = x * [self.delegate getMouseAccelerate];
+                msg.y = y * [self.delegate getMouseAccelerate];
                 msg.data = 0.0;
         }
         

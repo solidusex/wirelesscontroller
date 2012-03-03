@@ -46,12 +46,14 @@
 
 //Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 
+static double __g_mouse_accelerate = 1.5;
 - (void)viewDidLoad
 {
         [super viewDidLoad];
- 
-        mouseUIView.delegate = self;
         
+        mouseUIView.delegate = self;
+        mouse_accelerate = __g_mouse_accelerate;
+        is_scroll_mode = NO;
 }
 
 
@@ -59,10 +61,11 @@
 {
         
         
-       
+        __g_mouse_accelerate = mouse_accelerate;
         [self setMouseUIView:nil];
         [super viewDidUnload];
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -84,7 +87,6 @@
 -(IBAction)middleButtonDown : (id)sender
 {
         mouseEvent_t msg;
-        mouseUIView.middleIsPressed = YES;
         
         
         memset(&msg, 0, sizeof(msg));
@@ -97,7 +99,6 @@
 -(IBAction)middleButtonUpInside : (id)sender
 {
         mouseEvent_t msg;
-        mouseUIView.middleIsPressed = NO;
         
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_MBUTTONUP;
@@ -108,7 +109,6 @@
 -(IBAction)middleButtonUpOutside : (id)sender
 {
         mouseEvent_t msg;
-        mouseUIView.middleIsPressed = NO;
         
         memset(&msg, 0, sizeof(msg));
         msg.t = WI_MBUTTONUP;
@@ -181,4 +181,29 @@
         [mouseUIView release];
         [super dealloc];
 }
+
+
+-(float)                getMouseAccelerate
+{
+        return mouse_accelerate;
+}
+
+-(BOOL)         isScrollMode;
+{
+        return is_scroll_mode;
+}
+
+-(IBAction)  mouseAccelerateChanged : (id)sender
+{
+        mouse_accelerate = ((UIStepper*)sender).value;
+        WI_LOG(@"mouseAccelerate changed to %g\r\n", mouse_accelerate);
+        
+}
+
+-(IBAction)  scrollModeChanged : (id)sender
+{
+        is_scroll_mode = ((UISwitch*)sender).on;
+}
+
+
 @end

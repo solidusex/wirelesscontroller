@@ -47,7 +47,6 @@
         
         BOOL            is_saved_context;
         NSMutableArray  *backup_outlist;
-        
 }
 
 @property (retain, nonatomic) IBOutlet UITextField *ipText;
@@ -55,6 +54,7 @@
 @property (retain, nonatomic) IBOutlet UITextField *pwdText;
 
 @property (readonly, nonatomic) CFSocketRef sock_handle;
+
 
 -(IBAction) backgroundTap : (id)sender;
 
@@ -72,6 +72,9 @@
 
 -(void)     saveContext;
 -(void)     loadContext;
+
+-(unsigned short)       getDestinationPort;
+
 
 
 

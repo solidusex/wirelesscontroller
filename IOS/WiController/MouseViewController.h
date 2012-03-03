@@ -19,6 +19,7 @@
 
 -(void)mouseReturnToMainFrame : (MouseViewController*)controller;
 -(void)onMouseEvent           :  (const mouseEvent_t*)event;
+
 @end
 
 
@@ -26,7 +27,9 @@
 @interface MouseViewController : UIViewController<MouseUIViewDelegate>
 {
         
-        
+        double  mouse_accelerate;
+        BOOL    is_scroll_mode;
+
 }
 
 @property(nonatomic, assign)    id<MouseViewControllerDelegate>         delegate;
@@ -48,4 +51,11 @@
 -(IBAction)rightButtonUpInside   :  (id)sender;
 -(IBAction)rightButtonUpOutside  :  (id)sender;
 
+
+
+-(IBAction)  mouseAccelerateChanged : (id)sender;
+
+
+-(float)  getMouseAccelerate;
+-(BOOL)   isScrollMode;
 @end

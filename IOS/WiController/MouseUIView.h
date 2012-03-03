@@ -14,12 +14,13 @@
 
 @protocol MouseUIViewDelegate<NSObject>
         -(void)onMouseEvent      :  (const mouseEvent_t*)event;
+        -(float)        getMouseAccelerate;
+        -(BOOL)         isScrollMode;
 @end
 
 
 @interface MouseUIView : UIView
 {
-        BOOL    middleIsPressed;
         BOOL    touchesBegan;
         CGPoint lastLocation;
         NSMutableArray  *points;
@@ -27,9 +28,10 @@
         UITapGestureRecognizer  *single_click;
         UITapGestureRecognizer  *double_click;
         
+        
 }
 
-@property(nonatomic, readwrite) BOOL                            middleIsPressed;
-@property(nonatomic, assign) id<MouseUIViewDelegate>         delegate;
+@property(nonatomic, assign) id<MouseUIViewDelegate>            delegate;
+
 
 @end
