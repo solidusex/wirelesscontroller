@@ -15,6 +15,12 @@
 
 #include "targetver.h"
 
+#if !defined(_CRT_SECURE_NO_WARNINGS)
+
+		#define	_CRT_SECURE_NO_WARNINGS	1
+#endif
+
+
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // some CString constructors will be explicit
 
 // turns off MFC's hiding of some common and often safely ignored warning messages
@@ -58,3 +64,11 @@
 #endif
 
 
+
+#define	WM_SHOWTASK				(WM_USER + 1001)
+#define WM_LOGMSG				(WM_USER + 1002)
+#define WM_NOTIFYMSG			(WM_USER + 1003)
+
+#define	IDC_CUS_SHOW_DIALOG		9001
+#define	IDC_CUS_HIDE_DIALOG		9002
+#define IDC_CUS_SHOW_ABOUT		9003
