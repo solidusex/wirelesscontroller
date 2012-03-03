@@ -223,5 +223,11 @@ void	CWinSrvDlg::UninitServerService()
 
 BOOL	CWinSrvDlg::ResetServerService()
 {
-		return this->InitServerService(L"", 28412);
+		if(!this->InitServerService(L"", 28412))
+		{
+				return FALSE;
+		}
+
+		this->m_srv->SetPassword(L"abcd");
+		return TRUE;
 }
