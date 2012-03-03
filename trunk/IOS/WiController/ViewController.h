@@ -44,8 +44,9 @@
         Reachability    *localWifiReachability;
         UIAlertView     *wifiAlertView;
         BOOL            isAlerted;
-
         
+        BOOL            is_saved_context;
+        NSMutableArray  *backup_outlist;
         
 }
 
@@ -53,6 +54,7 @@
 
 @property (retain, nonatomic) IBOutlet UITextField *pwdText;
 
+@property (readonly, nonatomic) CFSocketRef sock_handle;
 
 -(IBAction) backgroundTap : (id)sender;
 
@@ -67,6 +69,10 @@
 -(void)     showAlert : (NSString*)alert cancel : (NSString*)cancel;
 -(void)     clearOutList;
 -(void)     handle_write;
+
+-(void)     saveContext;
+-(void)     loadContext;
+
 
 
 @end

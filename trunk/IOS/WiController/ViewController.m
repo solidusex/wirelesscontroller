@@ -17,7 +17,7 @@
 @synthesize ipText;
 @synthesize pwdText;
 
-
+@synthesize sock_handle;
 
 
 -(void)alertLocalWifiReachability
@@ -34,22 +34,23 @@
                         wifiAlertView = nil;
                         isAlerted = NO;
                         
-                        [self uninitLocalNetResources];
-                        [self dismissViewControllerAnimated : YES
-                                                 completion : nil
-                         ];
+
+                        [self loadContext];
                         
                 }
         }else
         {   
                 if([localWifiReachability currentReachabilityStatus] != ReachableViaWiFi)
                 {
+                        [self saveContext];
+                        
                         wifiAlertView  = [[UIAlertView alloc] initWithTitle : @"Warning"
                                                                      message: @"Wifi disabled" 
                                                                     delegate: nil 
                                                            cancelButtonTitle: nil 
                                                            otherButtonTitles: nil
                                           ];
+                        
                         
                         [wifiAlertView show];
                         isAlerted = YES;
@@ -157,7 +158,22 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+- (void)onEnterBackground:(NSNotification *)notification 
+{
+        NSLog(@"ViewController::onEnterBackground");
+        [self saveContext];
+}
+
+
+- (void)onEnterForeground:(NSNotification *)notification 
+{
+        NSLog(@"ViewController::onEnterForeground");        
+        [self loadContext];
+}
+
 #pragma mark - View lifecycle
+
 
 - (void)viewDidLoad
 {
@@ -183,13 +199,20 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        
+        
         self.ipText.delegate = self;
         self.pwdText.delegate = self;
         
         localNetResourcesIsSeted = NO;
         sock_handle = NULL;
         
+        
         outlist = [[NSMutableArray alloc] initWithCapacity : 128];
+        
+        is_saved_context = NO;
         
 }
 
@@ -198,6 +221,9 @@
         
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
         
         self.ipText.delegate = nil;
         self.pwdText.delegate = nil;
@@ -478,6 +504,12 @@ static void __on_write_callback(CFSocketRef s, CFSocketCallBackType type, CFData
 {
         
         ViewController *controller = (ViewController*)info;
+        
+        if(controller.sock_handle != s)
+        {
+                assert(false);
+                return;
+        }
         
         switch(type)
         {
@@ -883,19 +915,12 @@ END_POINT:
 
 -(void) handle_write
 {
+        
         BOOL is_valid = CFSocketIsValid(sock_handle);
-
+        
         if(!is_valid)
         {
-                [self showAlert : @"Socket disconnect"
-                         cancel : @"OK"
-                 ];
-              
-                [self uninitLocalNetResources];
-                [self dismissViewControllerAnimated : YES
-                                         completion : nil
-                 ];
-
+                goto INVALID_POINT;
         }
         
         
@@ -920,6 +945,7 @@ END_POINT:
                 {
                         WI_LOG(@"error code == %s\r\n", strerror(errno));
                         send_ok = NO;
+                        goto INVALID_POINT;
                 }
                 
                 WI_LOG(@"Sendto %d bytes\r\n", (int)sn);
@@ -930,10 +956,97 @@ END_POINT:
         WI_LOG(@"Remain count == %d\r\n", [outlist count]);
         
         CFSocketEnableCallBacks(sock_handle, kCFSocketWriteCallBack);
+        
+        return;
+        
+INVALID_POINT:
+        
+        [self showAlert : @"connection lost!"
+                 cancel : @"OK"
+         ];
+        
+        [self uninitLocalNetResources];
+        [self dismissViewControllerAnimated : YES
+                                 completion : nil
+         ];
+        return;
 }
 
 
 
+
+-(void)     saveContext
+{
+        NSLog(@"ViewController::saveContext!");
+        
+        if(is_saved_context)
+        {
+                return;
+        }
+        
+        if(!localNetResourcesIsSeted)
+        {
+                return;
+        }
+        
+        [self uninitLocalNetResources];
+        
+        if(backup_outlist != nil)
+        {
+                [backup_outlist release];
+        }
+         
+        backup_outlist = [[NSMutableArray alloc] initWithArray : outlist];
+        is_saved_context = YES;
+       
+}
+
+
+
+-(void)     loadContext
+{
+        NSLog(@"ViewController::loadContext!");
+        if(!is_saved_context)
+        {
+                return;
+        }
+        
+        if([localWifiReachability currentReachabilityStatus] != ReachableViaWiFi)
+        {
+                return;
+        }
+        
+        if(![self initLocalNetResources : ipText.text
+                                  port : [self getDestinationPort]
+            ])
+        {
+                [self dismissViewControllerAnimated : YES
+                                         completion : nil
+                 ];
+                is_saved_context = NO;
+                return;
+        }
+        
+        [current_pwd release];
+        current_pwd = [pwdText.text copy];
+        
+        if(outlist != nil)
+        {
+                [outlist release];
+        }
+         
+        outlist = backup_outlist;
+        backup_outlist = nil;
+        
+        
+        if([outlist count] > 0)
+        {
+                CFSocketEnableCallBacks(sock_handle, kCFSocketWriteCallBack);
+        }
+
+        is_saved_context = NO;
+        
+}
 
 
 
