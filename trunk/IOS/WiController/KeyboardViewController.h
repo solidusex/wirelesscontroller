@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #include "stdhdr.h"
+#include "Arsenal.h"
+#include "NetMessage.h"
 
 
 @class    KeyboardViewController;
@@ -16,7 +18,7 @@
 @protocol KeyboardViewControllerDelegate<NSObject>
 
 -(void)keyboardReturnToMainFrame : (KeyboardViewController*)controller;
-
+-(void)onKeyboardEvent : (const keyboardEvent_t*) ke;
 @end
 
 
@@ -32,6 +34,10 @@
 
 -(IBAction)returnToMainFrame : (id)sender;
 -(IBAction) backgroundTap : (id)sender;
+
+
+-(IBAction) functionKeyDown : (id)sender;
+-(IBAction) functionKeyUp : (id)sender;
 
 
 @end
