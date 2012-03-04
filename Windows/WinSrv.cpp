@@ -84,8 +84,36 @@ CWinSrvApp theApp;
 
 // CWinSrvApp initialization
 
+
+#define MUTEX_NAME		L"7B615CA6-8B43-484E-836F-A9682E1BF292"
+
+BOOL IsSameProcessRunning()
+{
+		HANDLE   mtx   =   CreateMutexW(0,   TRUE,   MUTEX_NAME); 
+
+		if(GetLastError()   ==   ERROR_ALREADY_EXISTS)   
+		{ 
+				ReleaseMutex(mtx); 
+				CloseHandle(mtx); 
+				return TRUE;
+		}else
+		{
+				return FALSE;
+		}
+}
+
+
+
 BOOL CWinSrvApp::InitInstance()
 {
+
+		if(IsSameProcessRunning())
+		{
+				MessageBox(NULL, TEXT("WiController-Server is already running!"), TEXT("Warning"), 0);
+				return FALSE;
+		}
+
+
 	// InitCommonControlsEx() is required on Windows XP if an application
 	// manifest specifies use of ComCtl32.dll version 6 or later to enable
 	// visual styles.  Otherwise, any window creation will fail.
