@@ -60,53 +60,52 @@ typedef enum
 typedef enum
 {
         WI_KEY_FUNC_ESC_DONW  =       0x0000,
-        WI_KEY_FUNC_ESC_UP    =       0x0000,
+        WI_KEY_FUNC_ESC_UP    =       0x0001,
         
-        WI_KEY_FUNC_CMD_DONW  =       0x0001,
-        WI_KEY_FUNC_CMD_UP    =       0x0002,
+        WI_KEY_FUNC_CMD_DONW  =       0x0002,
+        WI_KEY_FUNC_CMD_UP    =       0x0003,
 
-        WI_KEY_FUNC_CTRL_DONW  =       0x0003,
-        WI_KEY_FUNC_CTRL_UP    =       0x0004,
+        WI_KEY_FUNC_CTRL_DONW  =       0x0004,
+        WI_KEY_FUNC_CTRL_UP    =       0x0005,
         
-        WI_KEY_FUNC_TAB_DONW  =       0x0005,
-        WI_KEY_FUNC_TAB_UP    =       0x0006,
+        WI_KEY_FUNC_TAB_DONW  =       0x0006,
+        WI_KEY_FUNC_TAB_UP    =       0x0007,
         
-        WI_KEY_FUNC_SHIFT_DONW  =       0x0007,
-        WI_KEY_FUNC_SHIFT_UP    =       0x0008,
+        WI_KEY_FUNC_SHIFT_DONW  =       0x0008,
+        WI_KEY_FUNC_SHIFT_UP    =       0x0009,
         
-        WI_KEY_FUNC_DELETE_DONW  =       0x0007,
-        WI_KEY_FUNC_DELETE_UP    =       0x0008,
+        WI_KEY_FUNC_DELETE_DONW  =       0x000A,
+        WI_KEY_FUNC_DELETE_UP    =       0x000B,
         
-        WI_KEY_FUNC_INSERT_DONW  =       0x0007,
-        WI_KEY_FUNC_INSERT_UP    =       0x0008,
+        WI_KEY_FUNC_INSERT_DONW  =       0x000C,
+        WI_KEY_FUNC_INSERT_UP    =       0x000D,
         
-        WI_KEY_FUNC_HOME_DONW  =       0x0009,
-        WI_KEY_FUNC_HOME_UP    =       0x000A,
+        WI_KEY_FUNC_HOME_DONW  =       0x000E,
+        WI_KEY_FUNC_HOME_UP    =       0x000F,
         
-        WI_KEY_FUNC_END_DONW  =       0x000B,
-        WI_KEY_FUNC_END_UP    =       0x000C,
+        WI_KEY_FUNC_END_DONW  =       0x0010,
+        WI_KEY_FUNC_END_UP    =       0x0011,
         
-        WI_KEY_FUNC_PAGEDOWN_DONW  =     0x000D,
-        WI_KEY_FUNC_PAGEDOWN_UP    =     0x000E,
+        WI_KEY_FUNC_PAGEDOWN_DONW  =     0x0012,
+        WI_KEY_FUNC_PAGEDOWN_UP    =     0x0013,
         
-        WI_KEY_FUNC_PAGEUP_DONW  =       0x000F,
-        WI_KEY_FUNC_PAGEUP_UP    =       0x0010,
+        WI_KEY_FUNC_PAGEUP_DONW  =       0x0014,
+        WI_KEY_FUNC_PAGEUP_UP    =       0x0015,
         
-        WI_KEY_FUNC_UP_DONW  =       0x0011,
-        WI_KEY_FUNC_UP_UP    =       0x0012,
-        WI_KEY_FUNC_DOWN_DONW  =       0x0013,
-        WI_KEY_FUNC_DOWN_UP    =       0x0014,
-        WI_KEY_FUNC_LEFT_DONW  =       0x0015,
-        WI_KEY_FUNC_LEFT_UP    =       0x0016,
-        WI_KEY_FUNC_RIGHT_DONW  =       0x0017,
-        WI_KEY_FUNC_RIGHT_UP    =       0x0018,
+        WI_KEY_FUNC_UP_DONW  =       0x0016,
+        WI_KEY_FUNC_UP_UP    =       0x0017,
+        WI_KEY_FUNC_DOWN_DONW  =       0x0018,
+        WI_KEY_FUNC_DOWN_UP    =       0x0019,
+        WI_KEY_FUNC_LEFT_DONW  =       0x001A,
+        WI_KEY_FUNC_LEFT_UP    =       0x001B,
+        WI_KEY_FUNC_RIGHT_DONW  =       0x001C,
+        WI_KEY_FUNC_RIGHT_UP    =       0x001D,
         
-        WI_KEY_FUNC_BACKSPACE_DONW  =       0x0019,
-        WI_KEY_FUNC_BACKSPACE_UP    =       0x001A,
+        WI_KEY_FUNC_BACKSPACE_DONW  =       0x001E,
+        WI_KEY_FUNC_BACKSPACE_UP    =       0x001F,
         
-        WI_KEY_FUNC_ALT_DONW  =       0x001B,
-        WI_KEY_FUNC_ALT_UP    =       0x001C
-
+        WI_KEY_FUNC_ALT_DONW  =       0x0020,
+        WI_KEY_FUNC_ALT_UP    =       0x0021
 }wiKeyboardFunctionKey_t;
 
 typedef struct __keyboard_net_message_tag
@@ -235,6 +234,9 @@ static AR_INLINE arBuffer_t* KeyboardEvent_To_NetMessage(const keyboardEvent_t *
         return buf;
 }
 
+
+
+
 static AR_INLINE arBuffer_t* ShortcutsEvent_To_NetMessage(const shortcutsEvent_t *se, const char *pwd)
 {
 		AR_UNUSED(se);
@@ -287,15 +289,47 @@ static AR_INLINE arStatus_t  NetMessage_To_MouseEvent(mouseEvent_t *me, snObject
 
 
 
-
-
 static AR_INLINE arStatus_t NetMessage_To_KeyboardEvent(keyboardEvent_t *ke, snObject_t *obj)
 {
-		AR_UNUSED(ke);
-		AR_UNUSED(obj);
+		snObject_t *val = NULL;
+        AR_ASSERT(ke != NULL && obj != NULL);
+        
+        AR_memset(ke, 0, sizeof(*ke));
+        val = SN_FindFromDictObjectByStr(obj, WI_KEYBOARD_EVENT_TYPE);
+        
+		__CHECK_AND_RET(val != NULL, AR_E_INVAL);
+        
+        ke->type = (wiKeyboardEventType_t)SN_GetIntObject(val);
 
-		return AR_E_INVAL;
+		if(ke->type == WI_FUNCTION_KEY_T)
+		{
+				val = SN_FindFromDictObjectByStr(obj, WI_KEYBOARD_FUNCKEY_VALUE);
+				__CHECK_AND_RET(val != NULL, AR_E_INVAL);
+				ke->func_key = (wiKeyboardFunctionKey_t)SN_GetUIntObject(val);
+
+		}else if(ke->type == WI_FUNCTION_ASCII_KEY_T)
+		{
+				val = SN_FindFromDictObjectByStr(obj, WI_KEYBOARD_ASCIIKEY_VALUE);
+				__CHECK_AND_RET(val != NULL, AR_E_INVAL);
+				ke->ascii = (wiKeyboardFunctionKey_t)SN_GetUIntObject(val);
+				
+		}else if(ke->type == WI_FUNCTION_TEXT_T)
+		{
+				int_t len;
+				val = SN_FindFromDictObjectByStr(obj, WI_KEYBOARD_TEXTKEY_VALUE);
+				__CHECK_AND_RET(val != NULL, AR_E_INVAL);
+				len = SN_GetStrFromStringObject(val, ke->text, sizeof(ke->text) * sizeof(ke->text[0]));
+				__CHECK_AND_RET(len > 0, AR_E_INVAL);
+		}else
+		{
+				__CHECK_AND_RET(false, AR_E_INVAL);
+		}
+		return AR_S_YES;
 }
+
+
+
+
 
 static AR_INLINE arStatus_t NetMessage_To_ShortcutsEvent(shortcutsEvent_t *se, snObject_t *obj)
 {
