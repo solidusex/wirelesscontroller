@@ -175,69 +175,48 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+        keyboardEvent_t ke;
+        memset(&ke, 0, sizeof(ke));
+        
+        if(string == nil || [string length] == 0)
+        {
+                return NO;
+        }
+        
+        const char *utf8 = [string UTF8String];
+
+        if(utf8 == NULL)
+        {
+                return NO;
+        }
+        
+        int l =  strlen(utf8);
+        if(l == 0)
+        {
+                return NO;
+        }
+        
+        if(l == 1)
+        {
+                ke.type = WI_ASCII_KEY_T;
+                ke.ascii = *utf8;
+        }else
+        {
+                ke.type = WI_TEXT_T;
+                size_t cnt = l < sizeof(ke.text) * sizeof(char) - 1 ? l : sizeof(ke.text) * sizeof(char) - 1;
+                strncpy(ke.text, utf8, cnt);
+                ke.text[cnt] = 0;
+        }
+        
+        
         
         return YES;
 }
 
 
 
-/*
- WI_FUNCTION_KEY_T,
- WI_FUNCTION_ASCII_KEY_T,
- WI_FUNCTION_TEXT_T
- }wiKeyboardEventType_t;
- 
- typedef enum
- {
- WI_KEY_FUNC_ESC_UP    =       0x0000,
- 
-   =       0x0001,
- WI_KEY_FUNC_CMD_UP    =       0x0002,
- 
-   =       0x0003,
- WI_KEY_FUNC_CTRL_UP    =       0x0004,
- 
-   =       0x0005,
- WI_KEY_FUNC_TAB_UP    =       0x0006,
- 
-   =       0x0007,
- WI_KEY_FUNC_SHIFT_UP    =       0x0008,
- 
-   =       0x0007,
- WI_KEY_FUNC_DELETE_UP    =       0x0008,
- 
-   =       0x0007,
- WI_KEY_FUNC_INSERT_UP    =       0x0008,
- 
-   =       0x0009,
- WI_KEY_FUNC_HOME_UP    =       0x000A,
- 
-   =       0x000B,
- WI_KEY_FUNC_END_UP    =       0x000C,
- 
-   =     0x000D,
- WI_KEY_FUNC_PAGEDOWN_UP    =     0x000E,
- 
-   =       0x000F,
- WI_KEY_FUNC_PAGEUP_UP    =       0x0010,
- 
-   =       0x0011,
- WI_KEY_FUNC_UP_UP    =       0x0012,
-   =       0x0013,
- WI_KEY_FUNC_DOWN_UP    =       0x0014,
-   =       0x0015,
- WI_KEY_FUNC_LEFT_UP    =       0x0016,
-   =       0x0017,
- WI_KEY_FUNC_RIGHT_UP    =       0x0018,
- 
-   =       0x0019,
- WI_KEY_FUNC_BACKSPACE_UP    =       0x001A,
- 
-   =       0x001B,
- WI_KEY_FUNC_ALT_UP    =       0x001C,
 
- */
--(IBAction) functionKeyDown : (id)sender
+ -(IBAction) functionKeyDown : (id)sender
 {
         NSString *key = ((UIButton*)sender).titleLabel.text;
         WI_LOG(@"%@ keydown", ((UIButton*)sender).titleLabel.text);
