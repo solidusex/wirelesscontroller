@@ -124,7 +124,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-        
+        standardInputText.text = @"   ";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         self.standardInputText.delegate = self;
@@ -178,10 +178,23 @@
         keyboardEvent_t ke;
         memset(&ke, 0, sizeof(ke));
         
-        if(string == nil || [string length] == 0)
+        if(string == nil)
         {
                 return NO;
         }
+        
+        if([string length] == 0)//backspace
+        {
+                ke.type = WI_FUNCTION_KEY_T;
+                ke.func_key = WI_KEY_FUNC_BACKSPACE_DONW;
+                [self.delegate onKeyboardEvent : &ke];
+                
+                ke.func_key = WI_KEY_FUNC_BACKSPACE_UP;
+                [self.delegate onKeyboardEvent : &ke];
+                
+                return NO;
+        }
+        
         
         const char *utf8 = [string UTF8String];
 
