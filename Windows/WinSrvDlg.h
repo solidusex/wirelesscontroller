@@ -85,4 +85,7 @@ public:
 		afx_msg void OnNcDestroy();
 		
 		afx_msg void OnBnClickedCheckIsAutorun();
+		afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+		afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
+		virtual void OnFinalRelease();
 };

@@ -124,7 +124,16 @@ BOOL CWinSrvApp::InitInstance()
 
 	CWinSrvDlg dlg;
 	m_pMainWnd = &dlg;
+
+
+	dlg.Create(CWinSrvDlg::IDD); 
+    dlg.OnBnClickedOk(); // 可以在此函数隐藏窗口及执行其它操作
+    dlg.RunModalLoop();
+	dlg.DestroyWindow();
+
+	/*
 	INT_PTR nResponse = dlg.DoModal();
+	
 	if (nResponse == IDOK)
 	{
 		// TODO: Place code here to handle when the dialog is
@@ -135,6 +144,7 @@ BOOL CWinSrvApp::InitInstance()
 		// TODO: Place code here to handle when the dialog is
 		//  dismissed with Cancel
 	}
+	*/
 
 	// Delete the shell manager created above.
 	if (pShellManager != NULL)

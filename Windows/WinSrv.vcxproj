@@ -386,14 +386,18 @@
   <ItemGroup>
     <ClInclude Include="..\Common\NetMessage.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SendKeys.h" />
     <ClInclude Include="ServerService.h" />
+    <ClInclude Include="Shortcut.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WinSrv.h" />
     <ClInclude Include="WinSrvDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SendKeys.cpp" />
     <ClCompile Include="ServerService.cpp" />
+    <ClCompile Include="Shortcut.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LibDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LibRelease|Win32'">Create</PrecompiledHeader>
