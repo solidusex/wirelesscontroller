@@ -3,6 +3,7 @@
 //
 
 #include "stdafx.h"
+#include "Shortcut.h"
 #include "WinSrv.h"
 #include "WinSrvDlg.h"
 #include "afxdialogex.h"
@@ -97,6 +98,8 @@ BEGIN_MESSAGE_MAP(CWinSrvDlg, CDialogEx)
 	ON_WM_CLOSE()
 	ON_WM_NCDESTROY()
 	ON_BN_CLICKED(IDC_CHECK_IS_AUTORUN, &CWinSrvDlg::OnBnClickedCheckIsAutorun)
+	ON_WM_CREATE()
+	ON_WM_SHOWWINDOW()
 END_MESSAGE_MAP()
 
 
@@ -151,6 +154,7 @@ BOOL CWinSrvDlg::OnInitDialog()
 	init_config();
 	init_dlg_items();
 
+	this->OnBnClickedButtonStart();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -566,7 +570,7 @@ void	CWinSrvDlg::init_dlg_items()
 		m_server_ip.SetAddress(AR_BYTEFLIP_U32((DWORD)addr));
 
 
-		DWORD port = Ini_GetUInt(m_cfg, WI_SRV_CONFIG_SEC, WI_SRV_CONFIG_PORT, 0);
+		DWORD port = Ini_GetUInt(m_cfg, WI_SRV_CONFIG_SEC, WI_SRV_CONFIG_PORT, 28412);
 
 		CString tmp;
 		tmp.Format(TEXT("%d"), port);
@@ -621,7 +625,15 @@ void CWinSrvDlg::OnBnClickedButtonStart()
 
 				m_button_server_start.EnableWindow(FALSE);
 				m_button_server_stop.EnableWindow(TRUE);
+
+				m_server_ip.EnableWindow(FALSE);
+				m_server_port.EnableWindow(FALSE);
+				m_server_pwd.EnableWindow(FALSE);
+
 				m_is_started = TRUE;
+		}else
+		{
+				AfxMessageBox(TEXT("Failed to start server!"));
 		}
 }
 
@@ -634,6 +646,15 @@ void CWinSrvDlg::OnBnClickedButtonStop()
 				this->UninitServerService();
 				m_button_server_start.EnableWindow(TRUE);
 				m_button_server_stop.EnableWindow(FALSE);
+
+				m_server_port.EnableWindow(TRUE);
+				m_server_pwd.EnableWindow(TRUE);
+
+				if(m_is_manual_ip.GetCheck() == BST_CHECKED)
+				{
+						m_server_ip.EnableWindow(TRUE);
+				}
+
 				m_is_started = FALSE;
 		}
 }
@@ -682,38 +703,41 @@ void CWinSrvDlg::OnNcDestroy()
 
 void CWinSrvDlg::OnBnClickedCheckIsAutorun()
 {
-#if(0)
-		// TODO: Add your control notification handler code here
-		HKEY   RegKey;   
-		CString   sPath;   
-		GetModuleFileName(NULL,sPath.GetBufferSetLength(MAX_PATH+1),MAX_PATH);   
-		sPath.ReleaseBuffer();   
-		int   nPos;   
+		CShortcut		sc;
 
-		nPos=sPath.ReverseFind('\\');   
-		sPath=sPath.Left(nPos);   
-
-		CString   lpszFile=sPath + L"\\WinSrv.exe";//这里加上你要查找的执行文件名称   
-		CFileFind   fFind;   
-
-		BOOL   bSuccess;   
-		bSuccess=fFind.FindFile(lpszFile);   
-
-		fFind.Close();   
-		if(bSuccess)   
-		{   
-				RegKey=NULL;   
-
-				RegOpenKey(HKEY_CURRENT_USER,TEXT("Software\\Microsoft\\Windows\\CurrentVersion\\Run"),&RegKey);   
-				
-				wchar_t buf[1024];
-				_wfullpath(buf, (const wchar_t*)lpszFile, 1024);
-
-				RegSetValueEx(RegKey,TEXT("WiController-Server"),0,REG_SZ,(const  unsigned   char*)(LPCTSTR)buf, wcslen(buf));
-
-				this->UpdateData(FALSE);   
+		if(m_is_autorun.GetCheck() == BST_CHECKED)
+		{
+				sc.CreateShortCut(TEXT("_this"), TEXT("WiController Server"), CSIDL_STARTUP, TEXT("Auto Startup ShellLink"),	TEXT(""), 0);
+		}else
+		{
+				sc.DeleteShortCut(TEXT("WiController Server"), CSIDL_STARTUP);
 		}
+}
 
-#endif
 
+int CWinSrvDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+		if (CDialogEx::OnCreate(lpCreateStruct) == -1)
+				return -1;
+
+		// TODO:  Add your specialized creation code here
+		
+		return 0;
+}
+
+
+void CWinSrvDlg::OnShowWindow(BOOL bShow, UINT nStatus)
+{
+		CDialogEx::OnShowWindow(bShow, nStatus);
+
+		// TODO: Add your message handler code here
+		
+}
+
+
+void CWinSrvDlg::OnFinalRelease()
+{
+		// TODO: Add your specialized code here and/or call the base class
+
+		CDialogEx::OnFinalRelease();
 }
