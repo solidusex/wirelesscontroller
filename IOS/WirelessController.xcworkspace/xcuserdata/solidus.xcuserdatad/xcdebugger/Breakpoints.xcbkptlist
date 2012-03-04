@@ -135,11 +135,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/MouseUIView.m"
-         timestampString = "352523106.748962"
+         timestampString = "352579901.640635"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "249"
-         endingLineNumber = "249"
+         startingLineNumber = "261"
+         endingLineNumber = "261"
          landmarkName = "-touchesMoved:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -149,11 +149,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/MouseUIView.m"
-         timestampString = "352523106.748962"
+         timestampString = "352579901.640635"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "313"
-         endingLineNumber = "313"
+         startingLineNumber = "325"
+         endingLineNumber = "325"
          landmarkName = "-touchesMoved:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -470,48 +470,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "WiController/MouseUIView.m"
-         timestampString = "352505088.738639"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "46"
-         endingLineNumber = "46"
-         landmarkName = "-perform_rotated:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "WiController/MouseUIView.m"
-         timestampString = "352505296.64396"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
-         landmarkName = "-perform_rotated:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "WiController/MouseUIView.m"
-         timestampString = "352505140.633603"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-perform_rotated:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
          filePath = "WiController/KeyboardViewController.m"
          timestampString = "352549867.533912"
          startingColumnNumber = "9223372036854775807"
@@ -547,6 +505,20 @@
          startingLineNumber = "177"
          endingLineNumber = "177"
          landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "WiController/MouseUIView.m"
+         timestampString = "352579964.646307"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
+         landmarkName = "-return_to_main_gesture:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

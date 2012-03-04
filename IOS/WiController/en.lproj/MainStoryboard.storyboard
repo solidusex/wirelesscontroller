@@ -207,7 +207,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sg8-mV-24g">
-                                <rect key="frame" x="4" y="46" width="35" height="35"/>
+                                <rect key="frame" x="76" y="11" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="ESC">
@@ -224,7 +224,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZSx-NF-L7v">
-                                <rect key="frame" x="176" y="46" width="35" height="35"/>
+                                <rect key="frame" x="268" y="10" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Home">
@@ -241,7 +241,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="RKQ-RP-BNG">
-                                <rect key="frame" x="219" y="46" width="35" height="35"/>
+                                <rect key="frame" x="316" y="10" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Page Up">
@@ -258,7 +258,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qQs-Oi-Agd">
-                                <rect key="frame" x="176" y="89" width="35" height="35"/>
+                                <rect key="frame" x="268" y="59" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="End">
@@ -275,7 +275,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="K5y-Yr-iSW">
-                                <rect key="frame" x="219" y="89" width="35" height="35"/>
+                                <rect key="frame" x="316" y="58" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Page Down">
@@ -292,7 +292,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kyd-Kr-NFd">
-                                <rect key="frame" x="397" y="44" width="38" height="35"/>
+                                <rect key="frame" x="364" y="11" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Up">
@@ -309,7 +309,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rxv-G4-ng8">
-                                <rect key="frame" x="355" y="89" width="35" height="35"/>
+                                <rect key="frame" x="364" y="58" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Left">
@@ -326,7 +326,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bGu-sQ-Cc4">
-                                <rect key="frame" x="398" y="89" width="35" height="35"/>
+                                <rect key="frame" x="412" y="11" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Down">
@@ -343,7 +343,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4rb-m3-hVV">
-                                <rect key="frame" x="271" y="89" width="76" height="35"/>
+                                <rect key="frame" x="7" y="11" width="61" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Return">
@@ -358,7 +358,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xit-7b-3ho">
-                                <rect key="frame" x="133" y="46" width="35" height="35"/>
+                                <rect key="frame" x="220" y="10" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Delete">
@@ -375,7 +375,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HwT-Zu-Fzh">
-                                <rect key="frame" x="90" y="89" width="35" height="35"/>
+                                <rect key="frame" x="172" y="59" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Tab">
@@ -392,7 +392,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Flc-Gc-JXK">
-                                <rect key="frame" x="90" y="46" width="35" height="35"/>
+                                <rect key="frame" x="172" y="11" width="40" height="39.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Shift">
@@ -409,7 +409,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5bN-Bb-7Ga">
-                                <rect key="frame" x="133" y="89" width="35" height="35"/>
+                                <rect key="frame" x="220" y="59" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Insert">
@@ -426,7 +426,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bEG-TT-TMt">
-                                <rect key="frame" x="441" y="89" width="35" height="35"/>
+                                <rect key="frame" x="412" y="59" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Right">
@@ -443,13 +443,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Wab-tb-tBI">
-                                <rect key="frame" x="441" y="249" width="19" height="31"/>
+                                <rect key="frame" x="451.5" y="249" width="5" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HKB-8k-jSs">
-                                <rect key="frame" x="4" y="89" width="35" height="35"/>
+                                <rect key="frame" x="76" y="58" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Cmd">
@@ -466,7 +466,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vi2-KV-73W">
-                                <rect key="frame" x="47" y="89" width="35" height="35"/>
+                                <rect key="frame" x="124" y="59" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Alt">
@@ -483,7 +483,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AUU-en-mDU">
-                                <rect key="frame" x="47" y="46" width="35" height="35"/>
+                                <rect key="frame" x="124" y="11" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <state key="normal" title="Ctrl">

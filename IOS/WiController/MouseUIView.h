@@ -29,8 +29,9 @@
         UITapGestureRecognizer          *double_click;
         
         UITapGestureRecognizer          *scroll_mode_recognizer;
-        UIRotationGestureRecognizer     *retrun_recognizer;
         
+        //UIRotationGestureRecognizer   *retrun_recognizer;
+        UISwipeGestureRecognizer        *return_recognizer;
         BOOL                            is_scroll_mode;
         
 }
