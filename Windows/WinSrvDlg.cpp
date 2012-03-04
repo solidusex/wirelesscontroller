@@ -578,7 +578,7 @@ void	CWinSrvDlg::init_dlg_items()
 		{
 				wpwd = L"";
 		}
-		m_server_pwd.SetWindowText(wip);
+		m_server_pwd.SetWindowText(wpwd);
 		
 		UINT is_auto_run = Ini_GetUInt(m_cfg, WI_SRV_CONFIG_MISC_SEC, WI_SRV_CONFIG_MISC_AUTORUN, 0);
 		m_is_autorun.SetCheck(is_auto_run != 0 ? BST_CHECKED : BST_UNCHECKED);
