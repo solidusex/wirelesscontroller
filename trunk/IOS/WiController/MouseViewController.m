@@ -76,7 +76,7 @@ static double __g_mouse_accelerate = 1.5;
 
 
 
--(IBAction)returnToMainFrame : (id)sender
+-(void)returnToMainFrame : (id)sender
 {
         [self.delegate mouseReturnToMainFrame : self];
 }
@@ -195,7 +195,7 @@ static double __g_mouse_accelerate = 1.5;
 
 -(IBAction)  mouseAccelerateChanged : (id)sender
 {
-        mouse_accelerate = ((UIStepper*)sender).value;
+        mouse_accelerate = ((UISlider*)sender).value;
         WI_LOG(@"mouseAccelerate changed to %g\r\n", mouse_accelerate);
         
 }

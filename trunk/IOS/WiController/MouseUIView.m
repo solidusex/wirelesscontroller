@@ -41,6 +41,32 @@
 }
 
 
+-(void)perform_rotated:(UIRotationGestureRecognizer *)sender
+{
+        float degrees = sender.rotation*(180/M_PI);
+        WI_LOG(@"rotation degrees == %g", degrees);
+        
+        if(degrees < -75.0)
+        {
+                [self.delegate returnToMainFrame : self];
+        }
+        
+}
+
+
+- (void)scroll_lock_click:(UITapGestureRecognizer *)sender
+{
+        if (sender.state == UIGestureRecognizerStateEnded)
+        {
+                WI_LOG(@"scroll_lock_click");
+                
+                is_scroll_mode = !is_scroll_mode;
+                
+        }
+}
+
+
+
 -(void)init_gesture_recognizer
 {
         single_click = [ [UITapGestureRecognizer alloc] initWithTarget : self
@@ -64,12 +90,38 @@
        // [self addGestureRecognizer : single_click];
        // [self addGestureRecognizer : double_click];
         
+        
+        
+        
+        retrun_recognizer =[[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(perform_rotated:)];
+        [self addGestureRecognizer:retrun_recognizer];
+
+        
+        scroll_mode_recognizer = [ [UITapGestureRecognizer alloc] initWithTarget : self
+                                                                         action : @selector(scroll_lock_click:)
+                                 ];
+        
+        scroll_mode_recognizer.numberOfTapsRequired = 2;
+        scroll_mode_recognizer.numberOfTouchesRequired = 2;
+        
+        [self addGestureRecognizer:scroll_mode_recognizer];
+        
 }
 
 -(void)uninit_gesture_recognizer
 {
         //[self removeGestureRecognizer : single_click];
         //[self removeGestureRecognizer : double_click];
+        
+        [self removeGestureRecognizer : retrun_recognizer];
+        [self removeGestureRecognizer : scroll_mode_recognizer];
+        
+        [scroll_mode_recognizer release];
+        scroll_mode_recognizer = nil;
+        
+        
+        [retrun_recognizer release];
+        retrun_recognizer = nil;
         
         [single_click release];
         single_click = nil;
@@ -85,7 +137,7 @@
     if (self) 
     {
             [self init_gesture_recognizer];
-
+            is_scroll_mode = NO;
     }
     return self;
 }
@@ -98,6 +150,7 @@
                 [self init_gesture_recognizer];
                 points = [NSMutableArray array];
                 [points retain];
+                is_scroll_mode = NO;
 
         }
         return self;
@@ -105,11 +158,12 @@
 
 -(void)dealloc
 {
+       
         [super dealloc];
+        
         [self uninit_gesture_recognizer];
         [points release];
         points = nil;
-        
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -208,7 +262,7 @@
         y = location.y - lastLocation.y;
         
         
-        if([self.delegate isScrollMode])
+        if(is_scroll_mode)
         {
                 if(AR_abs_flt(y) > AR_abs_flt(x))
                 {

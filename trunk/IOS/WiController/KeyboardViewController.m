@@ -166,11 +166,19 @@
 
 -(IBAction) backgroundTap : (id)sender
 {
-        [self.standardInputText resignFirstResponder];
+        //[self.standardInputText resignFirstResponder];
 }
 
 - (void)dealloc {
         [standardInputText release];
         [super dealloc];
 }
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+        
+        return YES;
+}
+
 @end
