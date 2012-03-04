@@ -37,21 +37,7 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "945"
-         endingLineNumber = "945"
-         landmarkName = "-onKeyboardEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "946"
@@ -65,11 +51,25 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "951"
-         endingLineNumber = "951"
+         startingLineNumber = "947"
+         endingLineNumber = "947"
+         landmarkName = "-onKeyboardEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "WiController/ViewController.m"
+         timestampString = "352548532.355725"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "952"
+         endingLineNumber = "952"
          landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -317,11 +317,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "919"
-         endingLineNumber = "919"
+         startingLineNumber = "920"
+         endingLineNumber = "920"
          landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -345,11 +345,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "944"
-         endingLineNumber = "944"
+         startingLineNumber = "945"
+         endingLineNumber = "945"
          landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -359,11 +359,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "987"
-         endingLineNumber = "987"
+         startingLineNumber = "988"
+         endingLineNumber = "988"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -373,11 +373,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1019"
-         endingLineNumber = "1019"
+         startingLineNumber = "1020"
+         endingLineNumber = "1020"
          landmarkName = "-saveContext"
          landmarkType = "5">
       </FileBreakpoint>
@@ -387,11 +387,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1009"
-         endingLineNumber = "1009"
+         startingLineNumber = "1010"
+         endingLineNumber = "1010"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -401,11 +401,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "984"
-         endingLineNumber = "984"
+         startingLineNumber = "985"
+         endingLineNumber = "985"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -415,11 +415,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1011"
-         endingLineNumber = "1011"
+         startingLineNumber = "1012"
+         endingLineNumber = "1012"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -429,11 +429,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/ViewController.m"
-         timestampString = "352488913.585851"
+         timestampString = "352548532.355725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "982"
-         endingLineNumber = "982"
+         startingLineNumber = "983"
+         endingLineNumber = "983"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -505,20 +505,6 @@
          startingLineNumber = "45"
          endingLineNumber = "45"
          landmarkName = "-perform_rotated:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "WiController/KeyboardViewController.m"
-         timestampString = "352542195.830986"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "240"
-         endingLineNumber = "240"
-         landmarkName = "-functionKeyDown:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

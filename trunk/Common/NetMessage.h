@@ -53,8 +53,8 @@ typedef struct __mouse_net_message_tag
 typedef enum
 {
         WI_FUNCTION_KEY_T,
-        WI_FUNCTION_ASCII_KEY_T,
-        WI_FUNCTION_TEXT_T
+        WI_ASCII_KEY_T,
+        WI_TEXT_T
 }wiKeyboardEventType_t;
 
 typedef enum
@@ -216,10 +216,10 @@ static AR_INLINE arBuffer_t* KeyboardEvent_To_NetMessage(const keyboardEvent_t *
         if(ke->type == WI_FUNCTION_KEY_T)
         {
                 SN_InsertToDictObjectByStrInt(obj, WI_KEYBOARD_FUNCKEY_VALUE, (int_64_t)ke->func_key);
-        }else if(ke->type == WI_FUNCTION_ASCII_KEY_T)
+        }else if(ke->type == WI_ASCII_KEY_T)
         {
                 SN_InsertToDictObjectByStrInt(obj, WI_KEYBOARD_FUNCKEY_VALUE, (int_64_t)ke->ascii);
-        }else if(ke->type == WI_FUNCTION_TEXT_T)
+        }else if(ke->type == WI_TEXT_T)
         {
                 SN_InsertToDictObjectByStrStr(obj, WI_KEYBOARD_TEXTKEY_VALUE, ke->text);
         }
@@ -307,13 +307,13 @@ static AR_INLINE arStatus_t NetMessage_To_KeyboardEvent(keyboardEvent_t *ke, snO
 				__CHECK_AND_RET(val != NULL, AR_E_INVAL);
 				ke->func_key = (wiKeyboardFunctionKey_t)SN_GetUIntObject(val);
 
-		}else if(ke->type == WI_FUNCTION_ASCII_KEY_T)
+		}else if(ke->type == WI_ASCII_KEY_T)
 		{
 				val = SN_FindFromDictObjectByStr(obj, WI_KEYBOARD_ASCIIKEY_VALUE);
 				__CHECK_AND_RET(val != NULL, AR_E_INVAL);
 				ke->ascii = (wiKeyboardFunctionKey_t)SN_GetUIntObject(val);
 				
-		}else if(ke->type == WI_FUNCTION_TEXT_T)
+		}else if(ke->type == WI_TEXT_T)
 		{
 				int_t len;
 				val = SN_FindFromDictObjectByStr(obj, WI_KEYBOARD_TEXTKEY_VALUE);
