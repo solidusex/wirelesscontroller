@@ -35,7 +35,7 @@
 @property(nonatomic, assign)    id<MouseViewControllerDelegate>         delegate;
 @property (retain, nonatomic) IBOutlet MouseUIView *mouseUIView;
 
--(IBAction)returnToMainFrame : (id)sender;
+-(void)returnToMainFrame : (id)sender;
 
 -(IBAction)middleButtonDown : (id)sender;
 -(IBAction)middleButtonUpInside : (id)sender;

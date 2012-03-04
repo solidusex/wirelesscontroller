@@ -15,7 +15,7 @@
 @protocol MouseUIViewDelegate<NSObject>
         -(void)onMouseEvent      :  (const mouseEvent_t*)event;
         -(float)        getMouseAccelerate;
-        -(BOOL)         isScrollMode;
+        -(void)returnToMainFrame : (id)sender;
 @end
 
 
@@ -25,9 +25,13 @@
         CGPoint lastLocation;
         NSMutableArray  *points;
         
-        UITapGestureRecognizer  *single_click;
-        UITapGestureRecognizer  *double_click;
+        UITapGestureRecognizer          *single_click;
+        UITapGestureRecognizer          *double_click;
         
+        UITapGestureRecognizer          *scroll_mode_recognizer;
+        UIRotationGestureRecognizer     *retrun_recognizer;
+        
+        BOOL                            is_scroll_mode;
         
 }
 
