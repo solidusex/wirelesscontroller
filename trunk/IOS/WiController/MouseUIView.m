@@ -41,6 +41,18 @@
 }
 
 
+- (void)scroll_lock_click:(UITapGestureRecognizer *)sender
+{
+        if (sender.state == UIGestureRecognizerStateEnded)
+        {
+                WI_LOG(@"scroll_lock_click");
+                
+                is_scroll_mode = !is_scroll_mode;
+                
+        }
+}
+
+
 -(void)perform_rotated:(UIRotationGestureRecognizer *)sender
 {
         float degrees = sender.rotation*(180/M_PI);
@@ -54,17 +66,12 @@
 }
 
 
-- (void)scroll_lock_click:(UITapGestureRecognizer *)sender
-{
-        if (sender.state == UIGestureRecognizerStateEnded)
-        {
-                WI_LOG(@"scroll_lock_click");
-                
-                is_scroll_mode = !is_scroll_mode;
-                
-        }
-}
 
+-(void) return_to_main_gesture : (UISwipeGestureRecognizer*)sender
+{
+        WI_LOG(@"%@", sender);
+        [self.delegate returnToMainFrame : self];
+}
 
 
 -(void)init_gesture_recognizer
@@ -93,8 +100,13 @@
         
         
         
-        retrun_recognizer =[[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(perform_rotated:)];
-        [self addGestureRecognizer:retrun_recognizer];
+        
+        return_recognizer =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(return_to_main_gesture:)];
+        
+        return_recognizer.numberOfTouchesRequired = 2;
+        return_recognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        [self addGestureRecognizer:return_recognizer];
+        
 
         
         scroll_mode_recognizer = [ [UITapGestureRecognizer alloc] initWithTarget : self
@@ -113,15 +125,15 @@
         //[self removeGestureRecognizer : single_click];
         //[self removeGestureRecognizer : double_click];
         
-        [self removeGestureRecognizer : retrun_recognizer];
+        [self removeGestureRecognizer : return_recognizer];
         [self removeGestureRecognizer : scroll_mode_recognizer];
         
         [scroll_mode_recognizer release];
         scroll_mode_recognizer = nil;
         
         
-        [retrun_recognizer release];
-        retrun_recognizer = nil;
+        [return_recognizer release];
+        return_recognizer = nil;
         
         [single_click release];
         single_click = nil;
