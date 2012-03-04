@@ -218,7 +218,7 @@ static AR_INLINE arBuffer_t* KeyboardEvent_To_NetMessage(const keyboardEvent_t *
                 SN_InsertToDictObjectByStrInt(obj, WI_KEYBOARD_FUNCKEY_VALUE, (int_64_t)ke->func_key);
         }else if(ke->type == WI_ASCII_KEY_T)
         {
-                SN_InsertToDictObjectByStrInt(obj, WI_KEYBOARD_FUNCKEY_VALUE, (int_64_t)ke->ascii);
+                SN_InsertToDictObjectByStrInt(obj, WI_KEYBOARD_ASCIIKEY_VALUE, (int_64_t)ke->ascii);
         }else if(ke->type == WI_TEXT_T)
         {
                 SN_InsertToDictObjectByStrStr(obj, WI_KEYBOARD_TEXTKEY_VALUE, ke->text);

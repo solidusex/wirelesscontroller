@@ -208,7 +208,8 @@
                 ke.text[cnt] = 0;
         }
         
-        
+        [self.delegate onKeyboardEvent : &ke];
+
         
         return YES;
 }
