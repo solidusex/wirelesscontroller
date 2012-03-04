@@ -92,7 +92,9 @@
 }
 
 
-- (void)keyboardWillShow:(NSNotification *)notification {
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
         
         /*
          Reduce the size of the text view so that it's not obscured by the keyboard.
@@ -124,7 +126,10 @@
         //textView.frame = newTextViewFrame;
         
         [UIView commitAnimations];
+        
 }
+
+
 
 
 - (void)keyboardWillHide:(NSNotification *)notification {
@@ -182,8 +187,6 @@
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
         isAlerted = NO;
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
         
@@ -214,6 +217,8 @@
         
         is_saved_context = NO;
         
+        
+        [self loadConfig];
         
 }
 
@@ -494,6 +499,8 @@ static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
         {
                 [current_pwd release];
                 current_pwd = [pwdText.text copy];
+                
+                [self saveConfig];
                 
                 [self transToMouseView : self];
         }
@@ -1087,8 +1094,63 @@ INVALID_POINT:
         }
 
         is_saved_context = NO;
+}
+
+
+-(void)loadConfig
+{
+        WI_LOG(@"%@", @"loadConfig");
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+        NSString *documentsDirectory = [paths objectAtIndex : 0];
+        
+        NSString *config_path = [documentsDirectory stringByAppendingPathComponent : CONFIG_FILE];
+        
+        NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile : config_path];
+        
+        NSString *ip_str = [dict objectForKey : LAST_IP];
+        NSString *pwd_str =[dict objectForKey : LAST_PWD]; 
+        
+        if(ip_str != nil)
+        {
+                ipText.text = ip_str;
+        }
+        
+        if(pwd_str != nil)
+        {
+                pwdText.text = pwd_str;
+        }
+        
         
 }
+
+
+-(void)saveConfig
+{
+        WI_LOG(@"%@", @"saveConfig");
+        
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+        NSString *documentsDirectory = [paths objectAtIndex : 0];
+        
+        NSString *config_path = [documentsDirectory stringByAppendingPathComponent : CONFIG_FILE];
+        
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity : 2];
+        [dict setObject : ipText.text
+                 forKey : LAST_IP
+         ];
+        
+        [dict setObject : [pwdText.text length] == 0 ? @"" : pwdText.text
+                 forKey : LAST_PWD
+         ];
+        
+        [ dict writeToFile : config_path
+                atomically : YES
+         ];
+        
+}
+
 
 
 

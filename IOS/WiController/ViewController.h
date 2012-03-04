@@ -30,6 +30,12 @@
 
 #import "NSString_Convert.h"
 
+
+
+#define CONFIG_FILE     @"config.plist"
+#define LAST_IP         @"LAST_IP"
+#define LAST_PWD        @"LAST_PWD"
+
 @interface ViewController : UIViewController<MouseViewControllerDelegate, KeyboardViewControllerDelegate, ShortcutsViewControllerDelegate, UITextFieldDelegate>
 {
         BOOL            localNetResourcesIsSeted;
@@ -72,6 +78,9 @@
 
 -(void)     saveContext;
 -(void)     loadContext;
+
+-(void)     loadConfig;
+-(void)     saveConfig;
 
 -(unsigned short)       getDestinationPort;
 
