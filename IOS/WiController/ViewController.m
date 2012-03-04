@@ -911,6 +911,47 @@ END_POINT:
         
 }
 
+-(void)onKeyboardEvent : (const keyboardEvent_t*) ke
+{
+        arBuffer_t *buf;
+        //        WI_LOG(@"event == %d : (%g,%g), data = %g", event->t, event->x,event->y, event->data);
+        
+        const char *pwd = NULL;
+        
+        if([current_pwd lengthOfBytesUsingEncoding : NSASCIIStringEncoding] > 0)
+        {
+                pwd = [current_pwd UTF8String];
+        }
+        
+        buf = KeyboardEvent_To_NetMessage(ke, pwd);
+        
+        if(buf)
+        {
+                size_t out_len = AR_GetBufferAvailable(buf);
+                if(out_len == 0)
+                {
+                        assert(false);
+                        AR_DestroyBuffer(buf);
+                        buf = NULL;
+                        return;
+                }
+                
+                
+                NSData *data = [NSData dataWithBytes :(const void *)AR_GetBufferData(buf)
+                                               length:out_len
+                                ];
+                
+                [outlist addObject : data];
+                
+                AR_DestroyBuffer(buf);
+                buf = NULL;
+                
+                CFSocketEnableCallBacks(sock_handle, kCFSocketWriteCallBack);
+        }
+
+}
+
+
 
 
 -(void) handle_write

@@ -42,7 +42,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "945"
          endingLineNumber = "945"
-         landmarkName = "-handle_write"
+         landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -56,7 +56,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "946"
          endingLineNumber = "946"
-         landmarkName = "-handle_write"
+         landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -70,7 +70,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "951"
          endingLineNumber = "951"
-         landmarkName = "-handle_write"
+         landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -322,7 +322,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "919"
          endingLineNumber = "919"
-         landmarkName = "-handle_write"
+         landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -350,7 +350,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "944"
          endingLineNumber = "944"
-         landmarkName = "-handle_write"
+         landmarkName = "-onKeyboardEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -364,7 +364,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "987"
          endingLineNumber = "987"
-         landmarkName = "-saveContext"
+         landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -378,7 +378,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1019"
          endingLineNumber = "1019"
-         landmarkName = "-loadContext"
+         landmarkName = "-saveContext"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -392,7 +392,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1009"
          endingLineNumber = "1009"
-         landmarkName = "-loadContext"
+         landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -406,7 +406,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "984"
          endingLineNumber = "984"
-         landmarkName = "-saveContext"
+         landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -420,7 +420,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1011"
          endingLineNumber = "1011"
-         landmarkName = "-loadContext"
+         landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -434,7 +434,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "982"
          endingLineNumber = "982"
-         landmarkName = "-saveContext"
+         landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -505,6 +505,20 @@
          startingLineNumber = "45"
          endingLineNumber = "45"
          landmarkName = "-perform_rotated:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "WiController/KeyboardViewController.m"
+         timestampString = "352542195.830986"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
+         landmarkName = "-functionKeyDown:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
