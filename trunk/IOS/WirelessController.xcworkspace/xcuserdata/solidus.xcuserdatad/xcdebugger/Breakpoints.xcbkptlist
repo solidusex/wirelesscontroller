@@ -737,11 +737,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352659713.360871"
+         timestampString = "352664007.601764"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "331"
-         endingLineNumber = "331"
+         startingLineNumber = "377"
+         endingLineNumber = "377"
          landmarkName = "-defaultsChanged:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -751,11 +751,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352659713.360871"
+         timestampString = "352664007.601764"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "309"
-         endingLineNumber = "309"
+         startingLineNumber = "355"
+         endingLineNumber = "355"
          landmarkName = "-on_timer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -779,11 +779,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352657505.590699"
+         timestampString = "352664007.601764"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
+         startingLineNumber = "178"
+         endingLineNumber = "178"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -793,53 +793,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352658212.42749"
+         timestampString = "352664007.601764"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
-         landmarkName = "-handle_read:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352658632.915073"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "155"
-         endingLineNumber = "155"
-         landmarkName = "-handle_write"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352658648.820128"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "162"
-         endingLineNumber = "162"
-         landmarkName = "-handle_write"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352658650.380577"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "173"
-         endingLineNumber = "173"
+         startingLineNumber = "201"
+         endingLineNumber = "201"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -849,11 +807,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352658792.163859"
+         timestampString = "352664007.601764"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "121"
-         endingLineNumber = "121"
+         startingLineNumber = "208"
+         endingLineNumber = "208"
          landmarkName = "-handle_write"
          landmarkType = "5">
       </FileBreakpoint>
@@ -863,11 +821,39 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352659713.360871"
+         timestampString = "352664007.601764"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "306"
-         endingLineNumber = "306"
+         startingLineNumber = "219"
+         endingLineNumber = "219"
+         landmarkName = "-handle_write"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "WiController/DiscoveryViewDataSource.m"
+         timestampString = "352664007.601764"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "167"
+         endingLineNumber = "167"
+         landmarkName = "-handle_write"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "WiController/DiscoveryViewDataSource.m"
+         timestampString = "352664007.601764"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "352"
+         endingLineNumber = "352"
          landmarkName = "-on_timer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -877,11 +863,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WiController/DiscoveryViewDataSource.m"
-         timestampString = "352659713.360871"
+         timestampString = "352664007.601764"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "195"
-         endingLineNumber = "195"
+         startingLineNumber = "241"
+         endingLineNumber = "241"
          landmarkName = "__sock_callback()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -925,6 +911,20 @@
          startingLineNumber = "101"
          endingLineNumber = "101"
          landmarkName = "-keyboardWillShow:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "WiController/DiscoveryViewDataSource.m"
+         timestampString = "352663053.576044"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "116"
+         endingLineNumber = "116"
+         landmarkName = "-handle_read:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
