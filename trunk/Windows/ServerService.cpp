@@ -44,6 +44,7 @@ void CServerService::OnReceive(int nErrorCode)
 		UINT	opposite_port = 0;
 		char *pwd = NULL;
 		netEvent_t		e;
+
 		int ret = this->ReceiveFrom((void*)m_buf, sizeof(m_buf) * sizeof(byte_t),  opposite_addr, opposite_port);
 
 		if(ret == SOCKET_ERROR )
@@ -96,6 +97,11 @@ void CServerService::OnReceive(int nErrorCode)
 				this->on_shortcuts_event(&e.se);
 		}
 				break;
+		case WI_DISCOVERY_REQUEST_EVENT_T:
+		{
+				this->on_discovery_request_event(&e.discovery_request, opposite_addr, opposite_port);
+		}
+				break;
 		default:
 		{
 				AR_ASSERT(false);
@@ -108,6 +114,16 @@ void CServerService::OnSend(int nErrorCode )
 {
 		AR_UNUSED(nErrorCode);
 		
+		if(m_output_list.GetCount() > 0)
+		{
+				SendData *data = m_output_list.RemoveHead();
+				if(data)
+				{
+						this->SendTo(AR_GetBufferData(data->buf), AR_GetBufferAvailable(data->buf), data->opposite_port, data->opposite_addr);
+						delete data;
+				}
+				data = NULL;
+		}
 }
 
 void	CServerService::SetPassword(const CString &pwd)
@@ -421,4 +437,101 @@ void	CServerService::on_keyboard_event(const keyboardEvent_t *ke)
 void	CServerService::on_shortcuts_event(const shortcutsEvent_t *se)
 {
 		
+}
+
+
+
+bool_t AR_GetIPByHostName_V4(const wchar_t *host_name, struct sockaddr_in *out)
+{
+		ADDRINFOW		*res;
+		ADDRINFOW		hints;
+		static const wchar_t *serv = L"0";
+		const ADDRINFOW *curr;
+		int err;
+		AR_ASSERT(host_name != NULL && out != NULL);
+
+		memset(&hints, 0, sizeof(ADDRINFOW));
+		hints.ai_family = AF_INET;
+		hints.ai_protocol = AF_UNSPEC;
+		hints.ai_flags = AI_CANONNAME;
+		
+		err = GetAddrInfoW(host_name, serv, &hints, &res);
+		if(err != 0 || res == NULL)
+		{
+				return false;
+		}
+
+		curr = res;
+		while(curr)
+		{
+				struct sockaddr_in *addr;
+				err = GetNameInfoW((struct sockaddr*)curr->ai_addr, sizeof(struct	 sockaddr_in),  NULL, 0, NULL, 0, NI_NUMERICHOST);
+				addr = (struct sockaddr_in *)(curr->ai_addr);
+				if(err == 0)
+				{
+						AR_memcpy(out, addr, sizeof(*out));
+						break;
+				}else
+				{
+						curr = curr->ai_next;
+				}
+		}
+		FreeAddrInfoW(res);
+		return curr != NULL;
+}
+
+
+void	CServerService::on_discovery_request_event(const discoveryRequestEvent_t *se, const CString &opposite_addr, UINT opposite_port)
+{
+		AR_LOG(L"on_discovery_request_event\r\n");
+
+		/*
+		char buf[1024];
+		::gethostname(buf, 1024);
+
+		wchar_t *host_name = AR_str_convto_wcs(AR_CP_ACP, buf, strlen(buf));
+
+		struct sockaddr_in addr;
+		
+		if(AR_GetIPByHostName_V4(host_name, &addr))
+		{
+				const char *s = inet_ntoa(addr.sin_addr);
+				AR_LOG(L"%hs\r\n", s);
+				discoveryReplyEvent_t reply;
+				memset(&reply, 0, sizeof(reply));
+				
+				AR_strcpy(reply.ip, s);
+				reply.port = 
+				DiscoveryReplyEvent_To_NetMessage
+		}
+
+		
+		if(host_name)
+		{
+				AR_DEL(host_name);
+				host_name = NULL;
+		}
+		*/
+
+		CString addr;
+		UINT port;
+		if(this->GetSockName(addr, port))
+		{
+				AR_LOG(L"local address = %ls : %u\r\n", addr.GetString(), port);
+
+				discoveryReplyEvent_t reply;
+				memset(&reply, 0, sizeof(reply));
+				sprintf(reply.ip, "%ls", addr.GetString());
+				reply.port = port;
+				
+				arBuffer_t *buf = DiscoveryReplyEvent_To_NetMessage(&reply);
+				SendData *data = new SendData;
+				
+				data->buf = buf;
+				data->opposite_addr = opposite_addr;
+				data->opposite_port = opposite_port;
+
+				m_output_list.AddTail(data);
+				this->AsyncSelect(FD_READ|FD_WRITE);
+		}
 }
