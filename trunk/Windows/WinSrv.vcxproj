@@ -376,8 +376,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="C:\Users\Administrator\Desktop\iPhone Simulator.ico" />
-    <None Include="res\icon1.ico" />
     <None Include="res\iPhone Simulator.ico" />
     <None Include="res\WinSrv.ico" />
     <None Include="res\WinSrv.rc2" />
