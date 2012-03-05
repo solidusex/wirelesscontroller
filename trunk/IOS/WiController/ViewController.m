@@ -7,13 +7,15 @@
 //
 
 #import "ArsenalWrapper.h"
+#import "AppDelegate.h"
 #import "ViewController.h"
-
+#import "ViewController_ViewControllerTest.h"
 
 
 
 @implementation ViewController
 
+@synthesize discoveryView;
 @synthesize ipText;
 @synthesize pwdText;
 
@@ -220,6 +222,9 @@
         
         [self loadConfig];
         
+        self.discoveryView.delegate = self;
+        
+        [self test];
 }
 
 - (void)viewDidUnload
@@ -236,6 +241,7 @@
         
         [self setIpText:nil];
         [self setPwdText:nil];
+        [self setDiscoveryView:nil];
         [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -301,6 +307,7 @@
         [ipText release];
         [pwdText release];
         [current_pwd release];
+        [discoveryView release];
         [super dealloc];
 }
 
@@ -399,8 +406,18 @@
 
 -(unsigned short) getDestinationPort
 {
-        return 28412;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        NSInteger port = [defaults integerForKey : PREFS_PORT];
+        
+        if(port <= 0 || port >= 65535)
+        {
+                port = 28412;
+        }
+        
+        return (unsigned short)port;
 }
+
 
 #define IP_PATTERN      L"(({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5]))(?!{digit})"
 
@@ -1006,6 +1023,8 @@ END_POINT:
         
         CFSocketEnableCallBacks(sock_handle, kCFSocketWriteCallBack);
         
+
+        
         return;
         
 INVALID_POINT:
@@ -1148,6 +1167,26 @@ INVALID_POINT:
         [ dict writeToFile : config_path
                 atomically : YES
          ];
+        
+}
+
+
+
+/**************************************************************/
+
+
+///////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+        NSInteger row = [indexPath row];
+        
+        NSString *ip = [self.discoveryView dataAtIndex : row];
+        
+        WI_LOG(@"selected ip addr = %@", ip);
+        if(ip)
+        {
+                ipText.text = ip;
+        }
         
 }
 

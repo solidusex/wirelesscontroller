@@ -29,14 +29,14 @@
 
 
 #import "NSString_Convert.h"
-
+#import "DiscoveryView.h"
 
 
 #define CONFIG_FILE     @"config.plist"
 #define LAST_IP         @"LAST_IP"
 #define LAST_PWD        @"LAST_PWD"
 
-@interface ViewController : UIViewController<MouseViewControllerDelegate, KeyboardViewControllerDelegate, ShortcutsViewControllerDelegate, UITextFieldDelegate>
+@interface ViewController : UIViewController<UITableViewDelegate, MouseViewControllerDelegate, KeyboardViewControllerDelegate, ShortcutsViewControllerDelegate, UITextFieldDelegate>
 {
         BOOL            localNetResourcesIsSeted;
 
@@ -54,6 +54,7 @@
         BOOL            is_saved_context;
         NSMutableArray  *backup_outlist;
 }
+@property (retain, nonatomic) IBOutlet DiscoveryView *discoveryView;
 
 @property (retain, nonatomic) IBOutlet UITextField *ipText;
 

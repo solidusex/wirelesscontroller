@@ -13,6 +13,10 @@
 		677CFE7A14FE623E00238716 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 677CFE7914FE623E00238716 /* libiconv.dylib */; };
 		677CFE7C14FE624400238716 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 677CFE7B14FE624400238716 /* libpthread.dylib */; };
 		67AB456414FDFBF6000CC0E1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */; };
+		67AF24C8150423490013F1C0 /* ViewController_ViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AF24C7150423490013F1C0 /* ViewController_ViewControllerTest.m */; };
+		67AF24CA150426860013F1C0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67AF24C9150426860013F1C0 /* Settings.bundle */; };
+		67AF24DB150494B70013F1C0 /* DiscoveryViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AF24DA150494B70013F1C0 /* DiscoveryViewDataSource.m */; };
+		67AF24DE1504952D0013F1C0 /* DiscoveryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AF24DD1504952C0013F1C0 /* DiscoveryView.m */; };
 		67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */; };
 		67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */; };
 		67B4FD9014FB4ABA00CD40DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FD8F14FB4ABA00CD40DB /* CoreGraphics.framework */; };
@@ -42,6 +46,13 @@
 		677CFE7914FE623E00238716 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		677CFE7B14FE624400238716 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		67AF24C6150423490013F1C0 /* ViewController_ViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController_ViewControllerTest.h; sourceTree = "<group>"; };
+		67AF24C7150423490013F1C0 /* ViewController_ViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController_ViewControllerTest.m; sourceTree = "<group>"; };
+		67AF24C9150426860013F1C0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		67AF24D9150494B70013F1C0 /* DiscoveryViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DiscoveryViewDataSource.h; sourceTree = "<group>"; };
+		67AF24DA150494B70013F1C0 /* DiscoveryViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewDataSource.m; sourceTree = "<group>"; };
+		67AF24DC1504952C0013F1C0 /* DiscoveryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryView.h; sourceTree = "<group>"; };
+		67AF24DD1504952C0013F1C0 /* DiscoveryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryView.m; sourceTree = "<group>"; };
 		67B4FD8714FB4ABA00CD40DB /* WiController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B4FD8B14FB4ABA00CD40DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		67B4FD8D14FB4ABA00CD40DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +168,13 @@
 				67C70A3414FB6CAA00EA1BFA /* ShortcutsViewController.h */,
 				67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */,
 				674FCA5815005AEC0079FF62 /* stdhdr.h */,
+				67AF24C6150423490013F1C0 /* ViewController_ViewControllerTest.h */,
+				67AF24C7150423490013F1C0 /* ViewController_ViewControllerTest.m */,
+				67AF24D9150494B70013F1C0 /* DiscoveryViewDataSource.h */,
+				67AF24DA150494B70013F1C0 /* DiscoveryViewDataSource.m */,
+				67AF24C9150426860013F1C0 /* Settings.bundle */,
+				67AF24DC1504952C0013F1C0 /* DiscoveryView.h */,
+				67AF24DD1504952C0013F1C0 /* DiscoveryView.m */,
 			);
 			path = WiController;
 			sourceTree = "<group>";
@@ -226,6 +244,7 @@
 				67B4FD9614FB4ABA00CD40DB /* InfoPlist.strings in Resources */,
 				67B4FD9F14FB4ABA00CD40DB /* MainStoryboard.storyboard in Resources */,
 				67B4FDB314FB4B5400CD40DB /* dabaopku.plist in Resources */,
+				67AF24CA150426860013F1C0 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +265,9 @@
 				67C70A3614FB6CAA00EA1BFA /* ShortcutsViewController.m in Sources */,
 				6708F1E514FC18FE00B0DF7A /* MouseUIView.m in Sources */,
 				6708F1EC14FC224A00B0DF7A /* Reachability.m in Sources */,
+				67AF24C8150423490013F1C0 /* ViewController_ViewControllerTest.m in Sources */,
+				67AF24DB150494B70013F1C0 /* DiscoveryViewDataSource.m in Sources */,
+				67AF24DE1504952D0013F1C0 /* DiscoveryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +311,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -314,7 +336,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

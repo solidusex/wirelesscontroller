@@ -134,6 +134,9 @@ typedef enum
         WI_MOUSE_EVENT_T,
         WI_KEYBOARD_EVENT_T,
         WI_SHORTCUTS_EVENT_T,
+
+        WI_DISCOVERY_REQUEST_EVENT_T,
+        WI_DISCOVERY_REPLY_EVENT_T,
 		WI_SHORTCUTS_EVENT_MAX_T
 }netMsgEventType_t;
 
@@ -244,6 +247,141 @@ static AR_INLINE arBuffer_t* ShortcutsEvent_To_NetMessage(const shortcutsEvent_t
 		return NULL;
 }
 
+
+
+typedef struct __discovery_request_event_tag
+{
+        uint_32_t       dump;
+}discoveryRequestEvent_t;
+
+
+
+static AR_INLINE arBuffer_t* DiscoveryRequestEvent_To_NetMessage(const discoveryRequestEvent_t *dre)
+{
+        arBuffer_t *buf = NULL;
+        snObject_t *obj = NULL;
+        AR_ASSERT(dre != NULL);
+        
+        obj = SN_CreateObject(SN_DICT_T);
+              
+        SN_InsertToDictObjectByStrInt(obj, WI_EVENT_NAME, WI_DISCOVERY_REQUEST_EVENT_T);
+        
+        
+        buf = AR_CreateBuffer(128);
+        SN_PutObject(buf, obj);
+        
+        SN_DestroyObject(obj);
+        obj = NULL;
+        
+        return buf;
+
+}
+
+typedef struct __discovery_reply_event_tag
+{
+        char            ip[20];
+        uint_16_t       port;
+}discoveryReplyEvent_t;
+
+
+#define WI_DISCOVERY_REPLY_IPADDR       "IP"
+#define WI_DISCOVERY_REPLY_PORT         "PORT"
+
+
+static AR_INLINE arBuffer_t* DiscoveryReplyEvent_To_NetMessage(const discoveryReplyEvent_t *dre)
+{
+        arBuffer_t *buf = NULL;
+        snObject_t *obj = NULL;
+        AR_ASSERT(dre != NULL);
+        
+        obj = SN_CreateObject(SN_DICT_T);
+        
+        SN_InsertToDictObjectByStrInt(obj, WI_EVENT_NAME, WI_DISCOVERY_REPLY_EVENT_T);
+        SN_InsertToDictObjectByStrStr(obj,  WI_DISCOVERY_REPLY_IPADDR , dre->ip);
+        SN_InsertToDictObjectByStrUInt(obj, WI_DISCOVERY_REPLY_PORT , dre->port);
+        
+        
+        buf = AR_CreateBuffer(128);
+        SN_PutObject(buf, obj);
+        
+        SN_DestroyObject(obj);
+        obj = NULL;
+        
+        return buf;
+}
+
+
+
+static AR_INLINE arStatus_t  NetMessage_To_DiscoveryReplyEvent(discoveryReplyEvent_t *dre, arBuffer_t *buf)
+{
+        snRetVal_t sn_ret = {AR_E_INVAL, NULL};
+		arStatus_t status;
+		snObject_t *val = NULL;
+		AR_ASSERT(dre != NULL && buf != NULL);
+        
+        AR_memset(dre, 0, sizeof(*dre));
+        
+        status = AR_S_YES;
+        
+		sn_ret = SN_GetObject(buf);
+		
+		if(sn_ret.status != AR_S_YES)
+		{
+				AR_ASSERT(sn_ret.obj == NULL);
+				status = sn_ret.status;
+				AR_LOG(L"%ls\r\n", L"bad package");
+				goto END_POINT;
+		}
+
+        val = SN_FindFromDictObjectByStr(sn_ret.obj, WI_EVENT_NAME);
+        
+        if(val == NULL || SN_GetIntObject(val) != WI_DISCOVERY_REPLY_EVENT_T)
+        {
+                status = AR_E_INVAL;
+                goto END_POINT;
+        }
+        
+        val = SN_FindFromDictObjectByStr(sn_ret.obj, WI_DISCOVERY_REPLY_IPADDR);
+
+        if(val == NULL || SN_GetStrFromStringObject(val, dre->ip, 20) <= 0)
+        {
+                status = AR_E_INVAL;
+                goto END_POINT;
+        }
+        
+        val = SN_FindFromDictObjectByStr(sn_ret.obj, WI_DISCOVERY_REPLY_PORT);
+        
+        if(val == NULL)
+        {
+                status = AR_E_INVAL;
+                goto END_POINT;
+        }
+        
+        dre->port = (uint_16_t)SN_GetIntObject(val);
+        
+        
+END_POINT:
+        if(sn_ret.obj)
+        {
+                SN_DestroyObject(sn_ret.obj);
+                sn_ret.obj = NULL;
+        }
+        return status;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 
 #define WI_MOUSE_EVENT_TYPE     "TP"
@@ -254,8 +392,13 @@ static AR_INLINE arBuffer_t* ShortcutsEvent_To_NetMessage(const shortcutsEvent_t
 
 
 
-
 #define __CHECK_AND_RET(_cond, _evt) do{ if(!(_cond)) {	return _evt;}}while(0)
+
+
+
+
+
+
 
 static AR_INLINE arStatus_t  NetMessage_To_MouseEvent(mouseEvent_t *me, snObject_t *obj)
 {
@@ -346,6 +489,7 @@ typedef struct
 				mouseEvent_t			me;
 				keyboardEvent_t			ke;
 				shortcutsEvent_t		se;
+                discoveryRequestEvent_t discovery_request;
 		};
 }netEvent_t;
 
@@ -358,6 +502,7 @@ static AR_INLINE arStatus_t  NetMessage_To_Event(netEvent_t *e, arBuffer_t *buf,
 		
 		AR_ASSERT(e != NULL && buf != NULL);
 
+        status = AR_S_YES;
 		sn_ret = SN_GetObject(buf);
 		
 		if(sn_ret.status != AR_S_YES)
@@ -367,6 +512,17 @@ static AR_INLINE arStatus_t  NetMessage_To_Event(netEvent_t *e, arBuffer_t *buf,
 				AR_LOG(L"%ls\r\n", L"bad package");
 				goto END_POINT;
 		}
+        
+        
+        {
+                val = SN_FindFromDictObjectByStr(sn_ret.obj, WI_EVENT_NAME);
+                if(val != NULL && SN_GetUIntObject(val) == WI_DISCOVERY_REQUEST_EVENT_T)
+                {
+                        e->type = WI_DISCOVERY_REQUEST_EVENT_T;
+                        goto END_POINT;
+                }
+        }
+        
 
 		if(pwd && AR_strlen(pwd) > 0)
 		{
@@ -479,6 +635,11 @@ END_POINT:
 
 
 #undef __CHECK_AND_RET
+
+
+
+
+
 
 
 #endif
