@@ -110,11 +110,57 @@
 }
 
 
--(void)handle_read : (const void*)data
+-(void)handle_read
 {
+        
         WI_LOG(@"%@", @"handle_read");
+
+        byte_t input[4096];
+        CFSocketNativeHandle sock_native = CFSocketGetNative(self.sock_handle);
         
+        struct sockaddr_in incoming_addr;
+        socklen_t incoming_addr_len = sizeof(incoming_addr);
         
+        int rn = recvfrom(sock_native, (void*)input, 4096, 0, (struct sockaddr*)&incoming_addr, &incoming_addr_len);
+        
+        if(rn > 0)
+        {
+                arBuffer_t *buf = AR_CreateBuffer(1024);
+                AR_InsertBuffer(buf, input, rn);
+                discoveryReplyEvent_t reply;
+
+                if(NetMessage_To_DiscoveryReplyEvent(&reply, buf) == AR_S_YES)
+                {
+                        WI_LOG(@"receive discovery address == %s:%u", reply.ip, reply.port);
+                        
+                        
+                        if(strcmp(reply.ip, "0.0.0.0") == 0)
+                        {
+                                const char *s = inet_ntoa(incoming_addr.sin_addr);
+                                
+                                if(s == NULL)
+                                {
+                                        AR_DestroyBuffer(buf);
+                                        buf = NULL;
+                                        return;
+                                }
+                                strcpy(reply.ip, s);
+                        }
+                        
+                        NSString *new_addr = [NSString stringWithFormat : @"%s:%u", reply.ip, reply.port];
+                        
+                        if(![_discovered containsObject : new_addr])
+                        {
+                                [_discovered addObject : new_addr];
+                                [self.view reloadData];
+
+                        }
+                        
+                }
+        
+                AR_DestroyBuffer(buf);
+                buf = NULL;
+        }
 }
 
 -(void)handle_write 
@@ -207,8 +253,8 @@ static void __sock_callback(CFSocketRef s, CFSocketCallBackType type, CFDataRef 
         case kCFSocketWriteCallBack:
                [ds handle_write];
                break;
-        case  kCFSocketDataCallBack:
-              [ds handle_read : data];
+        case  kCFSocketReadCallBack:
+              [ds handle_read];
                break;
         default:
                assert(false);
@@ -259,7 +305,7 @@ static void __sock_callback(CFSocketRef s, CFSocketCallBackType type, CFDataRef 
         if(err == 0) 
         {
                 const CFSocketContext   context = { 0, self, NULL, NULL, NULL };
-                self->sock_handle = CFSocketCreateWithNative(NULL, sock, kCFSocketWriteCallBack|kCFSocketDataCallBack, __sock_callback, &context);
+                self->sock_handle = CFSocketCreateWithNative(NULL, sock, kCFSocketWriteCallBack|kCFSocketReadCallBack, __sock_callback, &context);
                 assert( CFSocketGetSocketFlags(self->sock_handle) & kCFSocketCloseOnInvalidate );
                 sock = -1;
                 
@@ -310,7 +356,7 @@ static void __sock_callback(CFSocketRef s, CFSocketCallBackType type, CFDataRef 
         
         if([ar compareIPV4Address : &ip_beg 
                              with : &ip_end
-            ] <= 0
+            ] < 0
            )
         {
 
