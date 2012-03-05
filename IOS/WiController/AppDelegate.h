@@ -10,6 +10,13 @@
 #import "Reachability.h"
 #include "stdhdr.h"
 
+
+#define PREFS_PORT              @"port"
+#define PREFS_AUTODISCOVERY     @"auto_discovery"
+#define PREFS_IPSTART           @"ip_start"
+#define PREFS_IPSTOP            @"ip_stop"
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
         

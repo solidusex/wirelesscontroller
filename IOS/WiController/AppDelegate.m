@@ -22,13 +22,77 @@
 
 
 
+
+- (void)setupByPreferences
+{
+        NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:PREFS_PORT];
+        
+        if (testValue == nil)
+        {
+                NSString *pathStr = [[NSBundle mainBundle] bundlePath];
+                NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
+                NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
+                
+                NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+                NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+                
+                
+                NSString *port = nil;
+                NSString *auto_discovery = nil;
+                NSString *ip_start = @"192.168.0.0";
+                NSString *ip_stop = @"192.168.255.255";
+                
+                
+                NSDictionary *prefItem;
+                for (prefItem in prefSpecifierArray)
+                {
+                        WI_LOG(@"%@", prefItem);
+                        
+                        NSString *key = [prefItem objectForKey:@"Key"];
+                        NSString *defaultValue = [prefItem objectForKey:@"DefaultValue"];
+
+                        
+                        if ([key isEqualToString:PREFS_PORT])
+                        {
+                                port = defaultValue;
+                        }
+                        else if ([key isEqualToString:PREFS_AUTODISCOVERY])
+                        {
+                                auto_discovery = defaultValue;
+                        }
+                        else if ([key isEqualToString:PREFS_IPSTART])
+                        {
+                                ip_start = defaultValue;
+                        }
+                        else if ([key isEqualToString:PREFS_IPSTOP])
+                        {
+                                ip_stop = defaultValue;
+                        }
+                }
+                
+
+                // since no default values have been set (i.e. no preferences file created), create it here		
+                NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                             port, PREFS_PORT,
+                                             auto_discovery, PREFS_AUTODISCOVERY,
+                                             ip_start, PREFS_IPSTART,
+                                             ip_stop, PREFS_IPSTOP,
+                                             nil];
+                
+                [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+               
+        }
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
         
     // Override point for customization after application launch.
         [ArsenalWrapper instance];
         
-        
+        [self setupByPreferences];
         
         return YES;
 }
