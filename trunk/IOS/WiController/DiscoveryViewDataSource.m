@@ -110,6 +110,121 @@
 }
 
 
+
+
+
+
+#define IP_PATTERN      L"(({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5]))(?!{digit})"
+#define COLON           L":"
+#define PORT            L"{digit}+"
+
+static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16], unsigned short *port)
+{
+        *port = 0;
+        
+        lex_t *lex = Lex_Create();
+        
+        
+        if(Lex_InsertName(lex, L"delim", L"[ \\r\\t\\n]") != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        if(Lex_InsertName(lex, L"digit", L"[0-9]") != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        lexAction_t act;
+        act.is_skip = true;
+        act.priority = 1;
+        act.value = 0;
+        
+        if(Lex_InsertRule(lex, L"{delim}+", &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        
+        act.is_skip = false;
+        act.priority = 0;
+        act.value = 1;
+        if(Lex_InsertRule(lex, IP_PATTERN, &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        
+        act.is_skip = false;
+        act.priority = 0;
+        act.value = 2;
+        if(Lex_InsertRule(lex, COLON, &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        act.is_skip = false;
+        act.priority = 0;
+        act.value = 3;
+        if(Lex_InsertRule(lex, PORT, &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        
+        lexMatch_t *match = Lex_CreateMatch(lex);
+        Lex_ResetInput(match, ip);
+        lexToken_t tok;
+        BOOL ret = Lex_Match(match, &tok) == AR_S_YES;
+        
+        if(ret)
+        {
+                assert(tok.count < 16);
+                AR_wcsncpy(valid_ip, tok.str, tok.count);
+                valid_ip[tok.count] = 0;
+        }
+        
+        
+        BOOL has_valid_port = YES;
+        
+        has_valid_port = Lex_Match(match, &tok) == AR_S_YES;
+        
+        if(has_valid_port && tok.value == 2)
+        {
+                has_valid_port = Lex_Match(match, &tok) == AR_S_YES;
+        }
+        
+        if(has_valid_port && tok.value == 3)
+        {
+                uint_32_t port_val = 0;
+                if(AR_wtou32(tok.str, &port_val, 10) != NULL)
+                {
+                        *port = port_val;
+                }else
+                {
+                        has_valid_port = NO;
+                }
+        }
+        
+        if(*port > 65535)
+        {
+                *port = 0;
+        }
+        
+        Lex_DestroyMatch(match);
+        match = NULL;
+        
+        Lex_Destroy(lex);
+        lex = NULL;
+        
+        return ret;
+}
+
+
+
+
+
+
 -(void)handle_read
 {
         
@@ -133,28 +248,35 @@
                 {
                         WI_LOG(@"receive discovery address == %s:%u", reply.ip, reply.port);
                         
-                        
-                        if(strcmp(reply.ip, "0.0.0.0") == 0)
+                        const wchar_t *ip_txt = [[ArsenalWrapper sharedArsenalWrapper] strConvertToWideString : reply.ip];
+                        unsigned short port_val = 0;
+                        wchar_t valid_ip[20];
+                        if(is_valid_ip_address(ip_txt, valid_ip, &port_val))
                         {
-                                const char *s = inet_ntoa(incoming_addr.sin_addr);
-                                
-                                if(s == NULL)
+                                if(strcmp(reply.ip, "0.0.0.0") == 0)
                                 {
-                                        AR_DestroyBuffer(buf);
-                                        buf = NULL;
-                                        return;
+                                        const char *s = inet_ntoa(incoming_addr.sin_addr);
+                                        
+                                        if(s == NULL)
+                                        {
+                                                AR_DestroyBuffer(buf);
+                                                buf = NULL;
+                                                return;
+                                        }
+                                        strcpy(reply.ip, s);
                                 }
-                                strcpy(reply.ip, s);
+                                
+                                //NSString *new_addr = [NSString stringWithFormat : @"%s:%u", reply.ip, reply.port];
+                                NSString *new_addr = [NSString stringWithFormat : @"%s", reply.ip];
+                                
+                                if(![_discovered containsObject : new_addr])
+                                {
+                                        [_discovered addObject : new_addr];
+                                        [self.view reloadData];
+                                        
+                                }
                         }
-                        
-                        NSString *new_addr = [NSString stringWithFormat : @"%s:%u", reply.ip, reply.port];
-                        
-                        if(![_discovered containsObject : new_addr])
-                        {
-                                [_discovered addObject : new_addr];
-                                [self.view reloadData];
 
-                        }
                         
                 }
         

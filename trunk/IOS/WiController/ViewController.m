@@ -420,9 +420,13 @@
 
 
 #define IP_PATTERN      L"(({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5])\\.({digit}{1,2}|1{digit}{digit}|2[0-4]{digit}|25[0-5]))(?!{digit})"
+#define COLON           L":"
+#define PORT            L"{digit}+"
 
-static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
+static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16], unsigned short *port)
 {
+        *port = 0;
+        
         lex_t *lex = Lex_Create();
         
         
@@ -455,6 +459,24 @@ static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
                 assert(false);
         }
         
+        
+        act.is_skip = false;
+        act.priority = 0;
+        act.value = 2;
+        if(Lex_InsertRule(lex, COLON, &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        act.is_skip = false;
+        act.priority = 0;
+        act.value = 3;
+        if(Lex_InsertRule(lex, PORT, &act) != AR_S_YES)
+        {
+                assert(false);
+        }
+        
+        
         lexMatch_t *match = Lex_CreateMatch(lex);
         Lex_ResetInput(match, ip);
         lexToken_t tok;
@@ -465,6 +487,33 @@ static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
                 assert(tok.count < 16);
                 AR_wcsncpy(valid_ip, tok.str, tok.count);
                 valid_ip[tok.count] = 0;
+        }
+        
+        
+        BOOL has_valid_port = YES;
+        
+        has_valid_port = Lex_Match(match, &tok) == AR_S_YES;
+        
+        if(has_valid_port && tok.value == 2)
+        {
+                has_valid_port = Lex_Match(match, &tok) == AR_S_YES;
+        }
+        
+        if(has_valid_port && tok.value == 3)
+        {
+                uint_32_t port_val = 0;
+                if(AR_wtou32(tok.str, &port_val, 10) != NULL)
+                {
+                        *port = port_val;
+                }else
+                {
+                        has_valid_port = NO;
+                }
+        }
+        
+        if(*port > 65535)
+        {
+                *port = 0;
         }
         
         Lex_DestroyMatch(match);
@@ -481,12 +530,15 @@ static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
 
 -(IBAction) setDestinationAddress : (id)sender
 {
+        unsigned short port = 0;
+        wchar_t valid_ip[16];
+        
         if([ipText.text length] > 0)
         {
-                wchar_t valid_ip[16];
+                
                 const wchar_t *ip_txt = [[ArsenalWrapper sharedArsenalWrapper] stringConvertToWideString : ipText.text];
                 
-                if(!is_valid_ip_address(ip_txt, valid_ip))
+                if(!is_valid_ip_address(ip_txt, valid_ip, &port))
                 {
                         NSString *alert = [NSString stringWithFormat : @"invalid ip address : '%@'", ipText.text];
                         
@@ -497,6 +549,14 @@ static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
                 }
                 
                 ipText.text = [NSString  stringWithWideString : valid_ip];
+                port = 0;
+                /*
+                if(port != 0)
+                {
+                        ipText.text = [ipText.text stringByAppendingString : [NSString stringWithFormat : @" : %u", port]
+                                       ];
+                }
+                 */
         }else
         {
                 NSString *alert = [NSString stringWithFormat : @"empty ip address"];
@@ -510,8 +570,8 @@ static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16])
         ///////////////////////////////
         [self uninitLocalNetResources];
         
-        if([self initLocalNetResources : ipText.text
-                               port : [self getDestinationPort]
+        if([self initLocalNetResources : [NSString  stringWithWideString : valid_ip]
+                                  port : port == 0 ? [self getDestinationPort] : port
         ])
         {
                 [current_pwd release];
