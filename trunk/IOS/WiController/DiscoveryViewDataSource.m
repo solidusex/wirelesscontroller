@@ -353,6 +353,9 @@ static BOOL is_valid_ip_address(const wchar_t *ip, wchar_t valid_ip[16], unsigne
                 if(![ar addIPV4Address : &ip_beg])
                 {
                         ip_beg.sin_addr = bak;
+                }else
+                {
+                        
                 }
         }
 
@@ -437,7 +440,7 @@ static void __sock_callback(CFSocketRef s, CFSocketCallBackType type, CFDataRef 
                 CFRelease(rls);
         }
         
-        timer = [NSTimer scheduledTimerWithTimeInterval : 0.2
+        timer = [NSTimer scheduledTimerWithTimeInterval : 0.01
                                                   target: self
                                                 selector:@selector(on_timer:)
                                                 userInfo:nil
