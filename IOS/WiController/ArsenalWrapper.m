@@ -250,6 +250,22 @@ static ArsenalWrapper   *__g_arsenal = NULL;
         NSLog(@"error level = %d, error msg = '%@'", level, msg);
 }
 
+
+-(const wchar_t*) strConvertToWideString : (const char*)str
+{
+        if(str != NULL)
+        {
+                tmp = AR_str_convto_wcs(AR_CP_UTF8, str, strlen(str));
+        }
+        
+        if(tmp == NULL)
+        {
+                tmp = AR_wcsdup(L"");
+        }
+        
+        return tmp;
+}
+
 -(const wchar_t*) stringConvertToWideString : (NSString*)str
 {
         AR_ASSERT(str != nil);

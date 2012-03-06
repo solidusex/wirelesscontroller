@@ -41,6 +41,7 @@
 -(NSInteger)compareIPV4Address : (const struct sockaddr_in*)l with : (const struct sockaddr_in*)r;
 
 
+-(const wchar_t*) strConvertToWideString : (const char*)str;
 -(const wchar_t*) stringConvertToWideString : (NSString*)str;
 
 @end
