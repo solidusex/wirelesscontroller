@@ -10,6 +10,7 @@
 		6708F1E514FC18FE00B0DF7A /* MouseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6708F1E414FC18FE00B0DF7A /* MouseUIView.m */; };
 		6708F1EC14FC224A00B0DF7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6708F1EB14FC224A00B0DF7A /* Reachability.m */; };
 		6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */; };
+		67574AC51506EE14001C3356 /* iPhone Simulator_114_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 67574AC41506EE14001C3356 /* iPhone Simulator_114_114.png */; };
 		677CFE7A14FE623E00238716 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 677CFE7914FE623E00238716 /* libiconv.dylib */; };
 		677CFE7C14FE624400238716 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 677CFE7B14FE624400238716 /* libpthread.dylib */; };
 		67AB456414FDFBF6000CC0E1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */; };
@@ -43,13 +44,14 @@
 		6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		674FCA5014FEFBEB0079FF62 /* NetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetMessage.h; path = ../Common/NetMessage.h; sourceTree = "<group>"; };
 		674FCA5815005AEC0079FF62 /* stdhdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdhdr.h; sourceTree = "<group>"; };
+		67574AC41506EE14001C3356 /* iPhone Simulator_114_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Simulator_114_114.png"; sourceTree = "<group>"; };
 		677CFE7914FE623E00238716 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		677CFE7B14FE624400238716 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		67AF24C6150423490013F1C0 /* ViewController_ViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController_ViewControllerTest.h; sourceTree = "<group>"; };
 		67AF24C7150423490013F1C0 /* ViewController_ViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController_ViewControllerTest.m; sourceTree = "<group>"; };
 		67AF24C9150426860013F1C0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		67AF24D9150494B70013F1C0 /* DiscoveryViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DiscoveryViewDataSource.h; sourceTree = "<group>"; };
+		67AF24D9150494B70013F1C0 /* DiscoveryViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewDataSource.h; sourceTree = "<group>"; };
 		67AF24DA150494B70013F1C0 /* DiscoveryViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewDataSource.m; sourceTree = "<group>"; };
 		67AF24DC1504952C0013F1C0 /* DiscoveryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryView.h; sourceTree = "<group>"; };
 		67AF24DD1504952C0013F1C0 /* DiscoveryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryView.m; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		67B4FD7C14FB4ABA00CD40DB = {
 			isa = PBXGroup;
 			children = (
+				67574AC41506EE14001C3356 /* iPhone Simulator_114_114.png */,
 				677CFE7B14FE624400238716 /* libpthread.dylib */,
 				677CFE7914FE623E00238716 /* libiconv.dylib */,
 				677CFE6D14FE479D00238716 /* Common */,
@@ -245,6 +248,7 @@
 				67B4FD9F14FB4ABA00CD40DB /* MainStoryboard.storyboard in Resources */,
 				67B4FDB314FB4B5400CD40DB /* dabaopku.plist in Resources */,
 				67AF24CA150426860013F1C0 /* Settings.bundle in Resources */,
+				67574AC51506EE14001C3356 /* iPhone Simulator_114_114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
