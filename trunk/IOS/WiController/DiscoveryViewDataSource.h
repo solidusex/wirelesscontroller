@@ -2,7 +2,7 @@
 //  DiscoveryViewDelegate.h
 //  WiController
 //
-//  Created by  on 3/5/12.
+//  Created by solidus on 3/5/12.
 //  Copyright (c) 2012 none. All rights reserved.
 //
 
