@@ -29,11 +29,10 @@
 		67B4FDB314FB4B5400CD40DB /* dabaopku.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67B4FDB214FB4B5400CD40DB /* dabaopku.plist */; };
 		67B4FDC314FB4E3100CD40DB /* ArsenalWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FDC014FB4E3100CD40DB /* ArsenalWrapper.m */; };
 		67B4FDC414FB4E3100CD40DB /* NSString_Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FDC214FB4E3100CD40DB /* NSString_Convert.m */; };
-		67B4FDCA14FB4FDF00CD40DB /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FDC914FB4FDF00CD40DB /* Arsenal.a */; };
-		67B4FDCC14FB503100CD40DB /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4FDCB14FB503100CD40DB /* Arsenal.a */; };
 		67B4FDD314FB5DFD00CD40DB /* MouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4FDD214FB5DFD00CD40DB /* MouseViewController.m */; };
 		67C70A3214FB6C8000EA1BFA /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C70A3114FB6C8000EA1BFA /* KeyboardViewController.m */; };
 		67C70A3614FB6CAA00EA1BFA /* ShortcutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */; };
+		67D837BB1506F3FC0069EFC0 /* Arsenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D837BA1506F3FC0069EFC0 /* Arsenal.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,14 +72,13 @@
 		67B4FDC014FB4E3100CD40DB /* ArsenalWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArsenalWrapper.m; sourceTree = "<group>"; };
 		67B4FDC114FB4E3100CD40DB /* NSString_Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_Convert.h; sourceTree = "<group>"; };
 		67B4FDC214FB4E3100CD40DB /* NSString_Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Convert.m; sourceTree = "<group>"; };
-		67B4FDC914FB4FDF00CD40DB /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos/Arsenal.a"; sourceTree = "<group>"; };
-		67B4FDCB14FB503100CD40DB /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator/Arsenal.a"; sourceTree = "<group>"; };
 		67B4FDD114FB5DFD00CD40DB /* MouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseViewController.h; sourceTree = "<group>"; };
 		67B4FDD214FB5DFD00CD40DB /* MouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseViewController.m; sourceTree = "<group>"; };
 		67C70A3014FB6C8000EA1BFA /* KeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
 		67C70A3114FB6C8000EA1BFA /* KeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
 		67C70A3414FB6CAA00EA1BFA /* ShortcutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsViewController.h; sourceTree = "<group>"; };
 		67C70A3514FB6CAA00EA1BFA /* ShortcutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsViewController.m; sourceTree = "<group>"; };
+		67D837BA1506F3FC0069EFC0 /* Arsenal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Arsenal.a; path = "../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Release-iphoneos/Arsenal.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,15 +86,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67D837BB1506F3FC0069EFC0 /* Arsenal.a in Frameworks */,
 				677CFE7C14FE624400238716 /* libpthread.dylib in Frameworks */,
 				677CFE7A14FE623E00238716 /* libiconv.dylib in Frameworks */,
 				67AB456414FDFBF6000CC0E1 /* CFNetwork.framework in Frameworks */,
 				6708F1EE14FC228600B0DF7A /* SystemConfiguration.framework in Frameworks */,
-				67B4FDCA14FB4FDF00CD40DB /* Arsenal.a in Frameworks */,
 				67B4FD8C14FB4ABA00CD40DB /* UIKit.framework in Frameworks */,
 				67B4FD8E14FB4ABA00CD40DB /* Foundation.framework in Frameworks */,
 				67B4FD9014FB4ABA00CD40DB /* CoreGraphics.framework in Frameworks */,
-				67B4FDCC14FB503100CD40DB /* Arsenal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,14 +111,13 @@
 		67B4FD7C14FB4ABA00CD40DB = {
 			isa = PBXGroup;
 			children = (
+				67D837BA1506F3FC0069EFC0 /* Arsenal.a */,
 				67574AC41506EE14001C3356 /* iPhone Simulator_114_114.png */,
 				677CFE7B14FE624400238716 /* libpthread.dylib */,
 				677CFE7914FE623E00238716 /* libiconv.dylib */,
 				677CFE6D14FE479D00238716 /* Common */,
 				67AB456314FDFBF6000CC0E1 /* CFNetwork.framework */,
 				6708F1ED14FC228600B0DF7A /* SystemConfiguration.framework */,
-				67B4FDCB14FB503100CD40DB /* Arsenal.a */,
-				67B4FDC914FB4FDF00CD40DB /* Arsenal.a */,
 				67B4FDB214FB4B5400CD40DB /* dabaopku.plist */,
 				67B4FD9114FB4ABA00CD40DB /* WiController */,
 				67B4FD8A14FB4ABA00CD40DB /* Frameworks */,
@@ -365,6 +361,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -381,6 +378,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../../../XCode4_DerivedData/WirelessController-cmezolmshvtbzdaqfvrllqkdzico/Build/Products/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
