@@ -2,7 +2,7 @@
 //  MouseUIView.h
 //  WiController
 //
-//  Created by  on 2/28/12.
+//  Created by solidus on 2/28/12.
 //  Copyright (c) 2012 none. All rights reserved.
 //
 
